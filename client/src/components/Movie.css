@@ -1,0 +1,19 @@
+.movie {
+  height: 120px;
+  width: 600px;
+  display: inline-grid;
+  grid-template-columns: 1fr 4fr;
+}
+
+.movie .poster {
+  text-align: left;
+  grid-column: 1;
+}
+
+.movie .poster img {
+  width: 100px;
+}
+
+.movie .title {
+  grid-column: 2;
+}

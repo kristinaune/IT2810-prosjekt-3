@@ -1,0 +1,44 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding-top: 0px;
+  background-color: antiquewhite;
+  color: #333;
+}
+
+p {
+  font-size: 1.6rem;
+}
+
+small {
+  font-size: 1.2rem;
+}
+.footer {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: rgb(235, 147, 64);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.navbar {
+  background-color: rgb(235, 147, 64);
+  position: fixed;
+  width: 100%;
+}
+
+.container {
+  padding-top: 130px;
+}
+
+.title {
+  text-align: left;
+  margin-left: 30px;
+  font-size: 25px;
+  color: #333;
+}
