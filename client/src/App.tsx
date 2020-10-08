@@ -10,8 +10,10 @@ import AllMovies from './components/pages/AllMovies';
 import MyList from './components/pages/MyList';
 import Navbar from './components/layout/Navbar';
 import Movie from './components/Movie';
-import Account from './components/pages/Account';
+import Account from './components/pages/User/Account';
 import Footer from './components/layout/Footer';
+import Login from './components/pages/User/Login';
+import Register from './components/pages/User/Register';
 
 const App = ({
   getMovies,
@@ -36,6 +38,8 @@ const App = ({
             <Route path='/allmovies' component={AllMovies}></Route>
             <Route path='/mylist' component={MyList} />
             <Route path='/account' component={Account} />
+            <Route path='/login' component={Login} />
+            <Route path='/register' component={Register} />
           </Switch>
         </div>
       </BrowserRouter>

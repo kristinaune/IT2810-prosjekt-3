@@ -10,6 +10,8 @@ export const AUTH_ERROR = 'AUTH_ERROR';
 export const USER_LOADED = 'USER_LOADED';
 export const LOG_IN = 'LOG_IN';
 export const LOG_OUT = 'LOG_OUT';
+
+export const REGISER_SUCCESS = 'REGISTER_SUCCESS';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const GET_LOGIN_ERROR = 'GET_LOGIN_ERROR';
