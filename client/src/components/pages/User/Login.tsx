@@ -2,16 +2,24 @@ import React, { useState } from 'react';
 // Importer Connect, "connecter" komponenten til redux
 import { connect } from 'react-redux';
 import { loadUser, login } from '../../../store/actions/user';
+import { useHistory } from 'react-router-dom';
 //import './Login.css';
 // Alt vi vil hente fra redux sin state, tar vi inn her
 // og husker å sende dem med i mapStateToProps
-const Login = ({ user }: { user: Object | null }) => {
+const Login = ({ login }: { login: Function }) => {
   let [email, setEmail] = useState('');
+  const history = useHistory();
   return (
     <div className='container'>
       <h4 className='center'>Log in</h4>
       <div className='form'>
-        <form>
+        <form
+          onSubmit={(e: any) => {
+            e.preventDefault();
+            login(email);
+            history.push('/account');
+          }}
+        >
           <label>Email</label>
           <input
             type='email'
@@ -22,15 +30,9 @@ const Login = ({ user }: { user: Object | null }) => {
               setEmail(e.target.value);
             }}
           />
-          <button
-            className='button'
-            type='submit'
-            onClick={(e) => {
-              login(email);
-            }}
-          >
+          <button className='button' type='submit'>
             {' '}
-            Submit
+            Log in
           </button>
         </form>
       </div>
@@ -42,7 +44,7 @@ const mapStateToProps = (state: any) => {
   // returnerer et objekt
   return {
     // Vi vil bruke disse fra state
-    user: state.user,
+    email: state.email,
   };
 };
 

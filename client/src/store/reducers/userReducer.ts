@@ -2,6 +2,8 @@ import {
   AUTH_ERROR,
   LOGIN_SUCCESS,
   LOGOUT_SUCCESS,
+  USER_LOADED,
+  REGISTER_SUCCESS,
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -17,7 +19,9 @@ export default (
 ) => {
   const { type, payload } = action;
   switch (type) {
+    case USER_LOADED:
     case LOGIN_SUCCESS:
+    case REGISTER_SUCCESS:
       return {
         ...state,
         isAuthenticated: true,

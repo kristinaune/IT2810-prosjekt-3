@@ -1,8 +1,9 @@
 import {
   AUTH_ERROR,
-  REGISER_SUCCESS,
+  REGISTER_SUCCESS,
   LOGIN_SUCCESS,
   USER_LOADED,
+  LOGOUT_SUCCESS,
 } from './actionTypes';
 import api from '../../utilities/api';
 import { Dispatch } from 'react';
@@ -17,7 +18,7 @@ export const loadUser = () => async (dispatch: Dispatch<Object>) => {
   };
 
   try {
-    const res = await api.get('/users/user', config);
+    const res = await api.get('/users', config);
     dispatch({
       type: USER_LOADED,
       payload: res.data,
@@ -37,11 +38,12 @@ export const register = (name: String, email: String) => async (
     },
   };
   const body = JSON.stringify({ name, email });
+  console.log('Registerer action');
 
   try {
-    const res = await api.post('/users/user/register', body, config);
+    const res = await api.post('/users/register', body, config);
     dispatch({
-      type: REGISER_SUCCESS,
+      type: REGISTER_SUCCESS,
       payload: res.data,
     });
   } catch (err) {
@@ -60,7 +62,10 @@ export const login = (email: String) => async (dispatch: Dispatch<Object>) => {
   const body = JSON.stringify({ email });
 
   try {
-    const res = await api.post('/users/user/login', body, config);
+    console.log('Trying to log in');
+    console.log(body);
+    const res = await api.post('/users/login', body, config);
+    console.log(res);
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data,
@@ -70,4 +75,10 @@ export const login = (email: String) => async (dispatch: Dispatch<Object>) => {
       type: AUTH_ERROR,
     });
   }
+};
+
+export const logout = () => (dispatch: Dispatch<Object>) => {
+  dispatch({
+    type: LOGOUT_SUCCESS,
+  });
 };
