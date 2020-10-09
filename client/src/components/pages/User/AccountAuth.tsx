@@ -15,14 +15,14 @@ const AccountAuth = ({
   return (
     <div className='container'>
       <h4 className='center'>Account</h4>
+      <b>
+        Name: {name}
+        <br /> Email: {email}
+      </b>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi
-        nesciunt accusamus, placeat quaerat quidem corporis voluptatum
-        repudiandae possimus accusantium officia quibusdam beatae exercitationem
-        mollitia tenetur velit non a aut quae.{' '}
+        nesciunt accusamus, placeat quaerat quidem.{' '}
       </p>
-      <h1> {name} </h1>
-      <h2> {email}</h2>
       <button
         className='button'
         type='submit'
@@ -38,7 +38,8 @@ const AccountAuth = ({
   );
 };
 const mapStateToProps = (state: any) => {
-  return { name: state.user.name, email: state.user.email };
+  return { name: state.user.user.user.name, email: state.user.user.user.email };
+  //Hvorfor er det så sykt mange "ledd" ned til navn? (user.user.user)
 };
 
 export default connect(mapStateToProps, { logout })(AccountAuth);

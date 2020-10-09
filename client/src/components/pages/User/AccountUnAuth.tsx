@@ -9,9 +9,7 @@ const AccountUnAuth = () => {
       <h4 className='center'>Account</h4>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi
-        nesciunt accusamus, placeat quaerat quidem corporis voluptatum
-        repudiandae possimus accusantium officia quibusdam beatae exercitationem
-        mollitia tenetur velit non a aut quae.{' '}
+        nesciunt accusamus, placeat quaerat quidem.{' '}
       </p>
       <button
         className='button'

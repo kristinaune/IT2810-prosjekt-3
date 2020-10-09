@@ -44,7 +44,7 @@ const mapStateToProps = (state: any) => {
   // returnerer et objekt
   return {
     // Vi vil bruke disse fra state
-    email: state.email,
+    email: state.user.email,
   };
 };
 

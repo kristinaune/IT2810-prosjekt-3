@@ -18,7 +18,7 @@ export const loadUser = () => async (dispatch: Dispatch<Object>) => {
   };
 
   try {
-    const res = await api.get('/users', config);
+    const res = await api.get('/user', config);
     dispatch({
       type: USER_LOADED,
       payload: res.data,
@@ -29,9 +29,13 @@ export const loadUser = () => async (dispatch: Dispatch<Object>) => {
     });
   }
 };
-export const register = (name: String, email: String) => async (
-  dispatch: Dispatch<Object>
-) => {
+export const register = ({
+  name,
+  email,
+}: {
+  name: String;
+  email: String;
+}) => async (dispatch: Dispatch<Object>) => {
   const config = {
     headers: {
       'Content-type': 'application/json',

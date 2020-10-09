@@ -55,8 +55,8 @@ const Register = ({ register }: { register: Function }) => {
 const mapStateToProps = (state: any) => {
   // returnerer et objekt
   return {
-    name: state.user.name,
-    email: state.user.email,
+    name: state.name,
+    email: state.email,
     // Vi vil bruke disse fra state
   };
 };
