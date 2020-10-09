@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { connect } from "react-redux";
-import { searchMovieTitle } from "../store/actions/results";
-import { MovieType } from "../types";
-import Movie from "./Movie";
-import "./MovieList.css";
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { searchMovieTitle } from '../store/actions/results';
+import { MovieType } from '../types';
+import Movie from './Movie';
+import './MovieList.css';
 
 const MovieList = ({
   movies,
@@ -26,24 +26,24 @@ const MovieList = ({
   };
 
   const styleSearch = {
-    borderRadius: "30px",
-    border: "1px solid #ddd",
-    width: "600px",
-    background: "#F2F1F9",
+    borderRadius: '30px',
+    border: '1px solid #ddd',
+    width: '600px',
+    background: '#F2F1F9',
 
-    marginTop: "200px",
-    marginLeft: "auto",
-    marginRight: "auto",
+    marginTop: '200px',
+    marginLeft: 'auto',
+    marginRight: 'auto',
   };
 
   return (
-    <div className="movieList">
+    <div className='movieList'>
       {!!searchMovieTitle && (
         <input
           style={styleSearch}
-          className="input"
-          placeholder="i.e Spiderman"
-          type="text"
+          className='input'
+          placeholder='i.e Spiderman'
+          type='text'
           onChange={(e) => {
             setMovieCount(20);
             searchMovieTitle(e.target.value, movies);
@@ -56,8 +56,8 @@ const MovieList = ({
           .map((movie: any) => {
             return <Movie key={movie.imdbId} {...movie} />;
           })}
-      <button className="button" type="submit">
-        {" "}
+      <button className='button' type='submit'>
+        {' '}
         Search
       </button>
     </div>
