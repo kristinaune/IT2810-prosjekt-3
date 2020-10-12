@@ -4,8 +4,8 @@
 body {
   margin: 0;
   padding-top: 0px;
-  background-color: antiquewhite;
-  color: #333;
+  background-color: #e8ded2;
+  color: #056676;
 }
 
 p {
@@ -18,7 +18,7 @@ small {
 .footer {
   margin-top: 1rem;
   padding: 1rem;
-  background-color: rgb(235, 147, 64);
+  background-color: #a3d2ca;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -27,7 +27,7 @@ small {
 }
 
 .navbar {
-  background-color: rgb(235, 147, 64);
+  background-color: #a3d2ca;
   position: fixed;
   width: 100%;
 }
@@ -40,5 +40,5 @@ small {
   text-align: left;
   margin-left: 30px;
   font-size: 25px;
-  color: #333;
+  color: #056676;
 }

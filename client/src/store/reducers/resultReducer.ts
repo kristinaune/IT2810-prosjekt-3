@@ -1,6 +1,6 @@
-import { SEARCH_BY_TITLE } from "../actions/actionTypes";
-import { MovieType } from "../../types";
-import movieSearch from "../utils/movieSearch";
+import { SEARCH_BY_TITLE } from '../actions/actionTypes';
+import { MovieType } from '../../types';
+import movieSearch from '../utils/movieSearch';
 
 export default (
   state = [],

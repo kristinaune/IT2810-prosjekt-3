@@ -1,18 +1,18 @@
-import React from "react";
+import React from 'react';
 
-import "./Movie.css";
+import './Movie.css';
 
 const Movie = (props: any) => {
   return (
-    <div className="movie">
-      <div className="poster">
-        <img alt="poster" src={props.poster} />
+    <div className='movie'>
+      <div className='poster'>
+        <img alt='poster' src={props.poster} />
       </div>
-      <div className="title">
+      <div className='title'>
         <h5>
-          {props.title} ({props.year})
+          Title: {props.title} ({props.year})
         </h5>
-        <p>{props.actors.join(", ")}</p>
+        <p>Actors: {props.actors.join(', ')}</p>
       </div>
     </div>
   );
