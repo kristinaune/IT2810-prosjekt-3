@@ -15,12 +15,12 @@ export default (
 
   switch (type) {
     case SEARCH_BY_TITLE:
+       // Uses movieSearch() to filter our movie-array, and add the result
+       // in our results-array.
       return (
-        (movies &&
-          movies.filter((movie: MovieType) => {
-            return movieSearch(search!, movie);
-          })) ||
-        false
+        movies &&
+          (movieSearch(search!, movies) ||
+        false)
       );
     default:
       return state;

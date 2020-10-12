@@ -15,12 +15,16 @@ const match = (search: string, string: string | Array<string>) => {
  * @param search What we're searching for
  * @param movie Movie we're searching in
  */
-const movieSearch = (search: string, movie: MovieType) => {
+const matchAny = (search: string, movie: MovieType) => {
   return (
     match(search, movie.title) ||
     match(search, movie.actors) ||
     match(search, movie.director)
   );
 };
+
+const movieSearch = (search: string, movies: Array<MovieType>) => {
+  return movies.filter((movie: MovieType) => matchAny(search, movie))
+}
 
 export default movieSearch;
