@@ -9,7 +9,6 @@ import Search from './components/pages/Search';
 import AllMovies from './components/pages/AllMovies';
 import MyList from './components/pages/MyList';
 import Navbar from './components/layout/Navbar';
-import Movie from './components/Movie';
 import Account from './components/pages/Account';
 import Footer from './components/layout/Footer';
 
@@ -21,7 +20,8 @@ const App = ({
   loadUser: Function;
 }) => {
   getMovies();
-  loadUser();
+  // Kommentert ut fordi den returnerer en 501-feil
+  //loadUser();
 
   return (
     <React.Fragment>
