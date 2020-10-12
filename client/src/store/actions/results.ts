@@ -7,7 +7,7 @@ import { SEARCH_BY_TITLE } from "./actionTypes";
  * @param search The search word in the query
  * @param movies The list of movies we're searching from.
  */
-export const searchMovieTitle = (search: string, movies: Array<MovieType>) => (
+export const search_movie_title = (search: string, movies: Array<MovieType>) => (
   dispatch: Dispatch<Object>
 ) => {
   dispatch({

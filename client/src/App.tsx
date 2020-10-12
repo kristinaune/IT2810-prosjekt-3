@@ -2,8 +2,8 @@ import React from 'react';
 import './App.css';
 import { connect } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { getMovies } from './store/actions/movies';
-import { loadUser } from './store/actions/user';
+import { get_movies } from './store/actions/movies';
+import { load_user } from './store/actions/user';
 import MovieList from './components/MovieList';
 import Search from './components/pages/Search';
 import AllMovies from './components/pages/AllMovies';
@@ -44,4 +44,6 @@ const App = ({
   );
 };
 
-export default connect(null, { getMovies, loadUser })(App);
+export default connect(null, { getMovies: get_movies, loadUser: load_user })(
+  App
+);

@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 // Importer Connect, "connecter" komponenten til redux
-import { connect } from "react-redux";
-import { getMovies } from "./store/actions/movies";
-import { MovieType } from "./types";
+import { connect } from 'react-redux';
+import { get_movies } from './store/actions/movies';
+import { MovieType } from './types';
 
 // Alt vi vil hente fra redux sin state, tar vi inn her
 // og husker å sende dem med i mapStateToProps
@@ -29,7 +29,7 @@ const mapStateToProps = (state: any) => {
 };
 
 const mapDispatchToProps = {
-  getMovies,
+  getMovies: get_movies,
 };
 //                      (verdier fra state, funksjoner som gjør noe med state)
 //

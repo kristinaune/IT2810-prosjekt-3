@@ -1,6 +1,6 @@
 import React, { ChangeEvent, createRef, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { searchMovieTitle } from '../store/actions/results';
+import { search_movie_title } from '../store/actions/results';
 import { MovieType } from '../types';
 import Movie from './Movie';
 import './MovieList.css';
@@ -120,6 +120,6 @@ const mapStateToProps = (state: any) => {
   return { movies: state.movies, results: state.results };
 };
 
-const mapDispatchToProps = { searchMovieTitle };
+const mapDispatchToProps = { searchMovieTitle: search_movie_title };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieList);

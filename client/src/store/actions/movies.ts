@@ -7,7 +7,7 @@ import { Dispatch } from 'react';
  * Should only be called once in the runtime of the application.
  * If no movies are found, return the error-response.
  */
-export const getMovies = () => async (dispatch: Dispatch<Object>) => {
+export const get_movies = () => async (dispatch: Dispatch<Object>) => {
   try {
     const res = await api.get('/movies');
 
