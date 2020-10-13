@@ -68,8 +68,10 @@ const mapStateToProps = (state: any) => {
   return { movies: state.movies, results: state.results };
 };
 
-const mapDispatchToProps = () => {
-  searchMovieTitle;
-};
+// const mapDispatchToProps = () => {
+//   return {
+//     searchMovieTitle,
+//   };
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MovieList);
+export default connect(mapStateToProps, { searchMovieTitle })(MovieList);

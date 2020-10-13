@@ -9,11 +9,12 @@ const Movie = (props: any) => {
         <img alt='poster' src={props.poster} />
       </div>
       <div className='title'>
-        <h5>
+        <h5 style={{ fontSize: '20px' }}>
           Title: {props.title} ({props.year})
         </h5>
-        <p>Actors: {props.actors.join(', ')}</p>
+        {/* <p>Actors: {props.actors.join(', ')}</p> */}
       </div>
+      <button> More information</button>
     </div>
   );
 };

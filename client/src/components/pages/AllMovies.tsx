@@ -1,17 +1,35 @@
-import React from 'react';
-import Movies from '../Movies';
-import { connect } from 'react-redux';
+import React, { useState } from 'react';
 
-const AllMovies = () => {
+import { connect } from 'react-redux';
+import { MovieType } from '../../types';
+import Movie from '../Movie';
+import './AllMovies.css';
+
+const AllMovies = ({ movies }: { movies?: Array<MovieType> }) => {
+  let [movieCount, setMovieCount] = useState(20);
+
+  window.onscroll = function (e: any) {
+    if (
+      window.innerHeight + window.scrollY >=
+      document.body.scrollHeight - 200
+    ) {
+      setMovieCount((m) => m + 10);
+    }
+  };
   return (
-    <div className='container'>
-      <Movies />
-    </div>
+    <section className='movies'>
+      {movies &&
+        movies
+          .slice(0, Math.min(movieCount, movies.length))
+          .map((movie: any) => {
+            return <Movie key={movie.imdbId} {...movie} />;
+          })}
+    </section>
   );
 };
 
 const mapStateToProps = (state: any) => {
-  return { movies: state.movies, results: state.results };
+  return { movies: state.movies };
 };
 
 export default connect(mapStateToProps)(AllMovies);
