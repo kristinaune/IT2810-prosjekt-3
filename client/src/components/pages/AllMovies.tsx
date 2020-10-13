@@ -18,12 +18,11 @@ const AllMovies = ({ movies }: { movies?: Array<MovieType> }) => {
   };
   return (
     <section className='movies'>
-      {movies &&
-        movies
-          .slice(0, Math.min(movieCount, movies.length))
-          .map((movie: any) => {
-            return <Movie key={movie.imdbId} {...movie} />;
-          })}
+      {movies
+        ?.slice(0, Math.min(movieCount, movies.length))
+        .map((movie: any) => {
+          return <Movie key={movie.imdbId} {...movie} />;
+        })}
     </section>
   );
 };
