@@ -1,10 +1,10 @@
 import React from 'react';
-import MovieList from '../MovieList';
+import SearchMovie from './SearchMovie';
 
 const Search = () => {
   return (
     <div className='container'>
-      <MovieList />
+      <SearchMovie />
     </div>
   );
 };

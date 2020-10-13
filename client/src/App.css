@@ -8,6 +8,10 @@ body {
   color: #056676;
 }
 
+main {
+  padding-top: 100px;
+}
+
 p {
   font-size: 1.6rem;
 }

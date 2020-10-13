@@ -1,0 +1,85 @@
+/*.button {
+  background-color: #5eaaa8 !important;
+  color: white;
+  border-radius: 30px;
+  border: 1px solid #ddd;
+  padding: 1rem 1rem;
+  width: 600px;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: background-color 250ms;
+}*/
+/*
+.button:hover {
+  background-color: #056676 !important;
+}*/
+
+#searchContainer {
+  height: 150px;
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: #056676;
+  color: #f2f1f9;
+}
+
+#searchField {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  width: 600px;
+  background: #f2f1f9;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: x-large;
+}
+
+#searchField::placeholder {
+  color: #056676;
+}
+
+#searchContainer #buttonContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: auto;
+  width: 600px;
+}
+
+#searchContainer .sortButton {
+  display: inline-flex;
+  justify-content: center;
+  height: 30px;
+  font-size: large;
+  border-radius: 10px;
+  line-height: 30px;
+  color: #f2f1f9;
+  font-weight: 600;
+}
+
+#searchContainer .sortButton:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.sortButton .sortArrow {
+  padding-top: 5px;
+  font-size: 20px;
+  opacity: 0;
+}
+
+.sortButton.active {
+  text-decoration: underline;
+}
+
+.sortButton.active .sortArrow {
+  opacity: 1 !important;
+}
+
+.sortButton ::selection {
+  background-color: none;
+}
+
+@media (min-width: 786px) {
+}

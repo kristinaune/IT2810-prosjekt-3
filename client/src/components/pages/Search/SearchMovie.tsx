@@ -1,11 +1,12 @@
 import React, { ChangeEvent, createRef, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { search_movie_title } from '../store/actions/results';
-import { MovieType } from '../types';
-import Movie from './Movie';
-import './MovieList.css';
+import { search_movie_title } from '../../../store/actions/results';
+import { MovieType } from '../../../types';
+import Movie from '../../Movie';
+import SortRow from './SortRow';
+import './SearchMovie.css';
 
-const MovieList = ({
+const SearchMovie = ({
   movies,
   results,
   searchMovieTitle,
@@ -17,6 +18,7 @@ const MovieList = ({
   // Number of movies to be displayed. Used in pagination.
   let [movieCount, setMovieCount] = useState(20);
 
+  let [sort, setSort] = useState(['', 0]);
   // A reference to the search/input-field.
   let searchFieldRef = createRef<HTMLInputElement>();
 
@@ -76,42 +78,25 @@ const MovieList = ({
     }
   };
 
-  /**
-   * @todo Alt av css bør flyttes inn i egne .css filer.
-   * Dette fikk vi trekk for sist.
-   */
-  const styleSearch = {
-    borderRadius: '30px',
-    border: '1px solid #ddd',
-    width: '600px',
-    background: '#F2F1F9',
-
-    marginTop: '200px',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-  };
-
   return (
     <div className='movieList'>
-      <input
-        ref={searchFieldRef}
-        style={styleSearch}
-        className='input'
-        placeholder='i.e. Spiderman'
-        type='text'
-        onChange={(e) => {
-          searchFieldHandler(e);
-        }}
-      ></input>
+      <div id='searchContainer'>
+        <input
+          ref={searchFieldRef}
+          id='searchField'
+          placeholder='i.e. Spiderman'
+          type='text'
+          onChange={(e) => {
+            searchFieldHandler(e);
+          }}
+        ></input>
+        <SortRow />
+      </div>
       {results
         .slice(0, Math.min(movieCount, results.length))
         .map((movie: any) => {
           return <Movie key={movie.imdbId} {...movie} />;
         })}
-      <button className='button' type='submit'>
-        {' '}
-        SearchS
-      </button>
     </div>
   );
 };
@@ -122,4 +107,4 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = { searchMovieTitle: search_movie_title };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MovieList);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchMovie);
