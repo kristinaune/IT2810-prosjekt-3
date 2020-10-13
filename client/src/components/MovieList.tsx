@@ -93,26 +93,6 @@ const MovieList = ({
 
   return (
     <div className='movieList'>
-<<<<<<< HEAD
-      {!!searchMovieTitle && (
-        <input
-          style={styleSearch}
-          className='input'
-          placeholder='i.e Spiderman'
-          type='text'
-          onChange={(e) => {
-            setMovieCount(20);
-            searchMovieTitle(e.target.value, movies);
-          }}
-        ></input>
-      )}
-      {results &&
-        results
-          .slice(0, Math.min(movieCount, results.length))
-          .map((movie: any) => {
-            return <Movie key={movie.imdbId} {...movie} />;
-          })}
-=======
       <input
         ref={searchFieldRef}
         style={styleSearch}
@@ -128,10 +108,9 @@ const MovieList = ({
         .map((movie: any) => {
           return <Movie key={movie.imdbId} {...movie} />;
         })}
->>>>>>> 4-fix-login-frontend
       <button className='button' type='submit'>
         {' '}
-        Search
+        SearchS
       </button>
     </div>
   );
@@ -141,16 +120,6 @@ const mapStateToProps = (state: any) => {
   return { movies: state.movies, results: state.results };
 };
 
-<<<<<<< HEAD
-// const mapDispatchToProps = () => {
-//   return {
-//     searchMovieTitle,
-//   };
-// };
-
-export default connect(mapStateToProps, { searchMovieTitle })(MovieList);
-=======
 const mapDispatchToProps = { searchMovieTitle: search_movie_title };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieList);
->>>>>>> 4-fix-login-frontend

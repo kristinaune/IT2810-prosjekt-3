@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 // Importer Connect, "connecter" komponenten til redux
 import { connect } from 'react-redux';
-import { loadUser, login } from '../../../store/actions/user';
+import { load_user, login } from '../../../store/actions/user';
 import { useHistory } from 'react-router-dom';
 //import './Login.css';
 // Alt vi vil hente fra redux sin state, tar vi inn her
@@ -54,4 +54,4 @@ const mapStateToProps = (state: any) => {
 //                      (verdier fra state, funksjoner som gjør noe med state)
 //
 //                          connect(state, actions)(Komponent)
-export default connect(mapStateToProps, { loadUser, login })(Login);
+export default connect(mapStateToProps, { load_user: load_user, login })(Login);
