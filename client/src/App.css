@@ -28,7 +28,7 @@ small {
 
 .navbar {
   background-color: #a3d2ca;
-  position: fixed;
+  position: auto;
   width: 100%;
 }
 
@@ -39,6 +39,6 @@ small {
 .title {
   text-align: left;
   margin-left: 30px;
-  font-size: 25px;
+  font-size: 20px;
   color: #056676;
 }

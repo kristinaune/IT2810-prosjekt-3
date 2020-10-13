@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './Movie.css';
+import MovieInformation from './MovieInformation';
 
 const Movie = (props: any) => {
   return (
@@ -10,11 +11,11 @@ const Movie = (props: any) => {
       </div>
       <div className='title'>
         <h5 style={{ fontSize: '20px' }}>
-          Title: {props.title} ({props.year})
+          {props.title} ({props.year})
         </h5>
         {/* <p>Actors: {props.actors.join(', ')}</p> */}
       </div>
-      <button> More information</button>
+      <button className='button'> More information</button>
     </div>
   );
 };

@@ -17,3 +17,19 @@
 .movie .title {
   grid-column: 2;
 }
+.button {
+  background-color: #5eaaa8 !important;
+  color: white;
+  border-radius: 30px;
+  border: 1px solid #ddd;
+  padding: 1rem 1rem;
+  width: 200px;
+
+  font-size: 15px !important;
+  cursor: pointer;
+  transition: background-color 250ms !important;
+}
+
+.button:hover {
+  background-color: #056676 !important;
+}

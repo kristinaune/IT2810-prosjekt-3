@@ -16,15 +16,33 @@ const AllMovies = ({ movies }: { movies?: Array<MovieType> }) => {
       setMovieCount((m) => m + 10);
     }
   };
+
   return (
-    <section className='movies'>
+    <div className='movies'>
+      {/* <div className='container'>
+        <header>
+          Filter your search
+          <button type='button' className='button'>
+            {' '}
+            Sjanger
+          </button>
+          <div className='dropdown'>
+            <ul>
+              <li>Comedy</li>
+              <li>Action</li>
+              <li>Scifi</li>
+              <li>Romantic</li>
+            </ul>
+          </div>
+        </header>
+      </div> */}
       {movies &&
         movies
           .slice(0, Math.min(movieCount, movies.length))
           .map((movie: any) => {
             return <Movie key={movie.imdbId} {...movie} />;
           })}
-    </section>
+    </div>
   );
 };
 
