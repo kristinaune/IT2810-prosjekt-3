@@ -4,8 +4,6 @@ import {
   LOGIN_SUCCESS,
   USER_LOADED,
   LOGOUT_SUCCESS,
-  ADD_TO_MOVIE_LIST,
-  ADD_TO_MOVIE_LIST_ERROR,
 } from './actionTypes';
 import api from '../../utilities/api';
 import { Dispatch } from 'react';

@@ -3,7 +3,15 @@ import { MovieType } from '../types';
 
 import './Movie.css';
 
-const Movie = ({movie, mymovielist, isAuthenticated}: {movie: MovieType, isAuthenticated: boolean, mymovielist?: Array<MovieType extends Object>}) => {
+const Movie = ({
+  movie,
+  mymovielist,
+  isAuthenticated,
+}: {
+  movie: MovieType;
+  isAuthenticated: boolean;
+  mymovielist?: Array<MovieType>;
+}) => {
   return (
     <div className='movie'>
       <div className='poster'>
