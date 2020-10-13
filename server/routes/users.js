@@ -97,7 +97,12 @@ router.post('/addMovie', (req, res) => {
   )
     .then((user) => {
       res.status(200).json({
-        user: user,
+        user: {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          movieList: user.movieList,
+        },
       });
     })
     .catch((error) => {
@@ -132,8 +137,14 @@ router.delete('/deleteMovie', (req, res) => {
     { new: true } // Return new object insted of original
   )
     .then((user) => {
+      // Return the updated user
       res.status(200).json({
-        user: user,
+        user: {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          movieList: user.movieList,
+        },
       });
     })
     .catch((error) => {
