@@ -11,7 +11,6 @@ const AccountAuth = ({
   email: String;
   logout: Function;
 }) => {
-  console.log('NAME:' + name);
   return (
     <div className='container'>
       <h4 className='center'>Account</h4>

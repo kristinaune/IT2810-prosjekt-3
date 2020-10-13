@@ -1,18 +1,23 @@
-import React from "react";
+import React from 'react';
+import { MovieType } from '../types';
 
-import "./Movie.css";
+import './Movie.css';
 
-const Movie = (props: any) => {
+const Movie = ({movie, mymovielist, isAuthenticated}: {movie: MovieType, isAuthenticated: boolean, mymovielist?: Array<MovieType extends Object>}) => {
   return (
-    <div className="movie">
-      <div className="poster">
-        <img alt="poster" src={props.poster} />
+    <div className='movie'>
+      <div className='poster'>
+        <img alt='poster' src={movie.poster} />
       </div>
-      <div className="title">
+      <div className='title'>
         <h5>
-          {props.title} ({props.year})
+          {movie.title} ({movie.year})
         </h5>
-        <p>{props.actors.join(", ")}</p>
+        {}
+        <button className='button' type='submit'>
+          {' '}
+          + movie list
+        </button>
       </div>
     </div>
   );

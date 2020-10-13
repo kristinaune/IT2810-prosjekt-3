@@ -17,7 +17,7 @@ router.post('/register', (req, res) => {
 
   //Validate the inputs
   if (!name || !email) {
-    return res.status(400).json({ msg: 'Enter both name og email' });
+    return res.status(400).json({ msg: 'Enter both name and email' });
   }
   // Check if the name is registred
   User.findOne({ email }).then((user) => {
@@ -67,6 +67,27 @@ router.post('/login', (req, res) => {
     });
   });
 });
+
+// router.post('/addmovie', (req, res) => {
+//   const { movie, id } = req.body;
+
+//   if (!movie) {
+//     return res.status(400).json({msg: 'Unvalid movie'});
+//   }
+//   User.findById(id).then((user) => {
+//     if (!user) return res.status(400).json({msg: 'Cannot find user with the id'});
+//     res.status(200).json({
+//       user: {
+//         id: user.id,
+//         name: user.name,
+//         email:user.email,
+//         mymovielist: user.mymovielist+movie
+//       }
+//     })
+//   }
+
+//   }
+// })
 
 router.get('/user', (req, res) => {
   User.find({ name: req.name }).then((user) => res.json(user));
