@@ -2,6 +2,7 @@ import React, { ChangeEvent, createRef, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { search_and_sort } from '../../../store/actions/results';
 import { MovieType } from '../../../types';
+import searchSuggestions from './utils/searchSuggestions';
 import Movie from '../../Movie';
 import SortRow from './SortRow';
 import './SearchMovie.css';
@@ -9,7 +10,7 @@ import './SearchMovie.css';
 const SearchMovie = ({
   movies,
   results,
-  search_and_sort: search_and_sort,
+  search_and_sort,
 }: {
   movies?: Array<MovieType>;
   results: Array<MovieType>;
@@ -21,24 +22,28 @@ const SearchMovie = ({
   // A reference to the search/input-field.
   let searchFieldRef = createRef<HTMLInputElement>();
 
-  //
+  // Sort and search-states
   const [activeSort, setActiveSort] = useState<string>('rating');
   const [sortDirection, setSortDirection] = useState<number>(-1);
   const [searchWord, setSearchWord] = useState<string>('');
 
+  /**
+   * Updates sorting criterias and dispatches new search and sort
+   * @param attribute Attribute we want to sort on
+   * @param direction Direction we want to sort in, -1 for descending and 1 for ascending
+   */
   const handleSort = (attribute: string, direction: number) => {
-    console.log(direction);
     // Assign new direction to a constant.
     // This is because useState updates the state too slow for us
     // to reference the state in dispatchSearch.
     const newDir = activeSort === attribute ? sortDirection * -1 : -1;
     setSortDirection(newDir);
     setActiveSort(attribute);
-    dispatchSearch(searchWord, attribute, newDir);
+    dispatchSearchAndSort(searchWord, attribute, newDir);
   };
 
   /**
-   * Handles any change in the search field.
+   * Handles any change in the search field and dispatches a new search.
    * @param e ChangeEvent
    */
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
@@ -48,7 +53,7 @@ const SearchMovie = ({
     const localMovieCount = e.target.value.length > 0 ? 20 : 0;
     setMovieCount(localMovieCount);
     // Only dispatch searchMovieTitle if there has been a search.
-    dispatchSearch(e.target.value, activeSort, sortDirection);
+    dispatchSearchAndSort(e.target.value, activeSort, sortDirection);
   };
 
   /**
@@ -57,7 +62,7 @@ const SearchMovie = ({
    * @param sortAttr Attribute we want to sort on (Year, Rating, Runtime)
    * @param sortDir Sort direction, -1 for descending and 1 for ascending
    */
-  const dispatchSearch = (
+  const dispatchSearchAndSort = (
     searchString: string,
     sortAttr: string,
     sortDir: number
@@ -68,28 +73,13 @@ const SearchMovie = ({
   useEffect(() => {
     // Change suggestion in searchfield every two seconds.
     setInterval(() => {
-      // An array with search-suggestions
-      const suggestions = [
-        'Spiderman',
-        'Batman',
-        'Tarantino',
-        'DiCaprio',
-        'Spielberg',
-        'Scorsese',
-        'Godfather',
-        'Avengers',
-        'Christopgher Nolan',
-        'Inception',
-        'Fight Club',
-        'Forrest Gump',
-        'Tom Hanks',
-        'Interstellar',
-        'Gladiator',
-      ];
       // Fills in a random suggestion in the placeholder
       searchFieldRef.current?.setAttribute(
         'placeholder',
-        'i.e. ' + suggestions[Math.floor(Math.random() * suggestions.length)]
+        'i.e. ' +
+          searchSuggestions[
+            Math.floor(Math.random() * searchSuggestions.length)
+          ]
       );
     }, 2000);
   }, [searchFieldRef]);

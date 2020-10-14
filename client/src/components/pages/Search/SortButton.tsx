@@ -8,18 +8,18 @@ const SortButton = ({
 }: {
   attribute: string;
   active: boolean;
-  direction: boolean;
+  direction: number;
   handleSort: Function;
 }) => {
   return (
     <div
       className={active ? 'sortButton active' : 'sortButton'}
-      onClick={() => handleSort(attribute.toLowerCase())}
+      onClick={() => handleSort(attribute.toLowerCase(), direction)}
     >
       <div>
         {
           <span className='material-icons sortArrow'>
-            {direction ? 'south' : 'north'}
+            {direction < 0 ? 'south' : 'north'}
           </span>
         }
       </div>

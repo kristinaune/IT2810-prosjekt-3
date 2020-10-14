@@ -1,15 +1,15 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment } from 'react';
 import SortButton from './SortButton';
 
-const SortRow = () => {
-  const [activeSort, setActiveSort] = useState<string>('rating');
-  const [sortDirection, setSortDirection] = useState<boolean>(true);
-
-  const handleSort = (attribute: string) => {
-    activeSort === attribute && setSortDirection((dir) => !dir);
-    setActiveSort(attribute);
-  };
-
+const SortRow = ({
+  activeSort,
+  sortDirection,
+  handleSort,
+}: {
+  activeSort: string;
+  sortDirection: number;
+  handleSort: Function;
+}) => {
   return (
     <Fragment>
       <div id='buttonContainer'>
