@@ -6,7 +6,7 @@ import Movie from '../Movie';
 import './AllMovies.css';
 
 const AllMovies = ({ movies }: { movies?: Array<MovieType> }) => {
-  let [movieCount, setMovieCount] = useState(20);
+  let [movieCount, setMovieCount] = useState(100);
 
   window.onscroll = function (e: any) {
     if (
@@ -19,6 +19,14 @@ const AllMovies = ({ movies }: { movies?: Array<MovieType> }) => {
 
   return (
     <div className='movies'>
+      <div className='filter'>
+        <button className='button1'> Comedy</button>
+        <button className='button1'> War</button>
+        <button className='button1'> Action</button>
+        <button className='button1'> SciFi</button>
+        <button className='button1'> Drama</button>
+        <button className='button1'> Crime</button>
+      </div>
       {/* <div className='container'>
         <header>
           Filter your search
@@ -36,6 +44,7 @@ const AllMovies = ({ movies }: { movies?: Array<MovieType> }) => {
           </div>
         </header>
       </div> */}
+
       {movies &&
         movies
           .slice(0, Math.min(movieCount, movies.length))
