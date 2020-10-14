@@ -1,18 +1,23 @@
 import React, { ChangeEvent, createRef, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { search_movie_title } from '../store/actions/results';
+import { addmovie } from '../store/actions/user';
 import { MovieType } from '../types';
 import Movie from './Movie';
 import './MovieList.css';
 
 const MovieList = ({
   movies,
+  user,
   results,
   searchMovieTitle,
+  addmovie,
 }: {
   movies?: Array<MovieType>;
-  results: Array<MovieType>;
-  searchMovieTitle: Function;
+  user?: Object;
+  results?: Array<MovieType>;
+  searchMovieTitle?: Function;
+  addmovie?: Function;
 }) => {
   // Number of movies to be displayed. Used in pagination.
   let [movieCount, setMovieCount] = useState(20);
@@ -90,6 +95,9 @@ const MovieList = ({
     marginLeft: 'auto',
     marginRight: 'auto',
   };
+  const addmovietolist = (email: string, imdbId: string) => {
+    addmovie!(email, imdbId);
+  };
 
   return (
     <div className='movieList'>
@@ -106,7 +114,8 @@ const MovieList = ({
       {results
         .slice(0, Math.min(movieCount, results.length))
         .map((movie: any) => {
-          return <Movie key={movie.imdbId} {...movie} />;
+          return <Movie key={movie.imdbId} {...movie} {...user}
+                addmovietolist={addmovietolist}/>;
         })}
       <button className='button' type='submit'>
         {' '}
@@ -117,9 +126,13 @@ const MovieList = ({
 };
 
 const mapStateToProps = (state: any) => {
-  return { movies: state.movies, results: state.results };
+  return { movies: state.movies, results: state.results, user: state.user };
 };
 
-const mapDispatchToProps = { searchMovieTitle: search_movie_title };
+const mapDispatchToProps = { searchMovieTitle: search_movie_title, addmovie: addmovie };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MovieList);
+
+export default connect(mapStateToProps, { searchMovieTitle, addmovie })(
+  MovieList
+);
+

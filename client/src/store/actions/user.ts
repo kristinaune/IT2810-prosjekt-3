@@ -4,9 +4,12 @@ import {
   LOGIN_SUCCESS,
   USER_LOADED,
   LOGOUT_SUCCESS,
+  ADD_MOVIE_SUCCESS,
+  ADD_MOVIE_ERROR,
 } from './actionTypes';
 import api from '../../utilities/api';
 import { Dispatch } from 'react';
+import { MovieType } from '../../types';
 
 //load user. Make a request to routers/users
 
@@ -42,7 +45,6 @@ export const register = ({
     },
   };
   const body = JSON.stringify({ name, email });
-  console.log('Registerer action');
 
   try {
     const res = await api.post('/users/register', body, config);
@@ -66,10 +68,7 @@ export const login = (email: String) => async (dispatch: Dispatch<Object>) => {
   const body = JSON.stringify({ email });
 
   try {
-    console.log('Trying to log in');
-    console.log(body);
     const res = await api.post('/users/login', body, config);
-    console.log(res);
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data,
@@ -85,4 +84,28 @@ export const logout = () => (dispatch: Dispatch<Object>) => {
   dispatch({
     type: LOGOUT_SUCCESS,
   });
+};
+
+export const addmovie = (imdbId: String, email: String) => async (
+  dispatch: Dispatch<Object>
+) => {
+  const config = {
+    headers: {
+      'Content-type': 'application/json',
+    },
+  };
+  console.log('Adding movie...');
+  const body = JSON.stringify({ imdbId, email });
+  try {
+    console.log('Trying to save movie with ', email, 'and', imdbId);
+    const res = await api.post('/users/addmovie', body, config);
+    dispatch({
+      type: ADD_MOVIE_SUCCESS,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: ADD_MOVIE_ERROR,
+    });
+  }
 };

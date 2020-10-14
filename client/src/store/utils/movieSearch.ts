@@ -1,4 +1,4 @@
-import { MovieType } from "../../types";
+import { MovieType } from '../../types';
 
 /**
  * Checks if a string matches a search.
@@ -24,7 +24,7 @@ const matchAny = (search: string, movie: MovieType) => {
 };
 
 const movieSearch = (search: string, movies: Array<MovieType>) => {
-  return movies.filter((movie: MovieType) => matchAny(search, movie))
-}
+  return movies.filter((movie: MovieType) => matchAny(search, movie));
+};
 
 export default movieSearch;
