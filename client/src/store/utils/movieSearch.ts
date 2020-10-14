@@ -16,7 +16,6 @@ const match = (search: string, string: string | Array<string>) => {
  * @param movie Movie we're searching in
  */
 const matchAny = (search: string, movie: MovieType) => {
-  console.log(movie);
   return (
     match(search, movie.title) ||
     match(search, movie.actors) ||

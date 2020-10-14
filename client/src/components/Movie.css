@@ -11,21 +11,25 @@
 }
 
 .movie .poster img {
-  width: 100px;
+  width: 200px;
 }
 
 .movie .title {
   grid-column: 2;
 }
-
-.movie .button {
-  background-color: rgba(0, 0, 0, 0.75);
+.button {
+  background-color: #5eaaa8 !important;
   color: white;
   border-radius: 30px;
   border: 1px solid #ddd;
-  /* padding: 1rem 1rem; */
-  width: 100px;
-  font-size: x-small;
+  padding: 1rem 1rem;
+  width: 200px;
+
+  font-size: 15px !important;
   cursor: pointer;
-  transition: background-color 250ms;
+  transition: background-color 250ms !important;
+}
+
+.button:hover {
+  background-color: #056676 !important;
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './Movie.css';
+import MovieInformation from './MovieInformation';
 
 const Movie = (props: any) => {
   let email = '';
@@ -38,6 +39,7 @@ const Movie = (props: any) => {
           </button>
         ) : null}
       </div>
+      <button className='button'> More information</button>
     </div>
   );
 };
