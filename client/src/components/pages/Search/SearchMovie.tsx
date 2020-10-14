@@ -32,7 +32,7 @@ const SearchMovie = ({
    * @param attribute Attribute we want to sort on
    * @param direction Direction we want to sort in, -1 for descending and 1 for ascending
    */
-  const handleSort = (attribute: string, direction: number) => {
+  const handleSort = (attribute: string) => {
     // Assign new direction to a constant.
     // This is because useState updates the state too slow for us
     // to reference the state in dispatchSearch.
