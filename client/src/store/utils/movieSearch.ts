@@ -19,7 +19,8 @@ const matchAny = (search: string, movie: MovieType) => {
   return (
     match(search, movie.title) ||
     match(search, movie.actors) ||
-    match(search, movie.director)
+    match(search, movie.director) ||
+    match(search, movie.genres)
   );
 };
 
