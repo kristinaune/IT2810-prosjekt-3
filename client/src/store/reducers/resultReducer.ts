@@ -1,4 +1,4 @@
-import { SEARCH_BY_TITLE } from '../actions/actionTypes';
+import { SEARCH_AND_SORT } from '../actions/actionTypes';
 import { MovieType } from '../../types';
 import movieSearch from '../utils/movieSearch';
 
@@ -6,20 +6,23 @@ export default (
   state = [],
   action: {
     type: string;
-    payload?: any;
     search?: string;
     movies?: Array<MovieType>;
+    sortAttr?: string;
+    sortDir?: number;
   }
 ) => {
-  const { type, search, movies } = action;
 
-  switch (type) {
-    case SEARCH_BY_TITLE:
+  switch (action.type) {
+    case SEARCH_AND_SORT:
+      const { search, movies, sortAttr, sortDir } = action;
+      console.log(action);
+      
        // Uses movieSearch() to filter our movie-array, and add the result
        // in our results-array.
       return (
         movies &&
-          (movieSearch(search!, movies) ||
+          (movieSearch(search!, movies).sort((a, b) => (a[sortAttr!] - b[sortAttr!])*sortDir!) ||
         false)
       );
     default:
