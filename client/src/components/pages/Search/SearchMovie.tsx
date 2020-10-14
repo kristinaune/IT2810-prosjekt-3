@@ -105,7 +105,9 @@ const SearchMovie = ({
           ref={searchFieldRef}
           id='searchField'
           placeholder='i.e. Spiderman'
-          type='text'
+          type='search'
+          autoComplete='off'
+          autoFocus={true}
           onChange={(e) => {
             handleSearch(e);
           }}
