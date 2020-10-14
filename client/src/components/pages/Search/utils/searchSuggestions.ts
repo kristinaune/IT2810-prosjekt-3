@@ -1,0 +1,17 @@
+export default [
+    'Spiderman',
+    'Batman',
+    'Tarantino',
+    'DiCaprio',
+    'Spielberg',
+    'Scorsese',
+    'Godfather',
+    'Avengers',
+    'Christopgher Nolan',
+    'Inception',
+    'Fight Club',
+    'Forrest Gump',
+    'Tom Hanks',
+    'Interstellar',
+    'Gladiator',
+  ];
