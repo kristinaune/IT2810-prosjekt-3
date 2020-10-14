@@ -2,11 +2,7 @@ import React from 'react';
 import SearchMovie from './SearchMovie';
 
 const Search = () => {
-  return (
-    <div className='container'>
-      <SearchMovie />
-    </div>
-  );
+  return <SearchMovie />;
 };
 
 export default Search;
