@@ -4,6 +4,8 @@ import {
   LOGIN_SUCCESS,
   USER_LOADED,
   LOGOUT_SUCCESS,
+  ADD_MOVIE_SUCCESS,
+  ADD_MOVIE_ERROR,
 } from './actionTypes';
 import api from '../../utilities/api';
 import { Dispatch } from 'react';
@@ -82,4 +84,28 @@ export const logout = () => (dispatch: Dispatch<Object>) => {
   dispatch({
     type: LOGOUT_SUCCESS,
   });
+};
+
+export const addmovie = (imdbId: String, email: String) => async (
+  dispatch: Dispatch<Object>
+) => {
+  const config = {
+    headers: {
+      'Content-type': 'application/json',
+    },
+  };
+  console.log('Adding movie...');
+  const body = JSON.stringify({ imdbId, email });
+  try {
+    console.log('Trying to save movie with ', email, 'and', imdbId);
+    const res = await api.post('/users/addmovie', body, config);
+    dispatch({
+      type: ADD_MOVIE_SUCCESS,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: ADD_MOVIE_ERROR,
+    });
+  }
 };
