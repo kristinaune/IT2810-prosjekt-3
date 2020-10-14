@@ -17,3 +17,15 @@
 .movie .title {
   grid-column: 2;
 }
+
+.movie .button {
+  background-color: rgba(0, 0, 0, 0.75);
+  color: white;
+  border-radius: 30px;
+  border: 1px solid #ddd;
+  /* padding: 1rem 1rem; */
+  width: 100px;
+  font-size: x-small;
+  cursor: pointer;
+  transition: background-color 250ms;
+}

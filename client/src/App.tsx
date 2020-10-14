@@ -7,12 +7,12 @@ import { loadUser } from './store/actions/user';
 import MovieList from './components/MovieList';
 import Search from './components/pages/Search';
 import AllMovies from './components/pages/AllMovies';
-import MyList from './components/pages/MyList';
+import MyList from './components/pages/MyList/MyList';
 import Navbar from './components/layout/Navbar';
-import Account from './components/pages/User/Account';
+import Account from './components/pages/Account/Account';
 import Footer from './components/layout/Footer';
-import Login from './components/pages/User/Login';
-import Register from './components/pages/User/Register';
+import Login from './components/pages/Account/Login';
+import Register from './components/pages/Account/Register';
 import store from './store/store';
 
 const App = ({

@@ -17,6 +17,10 @@ const UserSchema = new Schema({
     required: true,
     unique: true,
   },
+  movieList: {
+    type: [String],
+    required: true,
+  },
 });
 
 // Exports User as a mongoose model
