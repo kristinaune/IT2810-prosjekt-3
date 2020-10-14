@@ -1,6 +1,6 @@
 import React, { ChangeEvent, createRef, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { search_movie_title } from '../../../store/actions/results';
+import { search_and_sort } from '../../../store/actions/results';
 import { MovieType } from '../../../types';
 import Movie from '../../Movie';
 import SortRow from './SortRow';
@@ -9,30 +9,60 @@ import './SearchMovie.css';
 const SearchMovie = ({
   movies,
   results,
-  searchMovieTitle,
+  search_and_sort: search_and_sort,
 }: {
   movies?: Array<MovieType>;
   results: Array<MovieType>;
-  searchMovieTitle: Function;
+  search_and_sort: Function;
 }) => {
   // Number of movies to be displayed. Used in pagination.
   let [movieCount, setMovieCount] = useState(20);
 
-  let [sort, setSort] = useState(['', 0]);
   // A reference to the search/input-field.
   let searchFieldRef = createRef<HTMLInputElement>();
+
+  //
+  const [activeSort, setActiveSort] = useState<string>('rating');
+  const [sortDirection, setSortDirection] = useState<number>(-1);
+  const [searchWord, setSearchWord] = useState<string>('');
+
+  const handleSort = (attribute: string, direction: number) => {
+    console.log(direction);
+    // Assign new direction to a constant.
+    // This is because useState updates the state too slow for us
+    // to reference the state in dispatchSearch.
+    const newDir = activeSort === attribute ? sortDirection * -1 : -1;
+    setSortDirection(newDir);
+    setActiveSort(attribute);
+    dispatchSearch(searchWord, attribute, newDir);
+  };
 
   /**
    * Handles any change in the search field.
    * @param e ChangeEvent
    */
-  const searchFieldHandler = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchWord(e.target.value);
     // Determines how many movies that should be displayed.
     // 20 if user is searching, 0 if search field is empty.
     const localMovieCount = e.target.value.length > 0 ? 20 : 0;
     setMovieCount(localMovieCount);
     // Only dispatch searchMovieTitle if there has been a search.
-    localMovieCount && searchMovieTitle(e.target.value, movies);
+    dispatchSearch(e.target.value, activeSort, sortDirection);
+  };
+
+  /**
+   * Calls the search_movie action with parameters for searching and sorting.
+   * @param searchString Searchword in filtering
+   * @param sortAttr Attribute we want to sort on (Year, Rating, Runtime)
+   * @param sortDir Sort direction, -1 for descending and 1 for ascending
+   */
+  const dispatchSearch = (
+    searchString: string,
+    sortAttr: string,
+    sortDir: number
+  ) => {
+    search_and_sort(searchString, movies, sortAttr, sortDir);
   };
 
   useEffect(() => {
@@ -87,10 +117,14 @@ const SearchMovie = ({
           placeholder='i.e. Spiderman'
           type='text'
           onChange={(e) => {
-            searchFieldHandler(e);
+            handleSearch(e);
           }}
         ></input>
-        <SortRow />
+        <SortRow
+          activeSort={activeSort}
+          sortDirection={sortDirection}
+          handleSort={handleSort}
+        />
       </div>
       {results
         .slice(0, Math.min(movieCount, results.length))
@@ -105,6 +139,6 @@ const mapStateToProps = (state: any) => {
   return { movies: state.movies, results: state.results };
 };
 
-const mapDispatchToProps = { searchMovieTitle: search_movie_title };
+const mapDispatchToProps = { search_and_sort };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchMovie);
