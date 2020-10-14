@@ -3,7 +3,7 @@ export const GET_MOVIES_FROM_DB = 'GET_MOVIES_FROM_DB';
 export const GET_MOVIES_ERROR = 'GET_MOVIES_ERROR';
 
 // Result actions
-export const SEARCH_BY_TITLE = 'SEARCH_BY_TITLE';
+export const SEARCH_AND_SORT = 'SEARCH_AND_SORT';
 
 // User actions
 export const AUTH_ERROR = 'AUTH_ERROR';

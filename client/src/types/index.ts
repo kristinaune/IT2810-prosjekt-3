@@ -1,4 +1,4 @@
-export interface MovieType {
+export interface MovieType extends Record<string, any> {
   title: string;
   imdbId: string;
   rating: number;

@@ -8,19 +8,15 @@ const Navbar = () => {
         Gløshaugen MovieDB
         <ul className='right'>
           <li>
-            {' '}
             <NavLink to='/search'> Search </NavLink>
           </li>
           <li>
-            {' '}
             <NavLink to='/allmovies'> All movies</NavLink>
           </li>
           <li>
-            {' '}
             <NavLink to='/mylist'> My movie list</NavLink>
           </li>
           <li>
-            {' '}
             <NavLink to='/account'> Account</NavLink>
           </li>
         </ul>
