@@ -16,7 +16,7 @@
 
 #searchContainer {
   height: 150px;
-  width: 800px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -37,6 +37,7 @@
 
 #searchField::placeholder {
   color: #056676;
+  opacity: 0.5;
 }
 
 #searchContainer #buttonContainer {
