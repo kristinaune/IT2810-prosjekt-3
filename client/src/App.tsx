@@ -2,8 +2,8 @@ import React from 'react';
 import './App.css';
 import { connect, Provider } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { getMovies } from './store/actions/movies';
-import { loadUser } from './store/actions/user';
+import { get_movies } from './store/actions/movies';
+import { load_user } from './store/actions/user';
 import MovieList from './components/MovieList';
 import Search from './components/pages/Search';
 import AllMovies from './components/pages/AllMovies';
@@ -23,7 +23,8 @@ const App = ({
   loadUser: Function;
 }) => {
   getMovies();
-  loadUser();
+  // Kommentert ut fordi den returnerer en 501-feil
+  //loadUser();
 
   return (
     <Provider store={store}>
@@ -50,4 +51,6 @@ const App = ({
   );
 };
 
-export default connect(null, { getMovies, loadUser })(App);
+export default connect(null, { getMovies: get_movies, loadUser: load_user })(
+  App
+);

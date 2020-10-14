@@ -10,7 +10,7 @@ import { Dispatch } from 'react';
 
 //load user. Make a request to routers/users
 
-export const loadUser = () => async (dispatch: Dispatch<Object>) => {
+export const load_user = () => async (dispatch: Dispatch<Object>) => {
   const config = {
     headers: {
       'Content-type': 'application/json',
