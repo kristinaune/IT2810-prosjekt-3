@@ -1,5 +1,6 @@
 export default [
     'Spiderman',
+    'Action',
     'Batman',
     'Tarantino',
     'DiCaprio',
@@ -14,4 +15,8 @@ export default [
     'Tom Hanks',
     'Interstellar',
     'Gladiator',
+    'Thriller',
+    'Drama',
+    'Sci-Fi',
+    'Comedy',
   ];
