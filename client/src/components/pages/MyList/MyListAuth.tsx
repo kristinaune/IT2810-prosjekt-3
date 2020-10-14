@@ -3,32 +3,27 @@ import { connect } from 'react-redux';
 import { MovieType } from '../../../types';
 import Movie from '../../Movie';
 
+// component thats rendering if user is authenticated
 const MyListAuth = ({
-  mylistmovies,
+  movielist,
   name,
 }: {
-  mylistmovies?: Array<MovieType>;
+  movielist?: Array<string>;
   name: String;
 }) => {
+  console.log(movielist);
   return (
     <div className='container'>
-      {' '}
       Showing {name}'s movies
-      {mylistmovies ? (
-        mylistmovies.map((movie: any) => {
-          return <Movie key={movie.imdbId} {...movie} />;
-        })
-      ) : (
-        <div> No movies </div>
-      )}
-      .
+      {/* Add functionality for showing movies in list */}
+      <div> No movies </div>
     </div>
   );
 };
 
 const mapStateToProps = (state: any) => {
   return {
-    mylistmovies: state.user.user.mylistmovies,
+    movielist: state.user.user.user.movielist,
     name: state.user.user.user.name,
   };
 };
