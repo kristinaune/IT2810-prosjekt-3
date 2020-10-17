@@ -100,6 +100,8 @@ const SearchMovie = ({
 
   return (
     <div className='movieList'>
+      <h2> Search for a movie, genre or actor: </h2>
+
       <div id='searchContainer'>
         <input
           ref={searchFieldRef}

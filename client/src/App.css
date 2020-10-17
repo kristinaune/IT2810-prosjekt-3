@@ -1,5 +1,8 @@
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
 }
 body {
   margin: 0;
@@ -28,15 +31,16 @@ small {
   position: fixed;
   bottom: 0;
   left: 0;
+  height: 80px;
   width: 100%;
   text-align: center;
 }
 
-.navbar {
+/* .navbar {
   background-color: #a3d2ca;
   position: auto;
   width: 100%;
-}
+} */
 
 .container {
   padding-top: 130px;
