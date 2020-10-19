@@ -6,10 +6,8 @@ import MovieInformation from './MovieInformation';
 const Movie = (props: any) => {
   let email = '';
   {
-    props.user ? (email = props.user.user.email) : (email = '');
+    props.user ? (email = props.user.email) : (email = '');
   }
-  console.log(props.addmovietolist);
-
   const imdbId = props.imdbId;
   // const handleClick = () => {
   //   addmovie(email, imdbId);
@@ -23,7 +21,7 @@ const Movie = (props: any) => {
         <h5>
           {props.title} ({props.year})
         </h5>
-        {console.log(imdbId, email)}
+        {console.log(props.user)}
         {props.user ? (
           <button
             className='button'
