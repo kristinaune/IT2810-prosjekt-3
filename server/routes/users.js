@@ -68,33 +68,53 @@ router.post('/login', (req, res) => {
   });
 });
 
-// router.post('/addmovie', (req, res) => {
-//   const { movie, id } = req.body;
+// ç
 
-//   if (!movie) {
-//     return res.status(400).json({msg: 'Unvalid movie'});
-//   }
-//   User.findById(id).then((user) => {
-//     if (!user) return res.status(400).json({msg: 'Cannot find user with the id'});
-//     res.status(200).json({
-//       user: {
-//         id: user.id,
-//         name: user.name,
-//         email:user.email,
-//         mymovielist: user.mymovielist+movie
-//       }
-//     })
-//   }
-
-//   }
-// })
-
-router.get('/user', (req, res) => {
-  User.find({ name: req.name }).then((user) => res.json(user));
+router.get('/:email', (req, res) => {
+  const {email} = req.params
+  User.findOne({ email: email}).then((user) => {
+    if (!user) return res.status(400).json({msg: 'User does not exist'});
+  res.status(200).json({
+    user: {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      movieList: user.movieList,
+    },
+  });
+});
 });
 
+// router.get('/:email', (req, res) => {
+//   const {email} = req.params
+//   console.log(email)
+//   User.find({email: email })
+//     .then((user) => res.json({
+//       user: { 
+//         id: user.id,
+//         name: user.name,
+//         email: user.email,
+//         movieList: user.movieList,
+//       },
+//     }))
+//     .catch((e) => res.status(404).json({ success: false, imdbId }));
+// });
+
+
+router.get('/movielist/:email', (req, res) => {
+  const {email} = req.params
+  User.findOne( {email: email}).then((user) => {
+    if (!user) return res.status(400).json({msg: 'User does not exist'});
+  res.status(200).json({
+      movielist: user.movieList,
+  });
+  })
+  });
+
+
 router.get('/', (req, res) => {
-  User.find().then((user) => res.json(user));
+  User.find().then((user) => res.json(user))
+  .catch((e) => res.status(404).json({ success: false }));
 });
 
 /**
@@ -159,6 +179,37 @@ router.delete('/deleteMovie', (req, res) => {
   )
     .then((user) => {
       // Return the updated user
+      res.status(200).json({
+        user: {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          movieList: user.movieList,
+        },
+      });
+    })
+    .catch((error) => {
+      console.log('Error: ' + error);
+      res.status(400).json({
+        msg: 'Error: ' + error,
+      });
+    });
+});
+router.get('/movielist', (req, res) => {
+  const { email } = req.body;
+
+  //Validate the inputs
+  if (!(email)) {
+    return res.status(400).json({ msg: 'User email missing' });
+  }
+
+  // Add movie to list
+  User.findOneAndUpdate(
+    { email },
+    { $addToSet: { movieList: imdbId } },
+    { new: true } // Return new object insted of original
+  )
+    .then((user) => {
       res.status(200).json({
         user: {
           id: user.id,

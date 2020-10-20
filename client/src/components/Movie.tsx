@@ -6,7 +6,7 @@ import MovieInformation from './MovieInformation';
 const Movie = (props: any) => {
   let email = '';
   {
-    props.user ? (email = props.user.email) : (email = '');
+    props.user ? (email = props.user.user.email) : (email = '');
   }
   const imdbId = props.imdbId;
   // const handleClick = () => {
@@ -33,6 +33,7 @@ const Movie = (props: any) => {
             }}
           >
             {' '}
+            {}
             + movie list
           </button>
         ) : null}

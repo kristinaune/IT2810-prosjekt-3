@@ -6,6 +6,8 @@ import {
   LOGOUT_SUCCESS,
   ADD_MOVIE_SUCCESS,
   ADD_MOVIE_ERROR,
+  GET_MOVIELIST,
+  GET_MOVIELIST_ERROR
 } from './actionTypes';
 import api from '../../utilities/api';
 import { Dispatch } from 'react';
@@ -109,3 +111,26 @@ export const addmovie = (imdbId: String, email: String) => async (
     });
   }
 };
+
+export const getmovielist = (email: String) => async (
+  dispatch: Dispatch<Object>
+) => {
+    const config = {
+      headers: {
+        'Content-type': 'application/json',
+      },
+    };
+  //const body = JSON.stringify({email});
+  console.log("Trying to get movielist for.. ", email)
+  try{
+    const res = await api.get('/users/movielist/'+email, config);
+    dispatch({
+      type: GET_MOVIELIST,
+      payload: res.data.movielist
+    });
+  } catch (err) {
+      dispatch({
+        type: GET_MOVIELIST_ERROR
+      });
+    }
+  }; 

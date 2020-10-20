@@ -21,9 +21,11 @@ router.get('/', (req, res) => {
  * @access  Public
  */
 router.get('/:imdbId', (req, res) => {
-  Movie.find({ imdbId: req.params.imdbId })
-    .then((movie) => res.json(movies))
-    .catch((e) => res.status(404).json({ success: false }));
+  Movie.find({imdbId: req.params })
+    .then((movie) => res.json(movie))
+    .catch((e) => res.status(404).json({ success: false, imdbId }));
 });
 
+
 module.exports = router;
+
