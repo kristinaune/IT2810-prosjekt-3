@@ -33,8 +33,7 @@ const Movie = (props: any) => {
             }}
           >
             {' '}
-            {}
-            + movie list
+            {}+ movie list
           </button>
         ) : null}
       </div>

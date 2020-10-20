@@ -7,11 +7,7 @@ import { render } from '@testing-library/react';
 
 const Account = ({ isAuthenticated }: { isAuthenticated?: boolean }) => {
   console.log('isAuthenticated:' + isAuthenticated);
-  return (
-    <div className='container'>
-      {isAuthenticated ? <AccountAuth /> : <AccountUnAuth />}
-    </div>
-  );
+  return <div>{isAuthenticated ? <AccountAuth /> : <AccountUnAuth />}</div>;
 };
 
 const mapStateToProps = (state: any) => {

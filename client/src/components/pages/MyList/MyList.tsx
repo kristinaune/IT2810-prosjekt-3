@@ -5,7 +5,7 @@ import MyListUnAuth from './MyListUnAuth';
 
 const MyList = ({ isAuthenticated }: { isAuthenticated: boolean }) => {
   return (
-    <div className='container'>
+    <div>
       <h4 className='center'>My list</h4>
       {isAuthenticated ? <MyListAuth /> : <MyListUnAuth />}
     </div>

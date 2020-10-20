@@ -36,16 +36,24 @@ const MyListAuth = ({
   };
 
   return (
-    <div className='container'>
-    {console.log(movieList)}
-      Showing {name}'s movies
-      {movieList && movies ?
+    <div>
+      {movieList && movies ? (
         movies
-        .filter(movie => movieList.includes(movie.imdbId))
+          .filter((movie) => movieList.includes(movie.imdbId))
+          .slice(0, Math.min(movieCount, movies.length))
           .map((movie: any) => {
-       
-            return <Movie key={movie.imdbId} {...movie} {...user} addmovietolist = {addmovie}/>;
-          }) : <div> No movies </div>}
+            return (
+              <Movie
+                key={movie.imdbId}
+                {...movie}
+                {...user}
+                addmovietolist={addmovie}
+              />
+            );
+          })
+      ) : (
+        <div> No movies </div>
+      )}
     </div>
   );
 };
