@@ -23,7 +23,9 @@ router.get('/', (req : HttpRequest, res: HttpResponse) => {
 router.get('/:imdbId', (req : HttpRequest, res: HttpResponse) => {
   Movie.findOne({ imdbId: req.params.imdbId })
     .then((movie: MovieDoc | null) => res.json(movie))
-    .catch((error: string) => res.status(404).json({ success: false }));
+    .catch((error: string) => {
+      console.log('Error on GET movies/:imdbId, using id' + req.params.id + '  :  ' + error);
+      res.status(404).json({ success: false })});
 });
 
 export default router;
