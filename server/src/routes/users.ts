@@ -65,36 +65,6 @@ router.post('/login', (req : HttpRequest, res: HttpResponse) => {
   });
 });
 
-// router.post('/addmovie', (req : HttpRequest, res: HttpResponse) => {
-//   const { movie, id } = req.body;
-
-//   if (!movie) {
-//     return res.status(400).json({msg: 'Unvalid movie'});
-//   }
-//   User.findById(id).then((user) => {
-//     if (!user) return res.status(400).json({msg: 'Cannot find user with the id'});
-//     res.status(200).json({
-//       user: {
-//         uid: user.uid:,
-//         name: user.name,
-//         email:user.email,
-//         mymovielist: user.mymovielist+movie
-//       }
-//     })
-//   }
-
-//   }
-// })
-
-router.get('/user', (req : HttpRequest, res: HttpResponse) => {
-  // TODO: Er det ikke en req.body.name?
-  User.find({ name: req.body.name }).then((user: UserDoc[] | null) => res.json(user));
-});
-
-router.get('/', (req : HttpRequest, res: HttpResponse) => {
-  User.find().then((user: UserDoc[] | null) => res.json(user));
-});
-
 /**
  * @route   POST api/users/addMovie
  * @desc    Add movie to My List
@@ -141,7 +111,7 @@ router.post('/addMovie', (req : HttpRequest, res: HttpResponse) => {
 router.delete('/deleteMovie', (req : HttpRequest, res: HttpResponse) => {
   const { email, imdbId } = req.body;
 
-  //Validate the inputs
+  // Validate the inputs
   if (!(email && imdbId)) {
     return res.status(400).json({ msg: 'User email or imdbId missing' });
   }
