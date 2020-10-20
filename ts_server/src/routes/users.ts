@@ -1,4 +1,4 @@
-import { HttpRequest, HttpResponse, UserType } from "../types";
+import { HttpRequest, HttpResponse, UserDoc } from "../types";
 import express from 'express'
 import User from '../models/User'
 
@@ -17,7 +17,7 @@ router.post('/register', (req : HttpRequest, res: HttpResponse) => {
     return res.status(400).json({ msg: 'Enter both name and email' });
   }
   // Check if the name is registred
-  User.findOne({ email }).then((user: UserType) => {
+  User.findOne({ email }).then((user: UserDoc | null) => {
     // If yes, return error
     if (user) return res.status(400).json({ msg: 'User already exists' });
     // If no, create new user
@@ -26,10 +26,10 @@ router.post('/register', (req : HttpRequest, res: HttpResponse) => {
       email: email,
       movieList: [],
     });
-    newUser.save().then((user: UserType) => {
+    newUser.save().then((user: UserDoc) => {
       res.json({
         user: {
-          id: user.id,
+          uid: user.uid,
           name: user.name,
           email: user.email,
           movieList: user.movieList,
@@ -52,11 +52,11 @@ router.post('/login', (req : HttpRequest, res: HttpResponse) => {
     return res.status(400).json({ msg: 'Enter email' });
   }
   // Check if the name is registred
-  User.findOne({ email }).then((user: UserType) => {
+  User.findOne({ email }).then((user: UserDoc | null) => {
     if (!user) return res.status(400).json({ msg: 'User does not exist' });
     res.status(200).json({
       user: {
-        id: user.id,
+        uid: user.uid,
         name: user.name,
         email: user.email,
         movieList: user.movieList,
@@ -75,7 +75,7 @@ router.post('/login', (req : HttpRequest, res: HttpResponse) => {
 //     if (!user) return res.status(400).json({msg: 'Cannot find user with the id'});
 //     res.status(200).json({
 //       user: {
-//         id: user.id,
+//         uid: user.uid:,
 //         name: user.name,
 //         email:user.email,
 //         mymovielist: user.mymovielist+movie
@@ -88,11 +88,11 @@ router.post('/login', (req : HttpRequest, res: HttpResponse) => {
 
 router.get('/user', (req : HttpRequest, res: HttpResponse) => {
   // TODO: Er det ikke en req.body.name?
-  User.find({ name: req.body.name }).then((user: UserType) => res.json(user));
+  User.find({ name: req.body.name }).then((user: UserDoc[] | null) => res.json(user));
 });
 
 router.get('/', (req : HttpRequest, res: HttpResponse) => {
-  User.find().then((user: UserType) => res.json(user));
+  User.find().then((user: UserDoc[] | null) => res.json(user));
 });
 
 /**
@@ -112,12 +112,13 @@ router.post('/addMovie', (req : HttpRequest, res: HttpResponse) => {
   User.findOneAndUpdate(
     { email },
     { $addToSet: { movieList: imdbId } },
-    { new: true } // Return new object insted of original
+    { new: true } // Option for returning the new object insted of original
   )
-    .then((user: UserType) => {
+    .then((user: UserDoc | null) => {
+      if (!user) return res.status(400).json({ msg: 'Could not find user' });
       res.status(200).json({
         user: {
-          id: user.id,
+          uid: user.uid,
           name: user.name,
           email: user.email,
           movieList: user.movieList,
@@ -144,10 +145,6 @@ router.delete('/deleteMovie', (req : HttpRequest, res: HttpResponse) => {
   if (!(email && imdbId)) {
     return res.status(400).json({ msg: 'User email or imdbId missing' });
   }
-  // Check if the user exist
-  User.findOne({ email }).then((user: UserType) => {
-    if (!user) return res.status(400).json({ msg: 'User does not exist' });
-  });
 
   // Delete movie from list
   User.findOneAndUpdate(
@@ -155,11 +152,13 @@ router.delete('/deleteMovie', (req : HttpRequest, res: HttpResponse) => {
     { $pull: { movieList: imdbId } },
     { new: true } // Return new object insted of original
   )
-    .then((user: UserType) => {
+    .then((user: UserDoc | null) => {
+      // Check if user exists
+      if (!user) return res.status(400).json({ msg: 'Could not find user' });
       // Return the updated user
       res.status(200).json({
         user: {
-          id: user.id,
+          uid: user.uid,
           name: user.name,
           email: user.email,
           movieList: user.movieList,

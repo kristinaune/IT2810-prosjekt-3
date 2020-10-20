@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+import { MovieDoc } from '../types'
+import mongoose, {Schema} from 'mongoose'
 
 /**
  * Defines the MovieModel with a Schema
@@ -21,4 +21,4 @@ const MovieSchema = new Schema({
 });
 
 // Exports Movie as a mongoose model
-export default mongoose.model('Movie', MovieSchema);
+export default mongoose.model<MovieDoc>('Movie', MovieSchema);

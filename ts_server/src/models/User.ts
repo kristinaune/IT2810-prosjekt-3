@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { UserDoc } from '../types'
 const Schema = mongoose.Schema;
 
 /**
@@ -21,4 +22,4 @@ const UserSchema = new Schema({
 });
 
 // Exports User as a mongoose model
-export default mongoose.model('User', UserSchema);
+export default mongoose.model<UserDoc>('User', UserSchema);

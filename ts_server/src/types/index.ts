@@ -1,3 +1,6 @@
+import {Document} from 'mongoose';
+
+
 export interface MovieType extends Record<string, any> {
   title: string;
   imdbId: string;
@@ -15,11 +18,15 @@ export interface MovieType extends Record<string, any> {
 }
 
 export interface UserType{
-  id?: string,
+  uid?: string,
   name: string,
   email: string,
   movieList: [string]
 }
+
+export interface UserDoc extends UserType, Document{}
+
+export interface MovieDoc extends MovieType, Document{}
 
 export interface HttpRequest extends Express.Request {
   body: {name: string, email: string, imdbId: string}
