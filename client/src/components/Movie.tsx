@@ -12,6 +12,11 @@ const Movie = (props: any) => {
   // const handleClick = () => {
   //   addmovie(email, imdbId);
   // };
+
+  const openModal = () => {
+    console.log('Open module');
+  };
+
   return (
     <div className='movie'>
       <div className='poster'>
@@ -33,12 +38,17 @@ const Movie = (props: any) => {
             }}
           >
             {' '}
-            {}
-            + movie list
+            {}+ movie list
           </button>
         ) : null}
       </div>
-      <button className='button'> More information</button>
+      <button
+        className='buttons'
+        onClick={() => console.log('Hi there, user!')}
+      >
+        {' '}
+        Open module
+      </button>
     </div>
   );
 };
