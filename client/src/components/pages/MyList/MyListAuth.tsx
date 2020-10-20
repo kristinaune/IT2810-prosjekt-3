@@ -1,32 +1,64 @@
-import React from 'react';
+import React , {useState} from 'react';
 import { connect } from 'react-redux';
 import { MovieType } from '../../../types';
+import {addmovie} from '../../../store/actions/user'
+import { search_and_sort } from '../../../store/actions/results';
 import Movie from '../../Movie';
+import { StaticRouter } from 'react-router-dom';
 
 // component thats rendering if user is authenticated
 const MyListAuth = ({
-  movielist,
+  user,
+  addmovie,
+  email,
   name,
+  movieList,
+  movies
+
 }: {
-  movielist?: Array<string>;
+  user?: Object;
+  addmovie: Function;
+  email: String;
   name: String;
+  movieList: Array<String>;
+  movies: Array<MovieType>;
 }) => {
-  console.log(movielist);
+  let [movieCount, setMovieCount] = useState(20);
+
+
+  window.onscroll = function (e: any) {
+    if (
+      window.innerHeight + window.scrollY >=
+      document.body.scrollHeight - 200
+    ) {
+      setMovieCount((m) => m + 10);
+    }
+  };
+
   return (
     <div className='container'>
+    {console.log(movieList)}
       Showing {name}'s movies
-      {/* Add functionality for showing movies in list */}
-      <div> No movies </div>
+      {movieList && movies ?
+        movies
+        .filter(movie => movieList.includes(movie.imdbId))
+          .map((movie: any) => {
+       
+            return <Movie key={movie.imdbId} {...movie} {...user} addmovietolist = {addmovie}/>;
+          }) : <div> No movies </div>}
     </div>
   );
 };
 
 const mapStateToProps = (state: any) => {
   return {
-    movielist: state.user.user.user.movielist,
+    movieList: state.user.user.user.movieList,
+    user: state.user,
+    email: state.user.user.user.email,
     name: state.user.user.user.name,
+    movies: state.movies,
   };
 };
 
-export default connect(mapStateToProps, {})(MyListAuth);
+export default connect(mapStateToProps, {addmovie})(MyListAuth);
 //export default connect(mapStateToProps, { searchMovieTitle })(MovieList);

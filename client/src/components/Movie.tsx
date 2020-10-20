@@ -8,8 +8,6 @@ const Movie = (props: any) => {
   {
     props.user ? (email = props.user.user.email) : (email = '');
   }
-  console.log(props.addmovietolist);
-
   const imdbId = props.imdbId;
   // const handleClick = () => {
   //   addmovie(email, imdbId);
@@ -23,7 +21,7 @@ const Movie = (props: any) => {
         <h5>
           {props.title} ({props.year})
         </h5>
-        {console.log(imdbId, email)}
+        {console.log(props.user)}
         {props.user ? (
           <button
             className='button'
@@ -35,6 +33,7 @@ const Movie = (props: any) => {
             }}
           >
             {' '}
+            {}
             + movie list
           </button>
         ) : null}
