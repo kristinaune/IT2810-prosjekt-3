@@ -6,7 +6,7 @@ import Movie from '../Movie';
 import './AllMovies.css';
 
 const AllMovies = ({ movies }: { movies?: Array<MovieType> }) => {
-  let [movieCount, setMovieCount] = useState(100);
+  let [movieCount, setMovieCount] = useState(20);
 
   window.onscroll = function (e: any) {
     if (

@@ -11,7 +11,9 @@ class Navbar extends Component {
   render() {
     return (
       <nav className='NavbarItem'>
-        <h1 className='navbar-logo'> Gløshaugen Movie DB</h1>
+        {/* Endre tittel  */}
+        <h1 className='navbar-logo1'> Gløshaugen Movie DB</h1>
+        <h1 className='navbar-logo2'> GMDb</h1>
         <div className='menu-icon' onClick={this.handleClick}>
           <i
             className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}
@@ -47,29 +49,5 @@ class Navbar extends Component {
     );
   }
 }
-
-// const Navbar = () => {
-//   return (
-//     <nav className='navbar'>
-//       <div className='title'>
-//         Gløshaugen MovieDB
-//         <ul className='right'>
-//           <li>
-//             <NavLink to='/search'> Search </NavLink>
-//           </li>
-//           <li>
-//             <NavLink to='/allmovies'> All movies</NavLink>
-//           </li>
-//           <li>
-//             <NavLink to='/mylist'> My movie list</NavLink>
-//           </li>
-//           <li>
-//             <NavLink to='/account'> Account</NavLink>
-//           </li>
-//         </ul>
-//       </div>
-//     </nav>
-//   );
-// };
 
 export default Navbar;

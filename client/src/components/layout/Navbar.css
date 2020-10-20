@@ -7,11 +7,15 @@
   font-size: 1.2rem;
 }
 
-.navbar-logo {
+.navbar-logo1 {
   color: #fff;
   justify-self: start;
   margin-left: 20px;
   cursor: pointer;
+}
+
+.navbar-logo2 {
+  display: none;
 }
 
 /* .fa-film {
@@ -52,8 +56,21 @@
 
 @media screen and (max-width: 960px) {
   .NavbarItem {
-    position: relative;
+    position: fixed;
+    width: 100%;
   }
+  .navbar-logo1 {
+    display: none;
+  }
+
+  .navbar-logo2 {
+    color: #fff;
+    justify-self: start;
+    margin-left: 20px;
+    cursor: pointer;
+    display: block;
+  }
+
   .nav-menu {
     display: flex;
     flex-direction: column;
@@ -87,10 +104,10 @@
   }
 
   .navbar-logo {
-    position: absolute;
+    /* position: absolute;
     top: 0;
     left: 0;
-    transform: translate(25%, 50%);
+    transform: translate(25%, 50%); */
   }
 
   .menu-icon {
