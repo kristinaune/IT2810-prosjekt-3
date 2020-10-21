@@ -1,7 +1,7 @@
 import React , {useState} from 'react';
 import { connect } from 'react-redux';
 import { MovieType } from '../../../types';
-import {addmovie} from '../../../store/actions/user'
+import {addmovie, removemovie} from '../../../store/actions/user'
 import { search_and_sort } from '../../../store/actions/results';
 import Movie from '../../Movie';
 import { StaticRouter } from 'react-router-dom';
@@ -10,6 +10,7 @@ import { StaticRouter } from 'react-router-dom';
 const MyListAuth = ({
   user,
   addmovie,
+  removemovie,
   email,
   name,
   movieList,
@@ -18,6 +19,7 @@ const MyListAuth = ({
 }: {
   user?: Object;
   addmovie: Function;
+  removemovie: Function;
   email: String;
   name: String;
   movieList: Array<String>;
@@ -47,7 +49,8 @@ const MyListAuth = ({
                 key={movie.imdbId}
                 {...movie}
                 {...user}
-                addmovietolist={addmovie}
+                addmovie={addmovie}
+                removemovie={removemovie}
               />
             );
           })
@@ -68,5 +71,5 @@ const mapStateToProps = (state: any) => {
   };
 };
 
-export default connect(mapStateToProps, {addmovie})(MyListAuth);
+export default connect(mapStateToProps, {addmovie, removemovie})(MyListAuth);
 //export default connect(mapStateToProps, { searchMovieTitle })(MovieList);

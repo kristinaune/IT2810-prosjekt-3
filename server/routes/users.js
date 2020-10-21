@@ -159,8 +159,47 @@ router.post('/addMovie', (req, res) => {
  * @desc    Deletes movie from My List
  * @access  Public
  */
-router.delete('/deleteMovie', (req, res) => {
+router.delete('/deletemovie', (req, res) => {
+  console.log('deleter');
+
   const { email, imdbId } = req.body;
+
+  //Validate the inputs
+  if (!(email && imdbId)) {
+    return res.status(400).json({ msg: 'User email or imdbId missing' });
+  }
+  // Check if the user exist
+  User.findOne({ email }).then((user) => {
+    if (!user) return res.status(400).json({ msg: 'User does not exist' });
+  });
+
+  // Delete movie from list
+  User.findOneAndUpdate(
+    { email },
+    { $pull: { movieList: imdbId } },
+    { new: true } // Return new object insted of original
+  )
+    .then((user) => {
+      // Return the updated user
+      res.status(200).json({
+        user: {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          movieList: user.movieList,
+        },
+      });
+    })
+    .catch((error) => {
+      console.log('Error: ' + error);
+      res.status(400).json({
+        msg: 'Error: ' + error,
+      });
+    });
+});
+
+router.delete('/deleteMovie2/:email/:imdbId', (req, res) => {
+  const { email, imdbId } = req.params;
 
   //Validate the inputs
   if (!(email && imdbId)) {

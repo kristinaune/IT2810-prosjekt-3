@@ -6,8 +6,8 @@ import {
   LOGOUT_SUCCESS,
   ADD_MOVIE_SUCCESS,
   ADD_MOVIE_ERROR,
-  GET_MOVIELIST,
-  GET_MOVIELIST_ERROR
+  REMOVE_MOVIE_SUCCESS,
+  REMOVE_MOVIE_ERROR,
 } from './actionTypes';
 import api from '../../utilities/api';
 import { Dispatch } from 'react';
@@ -100,7 +100,7 @@ export const addmovie = (imdbId: String, email: String) => async (
   const body = JSON.stringify({ imdbId, email });
   try {
     console.log('Trying to save movie with ', email, 'and', imdbId);
-    const res = await api.post('/users/addmovie', body, config);
+    const res = await api.post('/users/addMovie', body, config);
     dispatch({
       type: ADD_MOVIE_SUCCESS,
       payload: res.data,
@@ -112,25 +112,52 @@ export const addmovie = (imdbId: String, email: String) => async (
   }
 };
 
-export const getmovielist = (email: String) => async (
+export const removemovie = (imdbId: String, email: String) => async (
   dispatch: Dispatch<Object>
 ) => {
-    const config = {
-      headers: {
-        'Content-type': 'application/json',
-      },
-    };
-  //const body = JSON.stringify({email});
-  console.log("Trying to get movielist for.. ", email)
-  try{
-    const res = await api.get('/users/movielist/'+email, config);
+  const config = {
+    headers: {
+      'Content-type': 'application/json',
+    },
+    body: {
+      'email': email,
+      'imdbId': imdbId
+    }
+  };
+  try {
+    console.log('Trying to remove movie with ', email, 'and', imdbId, 'and config ', config);
+    const res = await api.delete('/users/deletemovie', config);
     dispatch({
-      type: GET_MOVIELIST,
-      payload: res.data.movielist
+      type: REMOVE_MOVIE_SUCCESS,
+      payload: res.data,
     });
   } catch (err) {
-      dispatch({
-        type: GET_MOVIELIST_ERROR
-      });
-    }
-  }; 
+    console.log(err)
+    dispatch({
+      type: REMOVE_MOVIE_ERROR,
+    });
+  }
+};
+
+export const removemovie2 = () => async (
+  dispatch: Dispatch<Object>
+) => {
+  try{
+    const res = await api.delete('/users/deletemovie2');
+
+    dispatch({
+      type: REMOVE_MOVIE_SUCCESS,
+      payload: res.data,
+
+    });
+  }catch (err){
+    dispatch({
+      type: REMOVE_MOVIE_ERROR,
+      payload: {
+        status: err.response, 
+        content: false
+      }
+    })
+  }
+
+};

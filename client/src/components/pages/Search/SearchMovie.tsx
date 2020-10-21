@@ -1,7 +1,7 @@
 import React, { ChangeEvent, createRef, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { search_and_sort } from '../../../store/actions/results';
-import { addmovie } from '../../../store/actions/user';
+import { addmovie, removemovie} from '../../../store/actions/user';
 import { MovieType } from '../../../types';
 import searchSuggestions from './utils/searchSuggestions';
 import Movie from '../../Movie';
@@ -14,12 +14,14 @@ const SearchMovie = ({
   results,
   search_and_sort,
   addmovie,
+  removemovie,
 }: {
   movies?: Array<MovieType>;
   user?: Object;
   results: Array<MovieType>;
   search_and_sort: Function;
   addmovie: Function;
+  removemovie: Function;
 }) => {
   // Number of movies to be displayed. Used in pagination.
   let [movieCount, setMovieCount] = useState(20);
@@ -102,9 +104,7 @@ const SearchMovie = ({
       setMovieCount((m) => m + 10);
     }
   };
-  const addmovietolist = (email: string, imdbId: string) => {
-    addmovie!(email, imdbId);
-  };
+
 
 
   return (
@@ -130,7 +130,7 @@ const SearchMovie = ({
       {results
         .slice(0, Math.min(movieCount, results.length))
         .map((movie: any) => {
-          return <Movie key={movie.imdbId} {...movie} {...user} addmovietolist = {addmovietolist}/>;
+          return <Movie key={movie.imdbId} {...movie} {...user} addmovie = {addmovie} removemovie = {removemovie}/>;
         })}
     </div>
   );
@@ -140,6 +140,6 @@ const mapStateToProps = (state: any) => {
   return { movies: state.movies, results: state.results, user: state.user };
 };
 
-const mapDispatchToProps = { search_and_sort, addmovie };
+const mapDispatchToProps = { search_and_sort, addmovie, removemovie };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchMovie);

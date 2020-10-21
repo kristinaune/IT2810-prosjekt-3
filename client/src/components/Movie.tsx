@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import './Movie.css';
 import MovieInformation from './MovieInformation';
@@ -9,9 +9,7 @@ const Movie = (props: any) => {
     props.user ? (email = props.user.user.email) : (email = '');
   }
   const imdbId = props.imdbId;
-  // const handleClick = () => {
-  //   addmovie(email, imdbId);
-  // };
+
   return (
     <div className='movie'>
       <div className='poster'>
@@ -21,21 +19,34 @@ const Movie = (props: any) => {
         <h5>
           {props.title} ({props.year})
         </h5>
-        {console.log(props.user)}
-        {props.user ? (
-          <button
-            className='button'
-            type='submit'
-            onClick={(e) => {
-              console.log('Clicking');
-              e.preventDefault();
-              props.addmovietolist(imdbId, email);
-            }}
-          >
-            {' '}
-            {}+ movie list
-          </button>
-        ) : null}
+        
+        {props.user ? (props.user.user.movieList.includes(imdbId) ? (
+              <button
+                  className='button'
+                  type='submit'
+                  onClick={(e) => {
+                    console.log('Clicking remove');
+                    e.preventDefault();
+                    props.removemovie(imdbId, email);
+                  }}
+                >
+                  - movie list
+                </button>
+       
+            )  : (
+              <button
+                className='button'
+                type='submit'
+                onClick={(e) => {
+                  console.log('Clicking');
+                  e.preventDefault();
+                  props.addmovie(imdbId, email);
+                }}
+              >
+                {' '}
+                + movie list
+              </button>
+            ) ) : null}
       </div>
       <button className='button'> More information</button>
     </div>
