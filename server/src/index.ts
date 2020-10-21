@@ -1,15 +1,17 @@
-const express = require('express');
-const cors = require('cors');
-const mongoose = require('mongoose');
+import express from 'express'
+import cors from 'cors'
+import mongoose from 'mongoose'
+import CONFIG from './CONFIG'
+import movies from './routes/movies'
+import users from './routes/users'
 
 // Import and assigns config variables
-const CONFIG = require('./CONFIG');
 const PORT = CONFIG.PORT;
 const SERVER_ADDRESS = CONFIG.SERVER_ADDRESS;
 
 // Movie route
-const movies = require('./routes/movies');
-const users = require('./routes/users');
+//const movies = require('./routes/movies');
+//const users = require('./routes/users');
 
 /**
  * Initialize express server as 'app' with express' body-parser as middleware.

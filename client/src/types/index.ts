@@ -13,3 +13,9 @@ export interface MovieType extends Record<string, any> {
   language: [string];
   country: [string];
 }
+
+export interface User extends Record<string, string | [string]>{
+  name: string,
+  email: string,
+  movieList: [string]
+}

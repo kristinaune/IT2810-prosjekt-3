@@ -1,18 +1,15 @@
-/**
- * TODO: Make route for users
- */
-const express = require('express');
-const router = express.Router();
+import { HttpRequest, HttpResponse, UserDoc } from '../types';
+import express from 'express';
+import User from '../models/User';
 
-// Imports the User-model
-const User = require('../models/User');
+const router = express.Router();
 
 /**
  * @route   POST api/users/register
  * @desc    Register new user
  * @access  Public
  */
-router.post('/register', (req, res) => {
+router.post('/register', (req: HttpRequest, res: HttpResponse) => {
   const { name, email } = req.body;
 
   //Validate the inputs
@@ -20,7 +17,7 @@ router.post('/register', (req, res) => {
     return res.status(400).json({ msg: 'Enter both name and email' });
   }
   // Check if the name is registred
-  User.findOne({ email }).then((user) => {
+  User.findOne({ email }).then((user: UserDoc | null) => {
     // If yes, return error
     if (user) return res.status(400).json({ msg: 'User already exists' });
     // If no, create new user
@@ -29,10 +26,10 @@ router.post('/register', (req, res) => {
       email: email,
       movieList: [],
     });
-    newUser.save().then((user) => {
+    newUser.save().then((user: UserDoc) => {
       res.json({
         user: {
-          id: user.id,
+          uid: user.uid,
           name: user.name,
           email: user.email,
           movieList: user.movieList,
@@ -47,7 +44,7 @@ router.post('/register', (req, res) => {
  * @desc    Login user
  * @access  Public
  */
-router.post('/login', (req, res) => {
+router.post('/login', (req: HttpRequest, res: HttpResponse) => {
   const { email } = req.body;
 
   //Validate the inputs
@@ -55,11 +52,11 @@ router.post('/login', (req, res) => {
     return res.status(400).json({ msg: 'Enter email' });
   }
   // Check if the name is registred
-  User.findOne({ email }).then((user) => {
+  User.findOne({ email }).then((user: UserDoc | null) => {
     if (!user) return res.status(400).json({ msg: 'User does not exist' });
     res.status(200).json({
       user: {
-        id: user.id,
+        uid: user.uid,
         name: user.name,
         email: user.email,
         movieList: user.movieList,
@@ -68,61 +65,12 @@ router.post('/login', (req, res) => {
   });
 });
 
-// ç
-
-router.get('/:email', (req, res) => {
-  const {email} = req.params
-  User.findOne({ email: email}).then((user) => {
-    if (!user) return res.status(400).json({msg: 'User does not exist'});
-  res.status(200).json({
-    user: {
-      id: user.id,
-      name: user.name,
-      email: user.email,
-      movieList: user.movieList,
-    },
-  });
-});
-});
-
-// router.get('/:email', (req, res) => {
-//   const {email} = req.params
-//   console.log(email)
-//   User.find({email: email })
-//     .then((user) => res.json({
-//       user: { 
-//         id: user.id,
-//         name: user.name,
-//         email: user.email,
-//         movieList: user.movieList,
-//       },
-//     }))
-//     .catch((e) => res.status(404).json({ success: false, imdbId }));
-// });
-
-
-router.get('/movielist/:email', (req, res) => {
-  const {email} = req.params
-  User.findOne( {email: email}).then((user) => {
-    if (!user) return res.status(400).json({msg: 'User does not exist'});
-  res.status(200).json({
-      movielist: user.movieList,
-  });
-  })
-  });
-
-
-router.get('/', (req, res) => {
-  User.find().then((user) => res.json(user))
-  .catch((e) => res.status(404).json({ success: false }));
-});
-
 /**
  * @route   POST api/users/addMovie
  * @desc    Add movie to My List
  * @access  Public
  */
-router.post('/addMovie', (req, res) => {
+router.post('/addMovie', (req: HttpRequest, res: HttpResponse) => {
   const { email, imdbId } = req.body;
 
   //Validate the inputs
@@ -134,19 +82,20 @@ router.post('/addMovie', (req, res) => {
   User.findOneAndUpdate(
     { email },
     { $addToSet: { movieList: imdbId } },
-    { new: true } // Return new object insted of original
+    { new: true } // Option for returning the new object insted of original
   )
-    .then((user) => {
+    .then((user: UserDoc | null) => {
+      if (!user) return res.status(400).json({ msg: 'Could not find user' });
       res.status(200).json({
         user: {
-          id: user.id,
+          uid: user.uid,
           name: user.name,
           email: user.email,
           movieList: user.movieList,
         },
       });
     })
-    .catch((error) => {
+    .catch((error: string) => {
       console.log('Error: ' + error);
       res.status(400).json({
         msg: 'Error: ' + error,
@@ -159,17 +108,13 @@ router.post('/addMovie', (req, res) => {
  * @desc    Deletes movie from My List
  * @access  Public
  */
-router.delete('/deleteMovie', (req, res) => {
+router.delete('/deleteMovie', (req: HttpRequest, res: HttpResponse) => {
   const { email, imdbId } = req.body;
 
-  //Validate the inputs
+  // Validate the inputs
   if (!(email && imdbId)) {
     return res.status(400).json({ msg: 'User email or imdbId missing' });
   }
-  // Check if the user exist
-  User.findOne({ email }).then((user) => {
-    if (!user) return res.status(400).json({ msg: 'User does not exist' });
-  });
 
   // Delete movie from list
   User.findOneAndUpdate(
@@ -177,18 +122,20 @@ router.delete('/deleteMovie', (req, res) => {
     { $pull: { movieList: imdbId } },
     { new: true } // Return new object insted of original
   )
-    .then((user) => {
+    .then((user: UserDoc | null) => {
+      // Check if user exists
+      if (!user) return res.status(400).json({ msg: 'Could not find user' });
       // Return the updated user
       res.status(200).json({
         user: {
-          id: user.id,
+          uid: user.uid,
           name: user.name,
           email: user.email,
           movieList: user.movieList,
         },
       });
     })
-    .catch((error) => {
+    .catch((error: string) => {
       console.log('Error: ' + error);
       res.status(400).json({
         msg: 'Error: ' + error,
@@ -199,7 +146,7 @@ router.get('/movielist', (req, res) => {
   const { email } = req.body;
 
   //Validate the inputs
-  if (!(email)) {
+  if (!email) {
     return res.status(400).json({ msg: 'User email missing' });
   }
 
@@ -227,4 +174,4 @@ router.get('/movielist', (req, res) => {
     });
 });
 
-module.exports = router;
+export default router;
