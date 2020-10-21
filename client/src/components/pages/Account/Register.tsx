@@ -43,7 +43,6 @@ const Register = ({ register }: { register: Function }) => {
             }}
           />
           <button className='button' type='submit'>
-            {' '}
             Register
           </button>
         </form>

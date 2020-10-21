@@ -1,5 +1,5 @@
-import { MovieDoc } from '../types'
-import mongoose, {Schema} from 'mongoose'
+import { MovieDoc } from '../types';
+import mongoose, { Schema } from 'mongoose';
 
 /**
  * Defines the MovieModel with a Schema

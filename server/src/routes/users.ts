@@ -13,15 +13,19 @@ const router = express.Router();
  */
 router.post('/register', (req: HttpRequest, res: HttpResponse) => {
   const { email, name } = req.body;
+  console.log(req.body);
 
   //Validate the inputs
   if (!name || !email) {
     return res.status(400).json({ msg: 'Enter both name and email' });
   }
   // Check if the name is registred
-  User.findOne({ email }).then((user: UserDoc | null) => {
+  User.findOne({ email: email }).then((user: UserDoc | null) => {
+    console.log('1');
+
     // If yes, return error
     if (user) return res.status(400).json({ msg: 'User already exists' });
+    console.log('2');
     // If no, create new user
     const newUser = new User({
       name: name,
