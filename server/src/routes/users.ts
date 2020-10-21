@@ -7,10 +7,12 @@ const router = express.Router();
 /**
  * @route   POST api/users/register
  * @desc    Register new user
+ * @param   req.body.email User email
+ * @param   req.body.name Name of user
  * @access  Public
  */
 router.post('/register', (req: HttpRequest, res: HttpResponse) => {
-  const { name, email } = req.body;
+  const { email, name } = req.body;
 
   //Validate the inputs
   if (!name || !email) {
@@ -42,6 +44,7 @@ router.post('/register', (req: HttpRequest, res: HttpResponse) => {
 /**
  * @route   POST api/users/login
  * @desc    Login user
+ * @param   req.body.email User email
  * @access  Public
  */
 router.post('/login', (req: HttpRequest, res: HttpResponse) => {
@@ -52,7 +55,9 @@ router.post('/login', (req: HttpRequest, res: HttpResponse) => {
     return res.status(400).json({ msg: 'Enter email' });
   }
   // Check if the name is registred
-  User.findOne({ email }).then((user: UserDoc | null) => {
+  User.findOne({ email: email }).then((user: UserDoc | null) => {
+    console.log(user);
+
     if (!user) return res.status(400).json({ msg: 'User does not exist' });
     res.status(200).json({
       user: {
@@ -68,6 +73,8 @@ router.post('/login', (req: HttpRequest, res: HttpResponse) => {
 /**
  * @route   POST api/users/addMovie
  * @desc    Add movie to My List
+ * @param   req.body.email User email
+ * @param   req.body.imdbId IMDb-id of movie to be added
  * @access  Public
  */
 router.post('/addMovie', (req: HttpRequest, res: HttpResponse) => {
@@ -80,7 +87,7 @@ router.post('/addMovie', (req: HttpRequest, res: HttpResponse) => {
 
   // Add movie to list
   User.findOneAndUpdate(
-    { email },
+    { email: email },
     { $addToSet: { movieList: imdbId } },
     { new: true } // Option for returning the new object insted of original
   )
@@ -106,6 +113,8 @@ router.post('/addMovie', (req: HttpRequest, res: HttpResponse) => {
 /**
  * @route   POST api/users/deleteMovie
  * @desc    Deletes movie from My List
+ * @param   req.body.email User email
+ * @param   req.body.imdbId IMDb-id of movie to be deleted
  * @access  Public
  */
 router.delete('/deleteMovie', (req: HttpRequest, res: HttpResponse) => {
@@ -136,37 +145,6 @@ router.delete('/deleteMovie', (req: HttpRequest, res: HttpResponse) => {
       });
     })
     .catch((error: string) => {
-      console.log('Error: ' + error);
-      res.status(400).json({
-        msg: 'Error: ' + error,
-      });
-    });
-});
-router.get('/movielist', (req, res) => {
-  const { email } = req.body;
-
-  //Validate the inputs
-  if (!email) {
-    return res.status(400).json({ msg: 'User email missing' });
-  }
-
-  // Add movie to list
-  User.findOneAndUpdate(
-    { email },
-    { $addToSet: { movieList: imdbId } },
-    { new: true } // Return new object insted of original
-  )
-    .then((user) => {
-      res.status(200).json({
-        user: {
-          id: user.id,
-          name: user.name,
-          email: user.email,
-          movieList: user.movieList,
-        },
-      });
-    })
-    .catch((error) => {
       console.log('Error: ' + error);
       res.status(400).json({
         msg: 'Error: ' + error,
