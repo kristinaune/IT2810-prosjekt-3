@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import './Movie.css';
 import MovieInformation from './MovieInformation';
+import Modal from './Modal';
+import '../App.css';
 
 const Movie = (props: any) => {
   let email = '';
@@ -13,8 +15,16 @@ const Movie = (props: any) => {
   //   addmovie(email, imdbId);
   // };
 
+  const [show, setShow] = useState(false);
+
   const openModal = () => {
     console.log('Open module');
+    setShow(true);
+  };
+
+  const closeModal = () => {
+    console.log('close module');
+    setShow(false);
   };
 
   return (
@@ -42,13 +52,8 @@ const Movie = (props: any) => {
           </button>
         ) : null}
       </div>
-      <button
-        className='buttons'
-        onClick={() => console.log('Hi there, user!')}
-      >
-        {' '}
-        Open module
-      </button>
+      {!show && <button onClick={openModal}> Show modal</button>}
+      <Modal closeModal={closeModal} show={show} />
     </div>
   );
 };
