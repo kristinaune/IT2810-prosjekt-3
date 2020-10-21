@@ -11,7 +11,7 @@ const Register = ({ register }: { register: Function }) => {
   let [email, setEmail] = useState('');
   let [name, setName] = useState('');
   return (
-    <div className='container'>
+    <React.Fragment>
       <h4 className='center'>Register</h4>
       <div className='form'>
         <form
@@ -29,7 +29,6 @@ const Register = ({ register }: { register: Function }) => {
             placeholder='Write email here...'
             onChange={(e) => {
               setEmail(e.target.value);
-              console.log(e.target.value);
             }}
           />
           <label>Name</label>
@@ -47,7 +46,7 @@ const Register = ({ register }: { register: Function }) => {
           </button>
         </form>
       </div>
-    </div>
+    </React.Fragment>
   );
 };
 

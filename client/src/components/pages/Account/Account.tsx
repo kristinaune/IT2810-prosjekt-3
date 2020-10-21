@@ -8,7 +8,7 @@ import { render } from '@testing-library/react';
 const Account = ({ isAuthenticated }: { isAuthenticated?: boolean }) => {
   console.log('isAuthenticated:' + isAuthenticated);
   return (
-    <div className='container'>
+    <div className='authContainer'>
       {isAuthenticated ? <AccountAuth /> : <AccountUnAuth />}
     </div>
   );
