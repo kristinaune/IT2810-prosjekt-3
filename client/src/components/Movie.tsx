@@ -16,7 +16,6 @@ const Movie = (props: any) => {
         <h5>
           {props.title} ({props.year})
         </h5>
-        {console.log(props.user)}
         {props.user ? (
           <button
             className='button'
