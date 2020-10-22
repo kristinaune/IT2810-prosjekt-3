@@ -127,10 +127,17 @@ small {
   max-height: 300px;
   min-width: 100px;
   min-height: 200px;
+  float: left;
+  object-fit: contain;
+  align-self: flex-start;
+  margin: 0px;
+  margin-right: 10px;
 }
 
 .modalInformation {
   padding: auto;
+
+  flex: 1 1 auto;
 }
 
 h3 {
