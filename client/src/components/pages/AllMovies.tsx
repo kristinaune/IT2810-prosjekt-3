@@ -16,7 +16,7 @@ const AllMovies = ({
 
   useEffect(() => {
     get_movies();
-  }, []);
+  }, [get_movies]);
 
   window.onscroll = function (e: any) {
     if (

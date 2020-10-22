@@ -1,4 +1,3 @@
-import userEvent from '@testing-library/user-event';
 import {
   AUTH_ERROR,
   LOGIN_SUCCESS,
@@ -6,7 +5,7 @@ import {
   USER_LOADED,
   REGISTER_SUCCESS,
   GET_MOVIELIST,
-  GET_MOVIELIST_ERROR
+  GET_MOVIELIST_ERROR,
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -39,7 +38,7 @@ export default (
       };
     case GET_MOVIELIST:
       return {
-        payload
+        payload,
       };
     case GET_MOVIELIST_ERROR:
       return [false, payload.content];

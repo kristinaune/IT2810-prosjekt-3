@@ -3,7 +3,6 @@ import './Account.css';
 import { connect } from 'react-redux';
 import AccountUnAuth from './AccountUnAuth';
 import AccountAuth from './AccountAuth';
-import { render } from '@testing-library/react';
 
 const Account = ({ isAuthenticated }: { isAuthenticated?: boolean }) => {
   console.log('isAuthenticated:' + isAuthenticated);

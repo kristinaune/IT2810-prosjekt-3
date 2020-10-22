@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 // Importer Connect, "connecter" komponenten til redux
 import { connect } from 'react-redux';
-import { load_user, login, register } from '../../../store/actions/user';
+import { load_user, register } from '../../../store/actions/user';
 import { useHistory } from 'react-router-dom';
 //import './User.css';
 // Alt vi vil hente fra redux sin state, tar vi inn her

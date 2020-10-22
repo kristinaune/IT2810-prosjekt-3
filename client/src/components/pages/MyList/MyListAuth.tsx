@@ -1,10 +1,8 @@
-import React , {useState} from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { MovieType } from '../../../types';
-import {addmovie} from '../../../store/actions/user'
-import { search_and_sort } from '../../../store/actions/results';
+import { addmovie } from '../../../store/actions/user';
 import Movie from '../../Movie';
-import { StaticRouter } from 'react-router-dom';
 
 // component thats rendering if user is authenticated
 const MyListAuth = ({
@@ -13,8 +11,7 @@ const MyListAuth = ({
   email,
   name,
   movieList,
-  movies
-
+  movies,
 }: {
   user?: Object;
   addmovie: Function;
@@ -24,7 +21,6 @@ const MyListAuth = ({
   movies: Array<MovieType>;
 }) => {
   let [movieCount, setMovieCount] = useState(20);
-
 
   window.onscroll = function (e: any) {
     if (
@@ -37,15 +33,25 @@ const MyListAuth = ({
 
   return (
     <div className='container'>
-    {console.log(movieList)}
+      {console.log(movieList)}
       Showing {name}'s movies
-      {movieList && movies ?
+      {movieList && movies ? (
         movies
-        .filter(movie => movieList.includes(movie.imdbId))
+          .slice(0, Math.min(movieCount, movies.length))
+          .filter((movie) => movieList.includes(movie.imdbId))
           .map((movie: any) => {
-       
-            return <Movie key={movie.imdbId} {...movie} {...user} addmovietolist = {addmovie}/>;
-          }) : <div> No movies </div>}
+            return (
+              <Movie
+                key={movie.imdbId}
+                {...movie}
+                {...user}
+                addmovietolist={addmovie}
+              />
+            );
+          })
+      ) : (
+        <div> No movies </div>
+      )}
     </div>
   );
 };
@@ -60,5 +66,5 @@ const mapStateToProps = (state: any) => {
   };
 };
 
-export default connect(mapStateToProps, {addmovie})(MyListAuth);
+export default connect(mapStateToProps, { addmovie })(MyListAuth);
 //export default connect(mapStateToProps, { searchMovieTitle })(MovieList);
