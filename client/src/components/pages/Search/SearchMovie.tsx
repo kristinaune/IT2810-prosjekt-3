@@ -51,14 +51,10 @@ const SearchMovie = ({
    * Handles any change in the search field and dispatches a new search.
    * @param e ChangeEvent
    */
-  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearchWord(e.target.value);
+  const handleSearch = () => {
     // Determines how many movies that should be displayed.
-    // 20 if user is searching, 0 if search field is empty.
-    const localMovieCount = e.target.value.length > 0 ? 20 : 0;
-    setMovieCount(localMovieCount);
     // Only dispatch searchMovieTitle if there has been a search.
-    dispatchSearchAndSort(e.target.value, activeSort, sortDirection);
+    dispatchSearchAndSort(searchWord, activeSort, sortDirection);
   };
 
   /**
@@ -106,23 +102,33 @@ const SearchMovie = ({
     addmovie!(email, imdbId);
   };
 
-
   return (
     <div className='movieList'>
       <h2> Search for a movie, genre or actor: </h2>
 
       <div id='searchContainer'>
-        <input
-          ref={searchFieldRef}
-          id='searchField'
-          placeholder='i.e. Spiderman'
-          type='search'
-          autoComplete='off'
-          autoFocus={true}
-          onChange={(e) => {
-            handleSearch(e);
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSearch();
           }}
-        ></input>
+        >
+          <input
+            ref={searchFieldRef}
+            id='searchField'
+            placeholder='i.e. Spiderman'
+            type='search'
+            autoComplete='off'
+            autoFocus={true}
+            onChange={(e) => {
+              setSearchWord(e.target.value);
+            }}
+          ></input>
+          <br />
+          <button id='searchButton' type='submit'>
+            SEARCH
+          </button>
+        </form>
         <SortRow
           activeSort={activeSort}
           sortDirection={sortDirection}
@@ -132,7 +138,14 @@ const SearchMovie = ({
       {results
         .slice(0, Math.min(movieCount, results.length))
         .map((movie: any) => {
-          return <Movie key={movie.imdbId} {...movie} {...user} addmovietolist = {addmovietolist}/>;
+          return (
+            <Movie
+              key={movie.imdbId}
+              {...movie}
+              {...user}
+              addmovietolist={addmovietolist}
+            />
+          );
         })}
     </div>
   );
