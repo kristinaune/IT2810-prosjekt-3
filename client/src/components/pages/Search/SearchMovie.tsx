@@ -11,13 +11,11 @@ import './SearchMovie.css';
 const SearchMovie = ({
   movies,
   user,
-  results,
   search_and_sort,
   addmovie,
 }: {
   movies?: Array<MovieType>;
   user?: Object;
-  results: Array<MovieType>;
   search_and_sort: Function;
   addmovie: Function;
 }) => {
@@ -52,8 +50,6 @@ const SearchMovie = ({
    * @param e ChangeEvent
    */
   const handleSearch = () => {
-    // Determines how many movies that should be displayed.
-    // Only dispatch searchMovieTitle if there has been a search.
     dispatchSearchAndSort(searchWord, activeSort, sortDirection);
   };
 
@@ -135,9 +131,9 @@ const SearchMovie = ({
           handleSort={handleSort}
         />
       </div>
-      {results
-        .slice(0, Math.min(movieCount, results.length))
-        .map((movie: any) => {
+      {movies
+        ?.slice(0, Math.min(movieCount, movies.length))
+        .map((movie: MovieType) => {
           return (
             <Movie
               key={movie.imdbId}
@@ -152,7 +148,7 @@ const SearchMovie = ({
 };
 
 const mapStateToProps = (state: any) => {
-  return { movies: state.movies, results: state.results, user: state.user };
+  return { movies: state.movies, user: state.user };
 };
 
 const mapDispatchToProps = { search_and_sort, addmovie };
