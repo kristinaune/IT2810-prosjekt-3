@@ -51,9 +51,11 @@ const Movie = (props: any) => {
             {}+ movie list
           </button>
         ) : null}
+        {!show && <button onClick={openModal}> More information</button>}
+        <Modal closeModal={closeModal} show={show} {...props} />
       </div>
-      {!show && <button onClick={openModal}> Show modal</button>}
-      <Modal closeModal={closeModal} show={show} />
+      {/* {!show && <button onClick={openModal}> Show modal</button>}
+      <Modal closeModal={closeModal} show={show} {...props} /> */}
     </div>
   );
 };
