@@ -1,12 +1,22 @@
-import React, { useState } from 'react';
-
+import React, { useEffect, useState } from 'react';
+import { get_movies } from '../../store/actions/movies';
 import { connect } from 'react-redux';
 import { MovieType } from '../../types';
 import Movie from '../Movie';
 import './AllMovies.css';
 
-const AllMovies = ({ movies }: { movies?: Array<MovieType> }) => {
+const AllMovies = ({
+  movies,
+  get_movies,
+}: {
+  movies?: Array<MovieType>;
+  get_movies: Function;
+}) => {
   let [movieCount, setMovieCount] = useState(20);
+
+  useEffect(() => {
+    get_movies();
+  }, []);
 
   window.onscroll = function (e: any) {
     if (
@@ -46,6 +56,7 @@ const AllMovies = ({ movies }: { movies?: Array<MovieType> }) => {
       </div> */}
 
       {movies &&
+        movies[0] &&
         movies
           .slice(0, Math.min(movieCount, movies.length))
           .map((movie: any) => {
@@ -59,4 +70,8 @@ const mapStateToProps = (state: any) => {
   return { movies: state.movies };
 };
 
-export default connect(mapStateToProps)(AllMovies);
+const mapDispatchToProps = {
+  get_movies,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AllMovies);

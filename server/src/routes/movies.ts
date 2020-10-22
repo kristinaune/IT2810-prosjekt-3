@@ -39,44 +39,49 @@ router.get('/getMovie/:imdbId', (req: HttpRequest, res: HttpResponse) => {
 /**
  * @route   GET api/movies/search
  * @desc    Searches for movies matching a search string
- * @params  Search
+ * @params  Search string
+ * @params  Sort attribute
+ * @params  Sort direction
  * @access  Public
  */
-router.get('/search', (req: HttpRequest, res: HttpResponse) => {
-  const { search } = req.body;
-
-  Movie.find({
-    // Query for movies with...
-    $or: [
-      // Title matching search
-      { title: { $regex: search, $options: 'i' } },
-      // IMDBbvID matching search
-      { imdbId: { $regex: search, $options: 'i' } },
-      // Any director in director-array matching search
-      {
-        director: { $elemMatch: { $regex: search, $options: 'i' } },
-      },
-      // Any director in director-array matching search
-      {
-        actors: { $elemMatch: { $regex: search, $options: 'i' } },
-      },
-      // Any director in director-array matching search
-      {
-        genres: { $elemMatch: { $regex: search, $options: 'i' } },
-      },
-    ],
-  })
-    // Return array that matches search
-    .then((movies: MovieDoc[] | null) => res.json(movies))
-    .catch((error: string) => {
-      console.log(
-        'Error on GET movies/:imdbId, using id' +
-          req.params.id +
-          '  :  ' +
-          error
-      );
-      res.status(404).json({ success: false });
-    });
-});
+router.get(
+  '/search/:searchString/:attribute/:direction',
+  (req: HttpRequest, res: HttpResponse) => {
+    const { searchString, attribute, direction } = req.params;
+    Movie.find({
+      // Query for movies with...
+      $or: [
+        // Title matching search
+        { title: { $regex: searchString, $options: 'i' } },
+        // IMDBbvID matching search
+        { imdbId: { $regex: searchString, $options: 'i' } },
+        // Any director in director-array matching search
+        {
+          director: { $elemMatch: { $regex: searchString, $options: 'i' } },
+        },
+        // Any director in director-array matching search
+        {
+          actors: { $elemMatch: { $regex: searchString, $options: 'i' } },
+        },
+        // Any director in director-array matching search
+        {
+          genres: { $elemMatch: { $regex: searchString, $options: 'i' } },
+        },
+      ],
+    })
+      .sort([[attribute, direction]])
+      // Return array that matches search
+      .then((movies: MovieDoc[] | null) => res.json(movies))
+      .catch((error: string) => {
+        console.log(
+          'Error on GET movies/:imdbId, using id' +
+            req.params.id +
+            '  :  ' +
+            error
+        );
+        res.status(404).json({ success: false });
+      });
+  }
+);
 
 export default router;

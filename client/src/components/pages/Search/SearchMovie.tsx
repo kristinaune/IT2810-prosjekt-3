@@ -1,8 +1,8 @@
-import React, { ChangeEvent, createRef, useEffect, useState } from 'react';
+import React, { createRef, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { search_and_sort } from '../../../store/actions/results';
+import { search_movies } from '../../../store/actions/movies';
 import { addmovie } from '../../../store/actions/user';
-import { MovieType } from '../../../types';
+import { MovieType, Sort } from '../../../types';
 import searchSuggestions from './utils/searchSuggestions';
 import Movie from '../../Movie';
 import SortRow from './SortRow';
@@ -11,12 +11,12 @@ import './SearchMovie.css';
 const SearchMovie = ({
   movies,
   user,
-  search_and_sort,
+  search_movies,
   addmovie,
 }: {
   movies?: Array<MovieType>;
   user?: Object;
-  search_and_sort: Function;
+  search_movies: Function;
   addmovie: Function;
 }) => {
   // Number of movies to be displayed. Used in pagination.
@@ -26,8 +26,10 @@ const SearchMovie = ({
   let searchFieldRef = createRef<HTMLInputElement>();
 
   // Sort and search-states
-  const [activeSort, setActiveSort] = useState<string>('rating');
-  const [sortDirection, setSortDirection] = useState<number>(-1);
+  const [activeSort, setActiveSort] = useState<
+    Sort.YEAR | Sort.RATING | Sort.RUNTIME
+  >(Sort.RATING);
+  const [sortDirection, setSortDirection] = useState<Sort.DESC | Sort.ASC>(-1);
   const [searchWord, setSearchWord] = useState<string>('');
 
   /**
@@ -35,7 +37,7 @@ const SearchMovie = ({
    * @param attribute Attribute we want to sort on
    * @param direction Direction we want to sort in, -1 for descending and 1 for ascending
    */
-  const handleSort = (attribute: string) => {
+  const handleSort = (attribute: Sort.YEAR | Sort.RATING | Sort.RUNTIME) => {
     // Assign new direction to a constant.
     // This is because useState updates the state too slow for us
     // to reference the state in dispatchSearch.
@@ -49,9 +51,9 @@ const SearchMovie = ({
    * Handles any change in the search field and dispatches a new search.
    * @param e ChangeEvent
    */
-  const handleSearch = () => {
+  /* const handleSearch = () => {
     dispatchSearchAndSort(searchWord, activeSort, sortDirection);
-  };
+  }; */
 
   /**
    * Calls the search_movie action with parameters for searching and sorting.
@@ -61,16 +63,21 @@ const SearchMovie = ({
    */
   const dispatchSearchAndSort = (
     searchString: string,
-    sortAttr: string,
-    sortDir: number
+    sortAttr: Sort.YEAR | Sort.RATING | Sort.RUNTIME,
+    sortDir: Sort.ASC | Sort.DESC
   ) => {
-    search_and_sort(searchString, movies, sortAttr, sortDir);
+    search_movies(searchString, sortAttr, sortDir);
   };
 
   useEffect(() => {
     // Change suggestion in searchfield every two seconds.
     setInterval(() => {
-      // Fills in a random suggestion in the placeholder
+      /**
+       * Fills in a random suggestion in the placeholder
+       * The 'eslint-disable'-comment is used to avoid false positive when using optional-chaining operator,
+       * a known issue with typescript-eslint.
+       */
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
       searchFieldRef.current?.setAttribute(
         'placeholder',
         'i.e. ' +
@@ -106,7 +113,7 @@ const SearchMovie = ({
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            handleSearch();
+            dispatchSearchAndSort(searchWord, activeSort, sortDirection);
           }}
         >
           <input
@@ -135,12 +142,14 @@ const SearchMovie = ({
         ?.slice(0, Math.min(movieCount, movies.length))
         .map((movie: MovieType) => {
           return (
-            <Movie
-              key={movie.imdbId}
-              {...movie}
-              {...user}
-              addmovietolist={addmovietolist}
-            />
+            movie && (
+              <Movie
+                key={movie.imdbId}
+                {...movie}
+                {...user}
+                addmovietolist={addmovietolist}
+              />
+            )
           );
         })}
     </div>
@@ -151,6 +160,6 @@ const mapStateToProps = (state: any) => {
   return { movies: state.movies, user: state.user };
 };
 
-const mapDispatchToProps = { search_and_sort, addmovie };
+const mapDispatchToProps = { search_movies, addmovie };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchMovie);
