@@ -11,6 +11,7 @@ import {
 } from './actionTypes';
 import api from '../../utilities/api';
 import { Dispatch } from 'react';
+import { returnErrors } from './error';
 
 //load user. Make a request to routers/users
 
@@ -22,6 +23,7 @@ export const load_user = () => async (dispatch: Dispatch<Object>) => {
       payload: res.data,
     });
   } catch (err) {
+    dispatch(returnErrors(err.response.data, err.response.status));
     dispatch({
       type: AUTH_ERROR,
     });
@@ -39,6 +41,7 @@ export const register = (name: string, email: string) => async (
       payload: res.data,
     });
   } catch (err) {
+    dispatch(returnErrors(err.response.data, err.response.status));
     dispatch({
       type: AUTH_ERROR,
     });
@@ -55,10 +58,11 @@ export const login = (email: String) => async (dispatch: Dispatch<Object>) => {
       payload: res.data,
     });
   } catch (err) {
+    dispatch(returnErrors(err.response.data, err.response.status));
     dispatch({
       type: AUTH_ERROR,
     });
-  }
+    }
 };
 
 export const logout = () => (dispatch: Dispatch<Object>) => {

@@ -1,4 +1,4 @@
-import userEvent from '@testing-library/user-event';
+
 import {
   AUTH_ERROR,
   LOGIN_SUCCESS,

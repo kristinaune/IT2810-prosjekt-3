@@ -1,17 +1,12 @@
 import React from 'react';
 
 import './Movie.css';
-import MovieInformation from './MovieInformation';
 
 const Movie = (props: any) => {
   let email = '';
-  {
-    props.user ? (email = props.user.user.email) : (email = '');
-  }
+  props.user ? (email = props.user.user.email) : (email = '');
   const imdbId = props.imdbId;
-  // const handleClick = () => {
-  //   addmovie(email, imdbId);
-  // };
+
   return (
     <div className='movie'>
       <div className='poster'>
@@ -33,8 +28,7 @@ const Movie = (props: any) => {
             }}
           >
             {' '}
-            {}
-            + movie list
+            {}+ movie list
           </button>
         ) : null}
       </div>

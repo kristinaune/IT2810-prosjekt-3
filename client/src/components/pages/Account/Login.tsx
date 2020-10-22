@@ -3,24 +3,37 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { load_user, login } from '../../../store/actions/user';
 import { useHistory } from 'react-router-dom';
-//import './Login.css';
 // Alt vi vil hente fra redux sin state, tar vi inn her
 // og husker å sende dem med i mapStateToProps
-const Login = ({ login }: { login: Function }) => {
-  let [email, setEmail] = useState('');
+const Login = ({
+  login,
+  isAuthenticated,
+  msg,
+  status,
+}: {
+  login: Function;
+  isAuthenticated?: boolean;
+  msg: String, 
+  status: Number,
+  clearErrors: Function;
+}) => {
+  const [email, setEmail] = useState('');
   const history = useHistory();
+  if (isAuthenticated) {
+    history.push('/account');  
+  }
   return (
     <div className='container'>
-      <h4 className='center'>Log in</h4>
+      <h2 className='center'>LOG IN</h2>
       <div className='form'>
         <form
           onSubmit={(e: any) => {
             e.preventDefault();
             login(email);
-            history.push('/account');
           }}
         >
-          <label>Email</label>
+          <label>Email:   </label>
+          <p></p>
           <input
             type='email'
             name='email'
@@ -30,6 +43,7 @@ const Login = ({ login }: { login: Function }) => {
               setEmail(e.target.value);
             }}
           />
+          <h5 className = 'errormsg'> {status? msg : ''}</h5> 
           <button className='button' type='submit'>
             {' '}
             Log in
@@ -45,6 +59,9 @@ const mapStateToProps = (state: any) => {
   return {
     // Vi vil bruke disse fra state
     email: state.user.email,
+    isAuthenticated: state.user.isAuthenticated,
+    status: state.errors.status,
+    msg: state.errors.msg.msg
   };
 };
 

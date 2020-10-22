@@ -13,3 +13,39 @@
   cursor: pointer;
   transition: background-color 250ms;
 }
+
+.center{
+  padding-bottom: 20px;
+}
+.textfield{
+  padding-left: 20%;
+  padding-right: 20%;
+}
+.errormsg{
+  color: #AB2E46;
+  padding-bottom: 10px;
+}
+
+input[type=email], select {
+  width: 20%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=text], select {
+  width: 20%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.button{
+    margin-top: 10px;
+  
+}

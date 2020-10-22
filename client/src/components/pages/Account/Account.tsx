@@ -3,10 +3,18 @@ import './Account.css';
 import { connect } from 'react-redux';
 import AccountUnAuth from './AccountUnAuth';
 import AccountAuth from './AccountAuth';
-import { render } from '@testing-library/react';
+import { clearErrors } from '../../../store/actions/error';
 
-const Account = ({ isAuthenticated }: { isAuthenticated?: boolean }) => {
+
+const Account = ({
+  isAuthenticated,
+  clearErrors,
+}: {
+  isAuthenticated?: boolean;
+  clearErrors: Function;
+}) => {
   console.log('isAuthenticated:' + isAuthenticated);
+  clearErrors();
   return (
     <div className='container'>
       {isAuthenticated ? <AccountAuth /> : <AccountUnAuth />}
@@ -18,4 +26,4 @@ const mapStateToProps = (state: any) => {
   return { isAuthenticated: state.user.isAuthenticated };
 };
 
-export default connect(mapStateToProps, {})(Account);
+export default connect(mapStateToProps, { clearErrors })(Account);

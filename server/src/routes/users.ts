@@ -13,7 +13,6 @@ const router = express.Router();
  */
 router.post('/register', (req: HttpRequest, res: HttpResponse) => {
   const { email, name } = req.body;
-  console.log(req.body);
 
   //Validate the inputs
   if (!name || !email) {
@@ -21,11 +20,8 @@ router.post('/register', (req: HttpRequest, res: HttpResponse) => {
   }
   // Check if the name is registred
   User.findOne({ email: email }).then((user: UserDoc | null) => {
-    console.log('1');
-
     // If yes, return error
     if (user) return res.status(400).json({ msg: 'User already exists' });
-    console.log('2');
     // If no, create new user
     const newUser = new User({
       name: name,
@@ -60,8 +56,6 @@ router.post('/login', (req: HttpRequest, res: HttpResponse) => {
   }
   // Check if the name is registred
   User.findOne({ email: email }).then((user: UserDoc | null) => {
-    console.log(user);
-
     if (!user) return res.status(400).json({ msg: 'User does not exist' });
     res.status(200).json({
       user: {
@@ -107,7 +101,6 @@ router.post('/addMovie', (req: HttpRequest, res: HttpResponse) => {
       });
     })
     .catch((error: string) => {
-      console.log('Error: ' + error);
       res.status(400).json({
         msg: 'Error: ' + error,
       });

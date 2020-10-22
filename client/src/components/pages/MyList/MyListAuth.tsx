@@ -1,16 +1,13 @@
 import React , {useState} from 'react';
 import { connect } from 'react-redux';
 import { MovieType } from '../../../types';
-import {addmovie} from '../../../store/actions/user'
-import { search_and_sort } from '../../../store/actions/results';
+import { addmovie } from '../../../store/actions/user';
 import Movie from '../../Movie';
-import { StaticRouter } from 'react-router-dom';
 
 // component thats rendering if user is authenticated
 const MyListAuth = ({
   user,
   addmovie,
-  email,
   name,
   movieList,
   movies
@@ -18,7 +15,6 @@ const MyListAuth = ({
 }: {
   user?: Object;
   addmovie: Function;
-  email: String;
   name: String;
   movieList: Array<String>;
   movies: Array<MovieType>;
@@ -42,7 +38,8 @@ const MyListAuth = ({
       {movieList && movies ?
         movies
         .filter(movie => movieList.includes(movie.imdbId))
-          .map((movie: any) => {
+        .slice(0, Math.min(movieCount, movies.length))
+        .map((movie: any) => {
        
             return <Movie key={movie.imdbId} {...movie} {...user} addmovietolist = {addmovie}/>;
           }) : <div> No movies </div>}
