@@ -14,8 +14,16 @@ export interface MovieType extends Record<string, any> {
   country: [string];
 }
 
-export interface User extends Record<string, string | [string]>{
-  name: string,
-  email: string,
-  movieList: [string]
+export interface User extends Record<string, string | [string]> {
+  name: string;
+  email: string;
+  movieList: [string];
+}
+
+export enum Sort {
+  DESC = -1,
+  ASC = 1,
+  YEAR = 'year',
+  RATING = 'rating',
+  RUNTIME = 'runtime',
 }

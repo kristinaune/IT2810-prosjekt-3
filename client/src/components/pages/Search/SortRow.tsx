@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { Sort } from '../../../types';
 import SortButton from './SortButton';
 
 const SortRow = ({
@@ -6,8 +7,8 @@ const SortRow = ({
   sortDirection,
   handleSort,
 }: {
-  activeSort: string;
-  sortDirection: number;
+  activeSort: Sort.YEAR | Sort.RATING | Sort.RUNTIME;
+  sortDirection: Sort.ASC | Sort.DESC;
   handleSort: Function;
 }) => {
   return (
@@ -15,19 +16,19 @@ const SortRow = ({
       <div id='buttonContainer'>
         <SortButton
           attribute='Year'
-          active={activeSort === 'year'}
+          active={activeSort === Sort.YEAR}
           direction={sortDirection}
           handleSort={handleSort}
         />
         <SortButton
           attribute='Rating'
-          active={activeSort === 'rating'}
+          active={activeSort === Sort.RATING}
           direction={sortDirection}
           handleSort={handleSort}
         />
         <SortButton
           attribute='Runtime'
-          active={activeSort === 'runtime'}
+          active={activeSort === Sort.RUNTIME}
           direction={sortDirection}
           handleSort={handleSort}
         />

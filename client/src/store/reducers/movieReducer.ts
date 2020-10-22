@@ -1,13 +1,17 @@
-import { GET_MOVIES_FROM_DB, GET_MOVIES_ERROR } from '../actions/actionTypes';
+import { LOAD_MOVIES, LOAD_MOVIES_ERROR } from '../actions/actionTypes';
+import { MovieType } from '../../types';
 
-export default (state = [false], action: { type: string; payload: any }) => {
+export default (
+  state = [false],
+  action: { type: string; payload: MovieType[] }
+) => {
   const { type, payload } = action;
 
   switch (type) {
-    case GET_MOVIES_FROM_DB:
+    case LOAD_MOVIES:
       return payload;
-    case GET_MOVIES_ERROR:
-      return [false, payload.content];
+    case LOAD_MOVIES_ERROR:
+      return [false, payload];
     default:
       return state;
   }
