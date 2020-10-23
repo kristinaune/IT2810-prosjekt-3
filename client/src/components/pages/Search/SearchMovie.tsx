@@ -1,8 +1,8 @@
-import React, { ChangeEvent, createRef, useEffect, useState } from 'react';
+import React, { createRef, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { search_and_sort } from '../../../store/actions/results';
+import { search_movies } from '../../../store/actions/movies';
 import { addmovie } from '../../../store/actions/user';
-import { MovieType } from '../../../types';
+import { MovieType, Sort } from '../../../types';
 import searchSuggestions from './utils/searchSuggestions';
 import Movie from '../../Movie';
 import SortRow from './SortRow';
@@ -11,14 +11,12 @@ import './SearchMovie.css';
 const SearchMovie = ({
   movies,
   user,
-  results,
-  search_and_sort,
+  search_movies,
   addmovie,
 }: {
   movies?: Array<MovieType>;
   user?: Object;
-  results: Array<MovieType>;
-  search_and_sort: Function;
+  search_movies: Function;
   addmovie: Function;
 }) => {
   // Number of movies to be displayed. Used in pagination.
@@ -28,8 +26,10 @@ const SearchMovie = ({
   let searchFieldRef = createRef<HTMLInputElement>();
 
   // Sort and search-states
-  const [activeSort, setActiveSort] = useState<string>('rating');
-  const [sortDirection, setSortDirection] = useState<number>(-1);
+  const [activeSort, setActiveSort] = useState<
+    Sort.YEAR | Sort.RATING | Sort.RUNTIME
+  >(Sort.RATING);
+  const [sortDirection, setSortDirection] = useState<Sort.DESC | Sort.ASC>(-1);
   const [searchWord, setSearchWord] = useState<string>('');
 
   /**
@@ -37,7 +37,7 @@ const SearchMovie = ({
    * @param attribute Attribute we want to sort on
    * @param direction Direction we want to sort in, -1 for descending and 1 for ascending
    */
-  const handleSort = (attribute: string) => {
+  const handleSort = (attribute: Sort.YEAR | Sort.RATING | Sort.RUNTIME) => {
     // Assign new direction to a constant.
     // This is because useState updates the state too slow for us
     // to reference the state in dispatchSearch.
@@ -51,15 +51,9 @@ const SearchMovie = ({
    * Handles any change in the search field and dispatches a new search.
    * @param e ChangeEvent
    */
-  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearchWord(e.target.value);
-    // Determines how many movies that should be displayed.
-    // 20 if user is searching, 0 if search field is empty.
-    const localMovieCount = e.target.value.length > 0 ? 20 : 0;
-    setMovieCount(localMovieCount);
-    // Only dispatch searchMovieTitle if there has been a search.
-    dispatchSearchAndSort(e.target.value, activeSort, sortDirection);
-  };
+  /* const handleSearch = () => {
+    dispatchSearchAndSort(searchWord, activeSort, sortDirection);
+  }; */
 
   /**
    * Calls the search_movie action with parameters for searching and sorting.
@@ -69,16 +63,21 @@ const SearchMovie = ({
    */
   const dispatchSearchAndSort = (
     searchString: string,
-    sortAttr: string,
-    sortDir: number
+    sortAttr: Sort.YEAR | Sort.RATING | Sort.RUNTIME,
+    sortDir: Sort.ASC | Sort.DESC
   ) => {
-    search_and_sort(searchString, movies, sortAttr, sortDir);
+    search_movies(searchString, sortAttr, sortDir);
   };
 
   useEffect(() => {
     // Change suggestion in searchfield every two seconds.
     setInterval(() => {
-      // Fills in a random suggestion in the placeholder
+      /**
+       * Fills in a random suggestion in the placeholder
+       * The 'eslint-disable'-comment is used to avoid false positive when using optional-chaining operator,
+       * a known issue with typescript-eslint.
+       */
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
       searchFieldRef.current?.setAttribute(
         'placeholder',
         'i.e. ' +
@@ -106,42 +105,61 @@ const SearchMovie = ({
     addmovie!(email, imdbId);
   };
 
-
   return (
     <div className='movieList'>
       <h2> Search for a movie, genre or actor: </h2>
 
       <div id='searchContainer'>
-        <input
-          ref={searchFieldRef}
-          id='searchField'
-          placeholder='i.e. Spiderman'
-          type='search'
-          autoComplete='off'
-          autoFocus={true}
-          onChange={(e) => {
-            handleSearch(e);
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            dispatchSearchAndSort(searchWord, activeSort, sortDirection);
           }}
-        ></input>
+        >
+          <input
+            ref={searchFieldRef}
+            id='searchField'
+            placeholder='i.e. Spiderman'
+            type='search'
+            autoComplete='off'
+            autoFocus={true}
+            onChange={(e) => {
+              setSearchWord(e.target.value);
+            }}
+          ></input>
+          <br />
+          <button id='searchButton' type='submit'>
+            SEARCH
+          </button>
+        </form>
         <SortRow
           activeSort={activeSort}
           sortDirection={sortDirection}
           handleSort={handleSort}
         />
       </div>
-      {results
-        .slice(0, Math.min(movieCount, results.length))
-        .map((movie: any) => {
-          return <Movie key={movie.imdbId} {...movie} {...user} addmovietolist = {addmovietolist}/>;
+      {movies
+        ?.slice(0, Math.min(movieCount, movies.length))
+        .map((movie: MovieType) => {
+          return (
+            movie && (
+              <Movie
+                key={movie.imdbId}
+                {...movie}
+                {...user}
+                addmovietolist={addmovietolist}
+              />
+            )
+          );
         })}
     </div>
   );
 };
 
 const mapStateToProps = (state: any) => {
-  return { movies: state.movies, results: state.results, user: state.user };
+  return { movies: state.movies, user: state.user };
 };
 
-const mapDispatchToProps = { search_and_sort, addmovie };
+const mapDispatchToProps = { search_movies, addmovie };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchMovie);

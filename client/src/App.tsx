@@ -22,7 +22,7 @@ const App = ({
   get_movies: Function;
   load_user: Function;
 }) => {
-  get_movies();
+  // get_movies();
   // Kommentert ut fordi den returnerer en 501-feil
   //load_user();
 

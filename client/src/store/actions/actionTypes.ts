@@ -1,8 +1,6 @@
 // Movie actions
-export const GET_MOVIES_FROM_DB = 'GET_MOVIES_FROM_DB';
-export const GET_MOVIES_ERROR = 'GET_MOVIES_ERROR';
-
-// Result actions
+export const LOAD_MOVIES = 'LOAD_MOVIES';
+export const LOAD_MOVIES_ERROR = 'LOAD_MOVIES_ERROR';
 export const SEARCH_AND_SORT = 'SEARCH_AND_SORT';
 
 // User actions
@@ -19,5 +17,4 @@ export const ADD_MOVIE_ERROR = 'ADD_MOVIE_ERROR';
 export const REMOVE_MOVIE_SUCCESS = 'REMOVE_MOVIE_SUCCESS';
 export const REMOVE_MOVIE_ERROR = 'REMOVE_MOVIE_ERROR';
 export const GET_MOVIELIST = 'GET_MOVIELIST';
-export const GET_MOVIELIST_ERROR ='GET_MOVIELIST_ERROR';
-
+export const GET_MOVIELIST_ERROR = 'GET_MOVIELIST_ERROR';
