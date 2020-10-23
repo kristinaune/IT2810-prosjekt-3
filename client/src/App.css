@@ -83,11 +83,11 @@ small {
   background-color: #fff;
   border-radius: 2px;
 
-  transform: translateX(-15%);
-  transform: translateY(-80%);
+  transform: translateX(90%);
+  transform: translateY(-120%);
   /* top: 50%;
   left: 50%; */
-  margin-left: -50%; /* Disse to linjene sentrerer modal*/
+  margin-left: 0%; /* Disse to linjene sentrerer modal*/
   margin-right: 50%;
 
   transition: transform 0.2s ease;
