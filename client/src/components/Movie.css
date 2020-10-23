@@ -27,11 +27,6 @@
   align-items: center;
 }
 
-.movie:hover {
-  background-color: rgb(169, 185, 186);
-  cursor: pointer;
-}
-
 .movies .movie {
   width: 33.33%; /* Endre på denne med @media */
   min-width: 200px;

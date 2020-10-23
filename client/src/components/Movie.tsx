@@ -28,7 +28,7 @@ const Movie = (props: any) => {
   };
 
   return (
-    <div className='movie' onClick={openModal}>
+    <div className='movie'>
       <div className='poster'>
         <img alt='poster' src={props.poster} />
       </div>
@@ -51,14 +51,14 @@ const Movie = (props: any) => {
             {}+ movie list
           </button>
         ) : null}
-        {/* 
+
         {!show && (
           <button onClick={openModal} className='button2'>
             {' '}
             More information
           </button>
-        )} */}
-        <Modal onClick={closeModal} show={show} {...props} />
+        )}
+        <Modal closeModal={closeModal} show={show} {...props} />
       </div>
     </div>
   );
