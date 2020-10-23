@@ -1,12 +1,13 @@
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+  /* box-sizing: border-box; */
+  /* margin: 0;
+  padding: 0; */
   font-family: 'Montserrat', sans-serif;
 }
+
 body {
-  margin: 0;
-  padding-top: 0px;
+  /* margin: 0;
+  padding-top: 0px; */
   background-color: #e8ded2;
   color: #056676;
 }
@@ -30,13 +31,14 @@ p {
 small {
   font-size: 1.2rem;
 }
+
 .footer {
   margin-top: 1rem;
   background-color: #a3d2ca;
   position: relative;
   bottom: 0;
   left: 0;
-  height: 80px;
+  height: 10px;
   width: 100%;
   text-align: center;
 }
@@ -47,13 +49,116 @@ small {
   width: 100%;
 } */
 
-.container {
+/* .container {
   padding-top: 130px;
-}
+} */
 
 .title {
-  text-align: left;
+  text-align: center;
   margin-left: 30px;
   font-size: 20px;
   color: #056676;
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: #0000003a;
+  transition: opacity 0.2s ease;
+}
+
+.modal {
+  width: 700px;
+  /* position: center;
+  margin: auto; */
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 2px;
+
+  transform: translateX(90%);
+  transform: translateY(-120%);
+  /* top: 50%;
+  left: 50%; */
+  margin-left: 0%; /* Disse to linjene sentrerer modal*/
+  margin-right: 50%;
+
+  transition: transform 0.2s ease;
+  box-shadow: 0 2px 8px 3px;
+  margin-bottom: 50%;
+  display: flex;
+}
+
+.modal button {
+  position: absolute;
+  right: -1rem;
+  top: -1rem;
+  width: 2rem;
+  height: 2rem;
+  padding: 0.5rem;
+  margin: 0 auto;
+  border-radius: 50%;
+  box-shadow: 1px 1px 1px #0000003a;
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.562);
+}
+
+.content {
+  /* width: 90%; */
+  max-width: calc(100%-60px);
+  margin: auto;
+  /* display: flex;
+  flex-direction: row; */
+  text-align: left;
+
+  font-size: small !important;
+}
+
+.modalPosters img {
+  width: 100%;
+  max-width: 200px;
+  max-height: 300px;
+  min-width: 100px;
+  min-height: 200px;
+  float: left;
+  object-fit: contain;
+  align-self: flex-start;
+  margin: 0px;
+  margin-right: 10px;
+}
+
+.modalInformation {
+  padding: auto;
+
+  flex: 1 1 auto;
+}
+
+h3 {
+  font-size: large;
+}
+
+@media screen and (max-width: 960px) {
+  .modal {
+    max-width: 700px;
+    max-height: 700px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .modal {
+    max-width: 350px;
+    max-height: 800px;
+  }
 }

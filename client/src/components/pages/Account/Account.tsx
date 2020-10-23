@@ -7,7 +7,7 @@ import AccountAuth from './AccountAuth';
 const Account = ({ isAuthenticated }: { isAuthenticated?: boolean }) => {
   console.log('isAuthenticated:' + isAuthenticated);
   return (
-    <div className='container'>
+    <div className='authContainer'>
       {isAuthenticated ? <AccountAuth /> : <AccountUnAuth />}
     </div>
   );

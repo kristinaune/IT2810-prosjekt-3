@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 const AccountUnAuth = () => {
   const history = useHistory();
   return (
-    <div className='container'>
+    <React.Fragment>
       <h4 className='center'>Account</h4>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi
@@ -27,7 +27,7 @@ const AccountUnAuth = () => {
         {' '}
         Register
       </button>
-    </div>
+    </React.Fragment>
   );
 };
 

@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import './Movie.css';
+import MovieInformation from './MovieInformation';
+import Modal from './Modal';
+import '../App.css';
 
 const Movie = (props: any) => {
   let email = '';
@@ -11,6 +14,19 @@ const Movie = (props: any) => {
   // const handleClick = () => {
   //   addmovie(email, imdbId);
   // };
+
+  const [show, setShow] = useState(false);
+
+  const openModal = () => {
+    console.log('Open module');
+    setShow(true);
+  };
+
+  const closeModal = () => {
+    console.log('close module');
+    setShow(false);
+  };
+
   return (
     <div className='movie'>
       <div className='poster'>
@@ -34,8 +50,15 @@ const Movie = (props: any) => {
             {}+ movie list
           </button>
         ) : null}
+
+        {!show && (
+          <button onClick={openModal} className='button2'>
+            {' '}
+            More information
+          </button>
+        )}
+        <Modal closeModal={closeModal} show={show} {...props} />
       </div>
-      <button className='button'> More information</button>
     </div>
   );
 };

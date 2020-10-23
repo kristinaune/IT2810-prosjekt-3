@@ -12,16 +12,17 @@ const AccountAuth = ({
   logout: Function;
 }) => {
   return (
-    <div className='container'>
-      <h4 className='center'>Account</h4>
-      <b>
-        Name: {name}
-        <br /> Email: {email}
-      </b>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi
-        nesciunt accusamus, placeat quaerat quidem.{' '}
-      </p>
+    <React.Fragment>
+      <h1>Account</h1>
+      <section className='userInfo'>
+        <span id='nameInfo'>
+          <b>Name:</b> {name}
+        </span>
+        <br />
+        <span id='emailInfo'>
+          <b>Email:</b> {email}
+        </span>
+      </section>
       <button
         className='button'
         type='submit'
@@ -33,7 +34,7 @@ const AccountAuth = ({
         {' '}
         Log out
       </button>
-    </div>
+    </React.Fragment>
   );
 };
 const mapStateToProps = (state: any) => {

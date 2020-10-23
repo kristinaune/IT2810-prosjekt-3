@@ -1,4 +1,4 @@
-.container {
+.authContainer {
   text-align: center;
 }
 
@@ -12,4 +12,14 @@
   font-size: 1.4rem;
   cursor: pointer;
   transition: background-color 250ms;
+}
+
+.userInfo {
+  min-width: 300px;
+  width: fit-content;
+  margin: auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: left;
+  font-size: 1.5rem;
 }
