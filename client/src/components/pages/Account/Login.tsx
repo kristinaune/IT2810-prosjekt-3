@@ -10,33 +10,30 @@ const Login = ({ login }: { login: Function }) => {
   let [email, setEmail] = useState('');
   const history = useHistory();
   return (
-    <div className='container'>
-      <h4 className='center'>Log in</h4>
-      <div className='form'>
-        <form
-          onSubmit={(e: any) => {
-            e.preventDefault();
-            login(email);
-            history.push('/account');
-          }}
-        >
-          <label>Email</label>
-          <input
-            type='email'
-            name='email'
-            id='email'
-            placeholder='Write email here...'
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-          />
-          <button className='button' type='submit'>
-            {' '}
-            Log in
-          </button>
-        </form>
-      </div>
-    </div>
+    <form
+      className='authContainer'
+      onSubmit={(e: any) => {
+        e.preventDefault();
+        login(email);
+        history.push('/account');
+      }}
+    >
+      <h4>Log in</h4>
+      <label>Email</label>
+      <input
+        type='email'
+        name='email'
+        id='email'
+        placeholder='Write email here...'
+        onChange={(e) => {
+          setEmail(e.target.value);
+        }}
+      />
+      <button className='button' type='submit'>
+        {' '}
+        Log in
+      </button>
+    </form>
   );
 };
 

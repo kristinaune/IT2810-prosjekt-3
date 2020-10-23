@@ -75,6 +75,34 @@ router.post('/login', (req: HttpRequest, res: HttpResponse) => {
 });
 
 /**
+ * @route DELETE api/deleteUser/:email
+ * @desc Deletes a user from database, used to clean up after registration testing
+ * @param email Email of user to be deleted
+ * @access Public
+ */
+router.delete('/deleteUser/:email', (req: HttpRequest, res: HttpResponse) => {
+  User.findOneAndDelete({ email: req.params.email })
+    .then((user: UserDoc | null) => {
+      // Check if user exists
+      if (!user)
+        return res.status(400).json({ msg: 'No such user in database' });
+      // Return info about the deleted user
+      res.status(200).json({
+        user: {
+          name: user.name,
+          email: user.email,
+        },
+      });
+    })
+    .catch((error: string) => {
+      console.log('Error: ' + error);
+      res.status(400).json({
+        msg: 'Error: ' + error,
+      });
+    });
+});
+
+/**
  * @route   POST api/users/addMovie
  * @desc    Add movie to My List
  * @param   req.body.email User email
