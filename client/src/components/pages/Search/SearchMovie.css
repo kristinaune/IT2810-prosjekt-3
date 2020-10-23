@@ -14,6 +14,13 @@
   background-color: #056676 !important;
 }*/
 
+#searchMovie {
+  height: 70vh;
+  width: 600px;
+  margin: auto auto;
+  text-align: center;
+}
+
 #searchContainer {
   height: 150px;
   width: 100%;
@@ -22,6 +29,13 @@
   justify-content: space-around;
   background-color: #056676;
   color: #f2f1f9;
+}
+
+#searchContainer input {
+  width: auto;
+  margin: 10px 30px 20px;
+  font-size: 2em;
+  text-align: center;
 }
 
 #searchContainer #buttonContainer {
@@ -94,6 +108,32 @@
 
 .sortButton ::selection {
   background-color: none;
+}
+
+.movieListItem {
+  height: 150px;
+  width: 100%;
+  background-color: beige;
+  display: inline-grid;
+  grid-template-columns: 1fr 6fr;
+}
+
+.movieListItem:hover {
+  cursor: pointer;
+  background-color: darkkhaki;
+}
+
+.movieListItem img {
+  width: 100px;
+}
+.movieListItem .textInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.movieListItem .rating span {
+  vertical-align: bottom;
 }
 
 @media screen and (max-width: 600px) {

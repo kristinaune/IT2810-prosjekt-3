@@ -12,19 +12,6 @@ code {
     monospace;
 }
 
-.movieList {
-  height: 70vh;
-  width: 600px;
-  margin: auto auto;
-  text-align: center;
-}
-
-.movieList input {
-  width: 100%;
-  font-size: 3.5em;
-  text-align: center;
-}
-
 .navBar ul {
   padding: 0;
   margin: 0;

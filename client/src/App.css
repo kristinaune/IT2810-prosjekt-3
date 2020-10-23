@@ -11,6 +11,12 @@ body {
   color: #056676;
 }
 
+html,
+body,
+#root {
+  height: 100%;
+}
+
 main {
   padding-top: 100px;
   max-width: 1200px;
@@ -26,9 +32,8 @@ small {
 }
 .footer {
   margin-top: 1rem;
-  padding: 1rem;
   background-color: #a3d2ca;
-  position: fixed;
+  position: relative;
   bottom: 0;
   left: 0;
   height: 80px;
