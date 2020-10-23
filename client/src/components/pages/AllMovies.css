@@ -1,64 +1,11 @@
-.movies {
+/* .movies {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap; */
 
-  /* margin: 0px 10px; */
-}
-
-.movie {
-  padding: 120px !important;
-  padding-bottom: 200px !important;
-  padding-top: 200px !important;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  margin-left: auto !important;
-  margin-right: auto !important;
-}
-
-.movies .movie {
-  width: 33.333%; /* Endre på denne med @media */
-  min-width: 400px;
-  max-width: 400px;
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-  cursor: ponter;
-}
-
-.movies .poster {
-  text-align: left;
-  /* grid-column: 1; */
-}
-
-.movies .poster img {
-  display: block;
-  width: 100%;
-}
-
-.movies .title {
-  padding: 0px;
-  margin: 0px;
-  text-align: left;
-}
-
-.button1 {
-  background-color: #5eaaa8 !important;
-  color: white;
-  border-radius: 30px;
-  border: 1px solid #ddd;
-  padding: 1rem 1rem;
-  width: 85px;
-  height: 50px;
-  margin-top: 30px;
-  margin: auto;
-
-  font-size: 13px !important;
-  cursor: pointer;
-  transition: background-color 250ms !important;
-}
+/* margin: 0px 10px; */
 
 .filter {
-  background-color: antiquewhite;
+  background-color: #d2d2d2;
   width: 100%;
   justify-items: center;
   font-size: large;
