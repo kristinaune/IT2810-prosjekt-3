@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { MovieType } from '../../../types';
 import { addmovie } from '../../../store/actions/user';
-import MovieItem from '../../MovieItem';
+import MovieCard from '../../MovieItem';
 
 // component thats rendering if user is authenticated
 const MyListAuth = ({
@@ -41,7 +41,7 @@ const MyListAuth = ({
           .filter((movie) => movieList.includes(movie.imdbId))
           .map((movie: any) => {
             return (
-              <MovieItem
+              <MovieCard
                 key={movie.imdbId}
                 {...movie}
                 {...user}

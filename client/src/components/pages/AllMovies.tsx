@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { get_movies } from '../../store/actions/movies';
 import { connect } from 'react-redux';
 import { MovieType } from '../../types';
-import MovieItem from '../MovieItem';
+import MovieCard from '../MovieItem';
 import './AllMovies.css';
 
 const AllMovies = ({
@@ -60,7 +60,7 @@ const AllMovies = ({
         movies
           .slice(0, Math.min(movieCount, movies.length))
           .map((movie: MovieType) => {
-            return <MovieItem key={movie.imdbId} movie={movie} />;
+            return <MovieCard key={movie.imdbId} movie={movie} />;
           })}
     </div>
   );
