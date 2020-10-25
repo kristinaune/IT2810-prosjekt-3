@@ -45,14 +45,6 @@ const SearchMovie = ({
   };
 
   /**
-   * Handles any change in the search field and dispatches a new search.
-   * @param e ChangeEvent
-   */
-  /* const handleSearch = () => {
-    dispatchSearchAndSort(searchWord, activeSort, sortDirection);
-  }; */
-
-  /**
    * Calls the search_movie action with parameters for searching and sorting.
    * @param searchString Searchword in filtering
    * @param sortAttr Attribute we want to sort on (Year, Rating, Runtime)
