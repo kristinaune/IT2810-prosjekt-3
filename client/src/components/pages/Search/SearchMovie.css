@@ -119,7 +119,7 @@
 
 .movieListItem:hover {
   cursor: pointer;
-  background-color: beige;
+  background-color: #ccc3b9;
 }
 
 .movieListItem img {

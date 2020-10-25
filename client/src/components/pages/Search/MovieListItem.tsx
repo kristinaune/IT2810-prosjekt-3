@@ -1,10 +1,23 @@
 import React from 'react';
 import { MovieType } from '../../../types';
+import { set_display_movie } from '../../../store/actions/displayMovie';
+import { connect } from 'react-redux';
 
-const MovieListItem = ({ movie }: { movie: MovieType }) => {
+const MovieListItem = ({
+  movie,
+  set_display_movie,
+}: {
+  movie: MovieType;
+  set_display_movie: Function;
+}) => {
   const { title, year, poster, rating, runtime, released, actors } = movie;
   return (
-    <div className='movieListItem'>
+    <div
+      className='movieListItem'
+      onClick={() => {
+        set_display_movie(movie);
+      }}
+    >
       <img alt='poster' src={poster} />
       <div className='textInfo'>
         <h2>{`${title} (${year})`}</h2>
@@ -33,4 +46,4 @@ const MovieListItem = ({ movie }: { movie: MovieType }) => {
   );
 };
 
-export default MovieListItem;
+export default connect(null, { set_display_movie })(MovieListItem);

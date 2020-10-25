@@ -80,23 +80,19 @@ small {
 
 .modal {
   width: 700px;
-  /* position: center;
-  margin: auto; */
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   padding: 20px;
   background-color: #fff;
   border-radius: 2px;
-
-  transform: translateX(90%);
-  transform: translateY(-120%);
-  /* top: 50%;
-  left: 50%; */
-  margin-left: 0%; /* Disse to linjene sentrerer modal*/
-  margin-right: 50%;
 
   transition: transform 0.2s ease;
   box-shadow: 0 2px 8px 3px;
   margin-bottom: 50%;
   display: flex;
+  z-index: 10;
 }
 
 .modal button {

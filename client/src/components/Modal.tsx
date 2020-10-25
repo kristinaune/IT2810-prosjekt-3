@@ -1,33 +1,54 @@
 import React, { useState, forwardRef } from 'react';
-import { connect } from 'react-redux';
-import { Store } from 'redux';
+import { MovieType } from '../types';
 
-function Modal(props: any) {
-  const { show, closeModal } = props;
+function Modal({
+  movie,
+  display,
+  closeModal,
+}: {
+  movie: MovieType;
+  display: boolean;
+  closeModal: Function;
+}) {
+  const {
+    title,
+    poster,
+    plot,
+    rating,
+    runtime,
+    director,
+    genres,
+    actors,
+    year,
+  } = movie;
+  console.log(display);
 
   return (
-    <>
-      <div className={show ? 'overlay' : 'hide'} onClick={closeModal} />
-      <div className={show ? 'modal' : 'hide'}>
-        <button onClick={closeModal}>X</button>
+    <React.Fragment>
+      <div
+        className={display ? 'overlay' : 'hide'}
+        onClick={() => closeModal()}
+      />
+      <div className={display ? 'modal' : 'hide'}>
+        <button onClick={() => closeModal()}>X</button>
         <div className='content'>
-          <h3>{props.title}</h3>
+          <h3>{title}</h3>
           <div className='modalPosters'>
-            <img alt='modalposter' src={props.poster} />
+            <img alt='modalposter' src={poster} />
           </div>
           <div className='modalInformation'>
-            <h4>Plot: {props.plot}</h4>
-            <h4> Raiting: {props.rating}</h4>
-            <h4> Runtime: {props.runtime} min</h4>
-            <h4> Director: {props.director}</h4>
-            <h4> Genres: {props.genres}</h4>
-            <h4> Actors: {props.actors}</h4>
-            <h4> Year: {props.year}</h4>
+            <h4>Plot: {plot}</h4>
+            <h4> Raiting: {rating}</h4>
+            <h4> Runtime: {runtime} min</h4>
+            <h4> Director: {director}</h4>
+            <h4> Genres: {genres}</h4>
+            <h4> Actors: {actors}</h4>
+            <h4> Year: {year}</h4>
           </div>
         </div>
       </div>
-    </>
+    </React.Fragment>
   );
 }
 
-export default connect()(Modal);
+export default Modal;
