@@ -3,6 +3,11 @@ import { MovieType } from '../../../types';
 import { set_display_movie } from '../../../store/actions/displayMovie';
 import { connect } from 'react-redux';
 
+/**
+ * Displays a movie inside a result-list.
+ * @param movie Movie to be displayed
+ * @param set_display_movie Action dispatcher displaying given movie in a modal.
+ */
 const MovieListItem = ({
   movie,
   set_display_movie,
@@ -10,6 +15,7 @@ const MovieListItem = ({
   movie: MovieType;
   set_display_movie: Function;
 }) => {
+  // Extracting movie attributes
   const { title, year, poster, rating, runtime, released, actors } = movie;
   return (
     <div
@@ -38,9 +44,6 @@ const MovieListItem = ({
         <h4>
           Starring <b>{actors.slice(0, 3).join(', ')}</b>
         </h4>
-        {/* <h4>
-          Directed by <b>{director.join(', ')}</b>
-        </h4> */}
       </div>
     </div>
   );

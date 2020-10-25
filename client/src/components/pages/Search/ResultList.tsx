@@ -1,24 +1,18 @@
 import React, { useState } from 'react';
 import { MovieType } from '../../../types';
 import MovieListItem from './MovieListItem';
+import paginator from '../../../utilities/paginator';
 
+/**
+ * Shows all movies from a seach as a list
+ * @param movies List of movies from search
+ */
 const ResultList = ({ movies }: { movies: MovieType[] | undefined }) => {
   // Number of movies to be displayed. Used in pagination.
   const [movieCount, setMovieCount] = useState(20);
 
-  /**
-   * When user nears bottom of page, increase setMovieCount by 10
-   * so more movies can be displayed. A way of implementing smooth pagination.
-   * @param e Scroll event
-   */
-  window.onscroll = (e: Event) => {
-    if (
-      window.innerHeight + window.scrollY >=
-      document.body.scrollHeight - 200
-    ) {
-      setMovieCount((m) => m + 10);
-    }
-  };
+  // Pagination listener/function.
+  paginator(setMovieCount, 10);
 
   return (
     <section>
