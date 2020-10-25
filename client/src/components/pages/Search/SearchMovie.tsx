@@ -77,9 +77,9 @@ const SearchMovie = ({
     }, 2000);
   }, [searchFieldRef]);
 
-  const addmovietolist = (email: string, imdbId: string) => {
+  /*   const addmovietolist = (email: string, imdbId: string) => {
     addmovie!(email, imdbId);
-  };
+  }; */
 
   return (
     <div id='searchMovie'>
