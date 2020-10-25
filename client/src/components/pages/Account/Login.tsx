@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom';
 // Alt vi vil hente fra redux sin state, tar vi inn her
 // og husker å sende dem med i mapStateToProps
 const Login = ({ login }: { login: Function }) => {
-  let [email, setEmail] = useState('');
+  const [email, setEmail] = useState('');
   const history = useHistory();
   return (
     <form

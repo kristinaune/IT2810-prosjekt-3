@@ -4,9 +4,9 @@ import { search_movies } from '../../../store/actions/movies';
 import { addmovie } from '../../../store/actions/user';
 import { MovieType, Sort } from '../../../types';
 import searchSuggestions from './utils/searchSuggestions';
-import Movie from '../../Movie';
 import SortRow from './SortRow';
 import './SearchMovie.css';
+import ResultList from './ResultList';
 
 const SearchMovie = ({
   movies,
@@ -19,11 +19,8 @@ const SearchMovie = ({
   search_movies: Function;
   addmovie: Function;
 }) => {
-  // Number of movies to be displayed. Used in pagination.
-  let [movieCount, setMovieCount] = useState(20);
-
   // A reference to the search/input-field.
-  let searchFieldRef = createRef<HTMLInputElement>();
+  const searchFieldRef = createRef<HTMLInputElement>();
 
   // Sort and search-states
   const [activeSort, setActiveSort] = useState<
@@ -46,14 +43,6 @@ const SearchMovie = ({
     setActiveSort(attribute);
     dispatchSearchAndSort(searchWord, attribute, newDir);
   };
-
-  /**
-   * Handles any change in the search field and dispatches a new search.
-   * @param e ChangeEvent
-   */
-  /* const handleSearch = () => {
-    dispatchSearchAndSort(searchWord, activeSort, sortDirection);
-  }; */
 
   /**
    * Calls the search_movie action with parameters for searching and sorting.
@@ -88,28 +77,14 @@ const SearchMovie = ({
     }, 2000);
   }, [searchFieldRef]);
 
-  /**
-   * When user nears bottom of page, increase setMovieCount by 10
-   * so more movies can be displayed. A way of implementing smooth pagination.
-   * @param e Scroll event
-   */
-  window.onscroll = (e: Event) => {
-    if (
-      window.innerHeight + window.scrollY >=
-      document.body.scrollHeight - 200
-    ) {
-      setMovieCount((m) => m + 10);
-    }
-  };
-  const addmovietolist = (email: string, imdbId: string) => {
+  /*   const addmovietolist = (email: string, imdbId: string) => {
     addmovie!(email, imdbId);
-  };
+  }; */
 
   return (
-    <div className='movieList'>
-      <h2> Search for a movie, genre or actor: </h2>
-
+    <div id='searchMovie'>
       <div id='searchContainer'>
+        <h2> Search for a movie, genre or actor: </h2>
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -138,20 +113,7 @@ const SearchMovie = ({
           handleSort={handleSort}
         />
       </div>
-      {movies
-        ?.slice(0, Math.min(movieCount, movies.length))
-        .map((movie: MovieType) => {
-          return (
-            movie && (
-              <Movie
-                key={movie.imdbId}
-                {...movie}
-                {...user}
-                addmovietolist={addmovietolist}
-              />
-            )
-          );
-        })}
+      <ResultList movies={movies} />
     </div>
   );
 };

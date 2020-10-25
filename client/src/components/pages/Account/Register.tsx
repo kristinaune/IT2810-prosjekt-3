@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 // Importer Connect, "connecter" komponenten til redux
 import { connect } from 'react-redux';
-import { load_user, login, register } from '../../../store/actions/user';
+import { load_user, register } from '../../../store/actions/user';
 import { useHistory } from 'react-router-dom';
 //import './User.css';
-// Alt vi vil hente fra redux sin state, tar vi inn her
-// og husker å sende dem med i mapStateToProps
+
 const Register = ({ register }: { register: Function }) => {
   const history = useHistory();
-  let [email, setEmail] = useState('');
-  let [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
   return (
     <React.Fragment>
       <h4 className='center'>Register</h4>
@@ -50,19 +49,4 @@ const Register = ({ register }: { register: Function }) => {
   );
 };
 
-const mapStateToProps = (state: any) => {
-  // returnerer et objekt
-  return {
-    name: state.name,
-    email: state.email,
-    // Vi vil bruke disse fra state
-  };
-};
-
-// const mapDispatchToProps = {
-//   getMovies,
-// };
-//                      (verdier fra state, funksjoner som gjør noe med state)
-//
-//                          connect(state, actions)(Komponent)
-export default connect(mapStateToProps, { load_user, register })(Register);
+export default connect(null, { load_user, register })(Register);

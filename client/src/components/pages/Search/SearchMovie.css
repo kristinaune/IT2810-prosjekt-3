@@ -14,14 +14,27 @@
   background-color: #056676 !important;
 }*/
 
+#searchMovie {
+  width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
 #searchContainer {
-  height: 150px;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   background-color: #056676;
   color: #f2f1f9;
+}
+
+#searchContainer input {
+  z-index: 1;
+  width: auto;
+  margin: 10px 30px 20px;
+  font-size: 2em;
+  text-align: center;
 }
 
 #searchContainer #buttonContainer {
@@ -94,6 +107,55 @@
 
 .sortButton ::selection {
   background-color: none;
+}
+
+.movieListItem {
+  height: 150px;
+  width: 100%;
+  display: inline-grid;
+  grid-template-columns: 1fr 6fr;
+  border-bottom: #056676 1px solid;
+}
+
+.movieListItem:hover {
+  cursor: pointer;
+  background-color: #ccc3b9;
+}
+
+.movieListItem img {
+  width: 100px;
+}
+.movieListItem .textInfo {
+  display: grid;
+  grid-template-rows: auto;
+  height: 150px;
+}
+
+.movieListItem .textInfo h2 {
+  padding: 0;
+  margin-top: 10px;
+  row-gap: 20px;
+}
+
+.movieListItem .textInfo .infoRow {
+  width: auto;
+  height: 24px;
+  margin: 0px 60px 0 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.infoRow .infoAttr {
+  height: 18px;
+  line-height: 18px;
+}
+.infoRow .infoAttr span {
+  font-size: 18px;
+  vertical-align: middle;
+}
+
+.infoRow .material-icons {
+  font-size: 18px !important;
 }
 
 @media screen and (max-width: 600px) {

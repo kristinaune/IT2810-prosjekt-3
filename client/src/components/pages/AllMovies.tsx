@@ -2,9 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { get_movies } from '../../store/actions/movies';
 import { connect } from 'react-redux';
 import { MovieType } from '../../types';
-import Movie from '../Movie';
+import MovieCard from '../MovieItem';
+import paginator from '../../utilities/paginator';
 import './AllMovies.css';
 
+/**
+ * Displays all movies in database, by some filters
+ * @param movies Array of movies to be displayed, from Redux
+ * @param get_movies Action dispatcher getting movies from database
+ */
 const AllMovies = ({
   movies,
   get_movies,
@@ -12,20 +18,16 @@ const AllMovies = ({
   movies?: Array<MovieType>;
   get_movies: Function;
 }) => {
-  let [movieCount, setMovieCount] = useState(20);
+  // Used to limit number of movies loaded at a time by pagination
+  const [movieCount, setMovieCount] = useState(20);
 
+  // Fetches movies with get_movies() on component mount
   useEffect(() => {
     get_movies();
-  }, []);
+  }, [get_movies]);
 
-  window.onscroll = function (e: any) {
-    if (
-      window.innerHeight + window.scrollY >=
-      document.body.scrollHeight - 200
-    ) {
-      setMovieCount((m) => m + 10);
-    }
-  };
+  // Pagination listener/function.
+  paginator(setMovieCount, 10);
 
   return (
     <div className='movies'>
@@ -59,8 +61,8 @@ const AllMovies = ({
         movies[0] &&
         movies
           .slice(0, Math.min(movieCount, movies.length))
-          .map((movie: any) => {
-            return <Movie key={movie.imdbId} {...movie} />;
+          .map((movie: MovieType) => {
+            return <MovieCard key={movie.imdbId} movie={movie} />;
           })}
     </div>
   );

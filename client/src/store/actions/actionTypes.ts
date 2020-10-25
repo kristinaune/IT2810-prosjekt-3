@@ -3,6 +3,10 @@ export const LOAD_MOVIES = 'LOAD_MOVIES';
 export const LOAD_MOVIES_ERROR = 'LOAD_MOVIES_ERROR';
 export const SEARCH_AND_SORT = 'SEARCH_AND_SORT';
 
+// DisplayMovie actions
+export const SET_DISPLAY_MOVIE = 'SET_DISPLAY_MOVIE';
+export const CLOSE_MODAL = 'CLOSE_MODAL';
+
 // User actions
 export const AUTH_ERROR = 'AUTH_ERROR';
 export const USER_LOADED = 'USER_LOADED';

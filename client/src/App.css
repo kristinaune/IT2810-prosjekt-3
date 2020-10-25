@@ -12,10 +12,18 @@ body {
   color: #056676;
 }
 
+html,
+body,
+#root {
+  height: 100%;
+}
+
 main {
-  padding-top: 100px;
-  max-width: 1200px;
+  padding-top: 15vh;
+  position: relative;
   margin: auto;
+  max-width: 1200px;
+  min-height: 75vh;
 }
 
 p {
@@ -27,13 +35,8 @@ small {
 }
 
 .footer {
-  margin-top: 1rem;
-  padding: 1rem;
   background-color: #a3d2ca;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  height: 10px;
+  height: 10vh;
   width: 100%;
   text-align: center;
 }
@@ -77,23 +80,19 @@ small {
 
 .modal {
   width: 700px;
-  /* position: center;
-  margin: auto; */
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   padding: 20px;
   background-color: #fff;
   border-radius: 2px;
-
-  transform: translateX(90%);
-  transform: translateY(-120%);
-  /* top: 50%;
-  left: 50%; */
-  margin-left: 0%; /* Disse to linjene sentrerer modal*/
-  margin-right: 50%;
 
   transition: transform 0.2s ease;
   box-shadow: 0 2px 8px 3px;
   margin-bottom: 50%;
   display: flex;
+  z-index: 10;
 }
 
 .modal button {

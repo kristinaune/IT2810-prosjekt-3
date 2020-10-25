@@ -7,8 +7,8 @@ const AccountAuth = ({
   email,
   logout,
 }: {
-  name: String;
-  email: String;
+  name: string;
+  email: string;
   logout: Function;
 }) => {
   return (
@@ -31,15 +31,13 @@ const AccountAuth = ({
           logout();
         }}
       >
-        {' '}
         Log out
       </button>
     </React.Fragment>
   );
 };
 const mapStateToProps = (state: any) => {
-  return { name: state.user.user.user.name, email: state.user.user.user.email };
-  //Hvorfor er det så sykt mange "ledd" ned til navn? (user.user.user)
+  return { name: state.user.name, email: state.user.email };
 };
 
 export default connect(mapStateToProps, { logout })(AccountAuth);

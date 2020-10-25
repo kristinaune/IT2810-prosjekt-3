@@ -15,7 +15,7 @@
   background-color: #056676 !important;
 }
 
-.movie {
+.movieItem {
   padding: 120px !important;
   /* padding-bottom: 200px !important; */
   /* padding-top: 200px !important; */
@@ -27,7 +27,12 @@
   align-items: center;
 }
 
-.movies .movie {
+.movieItem:hover {
+  cursor: pointer;
+  background-color: #ccc3b9;
+}
+
+.movies .movieItem {
   width: 33.33%; /* Endre på denne med @media */
   min-width: 200px;
   max-block-size: 200px;
