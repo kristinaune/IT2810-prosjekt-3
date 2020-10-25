@@ -4,45 +4,28 @@ import {
   LOGOUT_SUCCESS,
   USER_LOADED,
   REGISTER_SUCCESS,
-  GET_MOVIELIST,
-  GET_MOVIELIST_ERROR,
 } from '../actions/actionTypes';
+import { User } from '../../types/index';
 
-const initialState = {
-  isAuthenticated: false,
-  user: null,
-};
+const initialState = { authState: [false, LOGOUT_SUCCESS] };
 export default (
   state = initialState,
   action: {
     type: string;
-    payload: any;
+    user?: User;
   }
 ) => {
-  const { type, payload } = action;
+  console.log(action);
+
+  let { type, user } = action;
   switch (type) {
     case USER_LOADED:
     case LOGIN_SUCCESS:
     case REGISTER_SUCCESS:
-      return {
-        ...state,
-        isAuthenticated: true,
-        user: payload,
-      };
+      return { ...user, authState: [1, type] };
     case LOGOUT_SUCCESS:
     case AUTH_ERROR:
-      return {
-        ...state,
-        user: null,
-        isAuthenticated: false,
-      };
-    case GET_MOVIELIST:
-      return {
-        payload,
-      };
-    case GET_MOVIELIST_ERROR:
-      return [false, payload.content];
-
+      return { authState: [0, type] };
     default:
       return state;
   }

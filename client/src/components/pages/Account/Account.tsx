@@ -14,7 +14,7 @@ const Account = ({ isAuthenticated }: { isAuthenticated?: boolean }) => {
 };
 
 const mapStateToProps = (state: any) => {
-  return { isAuthenticated: state.user.isAuthenticated };
+  return { isAuthenticated: state.user.authState[0] };
 };
 
 export default connect(mapStateToProps, {})(Account);

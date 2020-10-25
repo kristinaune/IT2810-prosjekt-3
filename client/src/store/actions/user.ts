@@ -19,7 +19,7 @@ export const load_user = () => async (dispatch: Dispatch<Object>) => {
     const res = await api.get('/user');
     dispatch({
       type: USER_LOADED,
-      payload: res.data,
+      user: res.data.user,
     });
   } catch (err) {
     dispatch({
@@ -36,7 +36,7 @@ export const register = (name: string, email: string) => async (
     const res = await api.post('/users/register', body);
     dispatch({
       type: REGISTER_SUCCESS,
-      payload: res.data,
+      user: res.data.user,
     });
   } catch (err) {
     dispatch({
@@ -52,7 +52,7 @@ export const login = (email: String) => async (dispatch: Dispatch<Object>) => {
     const res = await api.post('/users/login', body);
     dispatch({
       type: LOGIN_SUCCESS,
-      payload: res.data,
+      user: res.data.user,
     });
   } catch (err) {
     dispatch({
@@ -77,7 +77,7 @@ export const addmovie = (imdbId: String, email: String) => async (
     const res = await api.post('/users/addmovie', body);
     dispatch({
       type: ADD_MOVIE_SUCCESS,
-      payload: res.data,
+      user: res.data.user,
     });
   } catch (err) {
     dispatch({
@@ -95,7 +95,7 @@ export const getmovielist = (email: String) => async (
     const res = await api.get('/users/movielist/' + email);
     dispatch({
       type: GET_MOVIELIST,
-      payload: res.data.movielist,
+      user: res.data.user,
     });
   } catch (err) {
     dispatch({

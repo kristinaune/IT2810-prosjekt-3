@@ -58,10 +58,10 @@ const MyListAuth = ({
 
 const mapStateToProps = (state: any) => {
   return {
-    movieList: state.user.user.user.movieList,
+    movieList: state.user.movieList,
     user: state.user,
-    email: state.user.user.user.email,
-    name: state.user.user.user.name,
+    email: state.user.email,
+    name: state.user.name,
     movies: state.movies,
   };
 };

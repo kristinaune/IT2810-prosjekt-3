@@ -4,7 +4,6 @@ import { search_movies } from '../../../store/actions/movies';
 import { addmovie } from '../../../store/actions/user';
 import { MovieType, Sort } from '../../../types';
 import searchSuggestions from './utils/searchSuggestions';
-import Movie from '../../Movie';
 import SortRow from './SortRow';
 import './SearchMovie.css';
 import ResultList from './ResultList';
@@ -92,9 +91,8 @@ const SearchMovie = ({
 
   return (
     <div id='searchMovie'>
-      <h2> Search for a movie, genre or actor: </h2>
-
       <div id='searchContainer'>
+        <h2> Search for a movie, genre or actor: </h2>
         <form
           onSubmit={(e) => {
             e.preventDefault();

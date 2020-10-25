@@ -1,6 +1,6 @@
 import React, { useState, forwardRef } from 'react';
-import ReactDOM from 'react-dom';
-import movieInformation from './MovieInformation';
+import { connect } from 'react-redux';
+import { Store } from 'redux';
 
 function Modal(props: any) {
   const { show, closeModal } = props;
@@ -30,4 +30,4 @@ function Modal(props: any) {
   );
 }
 
-export default Modal;
+export default connect()(Modal);

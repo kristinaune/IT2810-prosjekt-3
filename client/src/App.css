@@ -19,9 +19,11 @@ body,
 }
 
 main {
-  padding-top: 100px;
-  max-width: 1200px;
+  padding-top: 15vh;
+  position: relative;
   margin: auto;
+  max-width: 1200px;
+  min-height: 75vh;
 }
 
 p {
@@ -33,12 +35,8 @@ small {
 }
 
 .footer {
-  margin-top: 1rem;
   background-color: #a3d2ca;
-  position: relative;
-  bottom: 0;
-  left: 0;
-  height: 10px;
+  height: 10vh;
   width: 100%;
   text-align: center;
 }

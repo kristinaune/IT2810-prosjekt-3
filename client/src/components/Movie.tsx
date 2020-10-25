@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 import './Movie.css';
-import MovieInformation from './MovieInformation';
 import Modal from './Modal';
 import '../App.css';
 
@@ -50,14 +49,6 @@ const Movie = (props: any) => {
             {}+ movie list
           </button>
         ) : null}
-
-        {!show && (
-          <button onClick={openModal} className='button2'>
-            {' '}
-            More information
-          </button>
-        )}
-        <Modal closeModal={closeModal} show={show} {...props} />
       </div>
     </div>
   );

@@ -14,10 +14,12 @@ export interface MovieType extends Record<string, any> {
   country: [string];
 }
 
-export interface User extends Record<string, string | [string]> {
-  name: string;
-  email: string;
-  movieList: [string];
+export interface User
+  extends Record<string, string | [string] | undefined | [boolean, string]> {
+  authState: [boolean, string];
+  name?: string;
+  email?: string;
+  movieList?: [string];
 }
 
 export enum Sort {

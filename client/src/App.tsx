@@ -45,9 +45,9 @@ const App = ({
                 <Route path='/register' component={Register} />
               </Switch>
             </main>
+            <Footer />
           </div>
         </BrowserRouter>
-        <Footer />
       </React.Fragment>
     </Provider>
   );
