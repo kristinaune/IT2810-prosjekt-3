@@ -7,7 +7,6 @@ export const set_display_movie = (movie: MovieType) => (
 ) => {
   dispatch({
     type: SET_DISPLAY_MOVIE,
-    display: true,
     movie,
   });
 };
@@ -15,6 +14,5 @@ export const set_display_movie = (movie: MovieType) => (
 export const close_modal = () => (dispatch: Dispatch<Object>) => {
   dispatch({
     type: CLOSE_MODAL,
-    display: false,
   });
 };

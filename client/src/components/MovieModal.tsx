@@ -3,11 +3,9 @@ import { MovieType } from '../types';
 
 const MovieModal = ({
   movie,
-  display,
   closeModal,
 }: {
   movie: MovieType;
-  display: boolean;
   closeModal: Function;
 }) => {
   const {
@@ -24,11 +22,8 @@ const MovieModal = ({
 
   return (
     <React.Fragment>
-      <div
-        className={display ? 'overlay' : 'hide'}
-        onClick={() => closeModal()}
-      />
-      <div className={display ? 'modal' : 'hide'}>
+      <div className='overlay' onClick={() => closeModal()} />
+      <div className='modal'>
         <button onClick={() => closeModal()}>X</button>
         <div className='content'>
           <h3>{title}</h3>

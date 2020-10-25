@@ -53,12 +53,8 @@ const App = ({
                 <Route path='/login' component={Login} />
                 <Route path='/register' component={Register} />
               </Switch>
-              {displayMovie && (
-                <MovieModal
-                  movie={displayMovie}
-                  display={display}
-                  closeModal={close_modal}
-                />
+              {displayMovie.actors && (
+                <MovieModal movie={displayMovie} closeModal={close_modal} />
               )}
             </main>
             <Footer />
@@ -71,8 +67,7 @@ const App = ({
 
 const mapStateToProps = (state: any) => {
   return {
-    displayMovie: state.displayMovie.movie,
-    display: state.displayMovie.display,
+    displayMovie: state.displayMovie,
   };
 };
 
