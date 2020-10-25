@@ -21,7 +21,6 @@ const MovieModal = ({
     actors,
     year,
   } = movie;
-  console.log(display);
 
   return (
     <React.Fragment>

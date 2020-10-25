@@ -15,8 +15,6 @@ export default (
     user?: User;
   }
 ) => {
-  console.log(action);
-
   const { type, user } = action;
   switch (type) {
     case USER_LOADED:

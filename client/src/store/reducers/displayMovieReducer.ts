@@ -6,8 +6,6 @@ export default (
   action: { type: string; display: boolean; movie?: MovieType }
 ) => {
   const { type, display, movie } = action;
-  console.log(action);
-
   switch (type) {
     case SET_DISPLAY_MOVIE:
       return { display, movie };

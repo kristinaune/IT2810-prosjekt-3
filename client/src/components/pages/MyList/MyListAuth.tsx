@@ -33,7 +33,6 @@ const MyListAuth = ({
 
   return (
     <div className='container'>
-      {console.log(movieList)}
       Showing {name}'s movies
       {movieList && movies ? (
         movies

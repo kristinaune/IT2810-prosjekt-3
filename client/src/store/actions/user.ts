@@ -70,10 +70,8 @@ export const logout = () => (dispatch: Dispatch<Object>) => {
 export const addmovie = (imdbId: string, email: string) => async (
   dispatch: Dispatch<Object>
 ) => {
-  console.log('Adding movie...');
   const body = JSON.stringify({ imdbId, email });
   try {
-    console.log('Trying to save movie with ', email, 'and', imdbId);
     const res = await api.post('/users/addmovie', body);
     dispatch({
       type: ADD_MOVIE_SUCCESS,
@@ -89,8 +87,6 @@ export const addmovie = (imdbId: string, email: string) => async (
 export const getmovielist = (email: string) => async (
   dispatch: Dispatch<Object>
 ) => {
-  //const body = JSON.stringify({email});
-  console.log('Trying to get movielist for.. ', email);
   try {
     const res = await api.get('/users/movielist/' + email);
     dispatch({
