@@ -4,7 +4,7 @@ import MovieListItem from './MovieListItem';
 
 const ResultList = ({ movies }: { movies: MovieType[] | undefined }) => {
   // Number of movies to be displayed. Used in pagination.
-  let [movieCount, setMovieCount] = useState(20);
+  const [movieCount, setMovieCount] = useState(20);
 
   /**
    * When user nears bottom of page, increase setMovieCount by 10

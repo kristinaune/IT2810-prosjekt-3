@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { MovieType } from '../../../types';
 import { addmovie } from '../../../store/actions/user';
-import Movie from '../../Movie';
+import MovieItem from '../../MovieItem';
 
 // component thats rendering if user is authenticated
 const MyListAuth = ({
@@ -15,12 +15,12 @@ const MyListAuth = ({
 }: {
   user?: Object;
   addmovie: Function;
-  email: String;
-  name: String;
-  movieList: Array<String>;
+  email: string;
+  name: string;
+  movieList: Array<string>;
   movies: Array<MovieType>;
 }) => {
-  let [movieCount, setMovieCount] = useState(20);
+  const [movieCount, setMovieCount] = useState(20);
 
   window.onscroll = function (e: any) {
     if (
@@ -41,7 +41,7 @@ const MyListAuth = ({
           .filter((movie) => movieList.includes(movie.imdbId))
           .map((movie: any) => {
             return (
-              <Movie
+              <MovieItem
                 key={movie.imdbId}
                 {...movie}
                 {...user}

@@ -20,7 +20,7 @@ const SearchMovie = ({
   addmovie: Function;
 }) => {
   // A reference to the search/input-field.
-  let searchFieldRef = createRef<HTMLInputElement>();
+  const searchFieldRef = createRef<HTMLInputElement>();
 
   // Sort and search-states
   const [activeSort, setActiveSort] = useState<

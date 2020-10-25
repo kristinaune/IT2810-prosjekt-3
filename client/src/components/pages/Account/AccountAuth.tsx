@@ -7,8 +7,8 @@ const AccountAuth = ({
   email,
   logout,
 }: {
-  name: String;
-  email: String;
+  name: string;
+  email: string;
   logout: Function;
 }) => {
   return (

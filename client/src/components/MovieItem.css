@@ -15,7 +15,7 @@
   background-color: #056676 !important;
 }
 
-.movie {
+.movieItem {
   padding: 120px !important;
   /* padding-bottom: 200px !important; */
   /* padding-top: 200px !important; */
@@ -27,7 +27,7 @@
   align-items: center;
 }
 
-.movies .movie {
+.movieItems .movieItem {
   width: 33.33%; /* Endre på denne med @media */
   min-width: 200px;
   max-block-size: 200px;
@@ -40,7 +40,7 @@
   cursor: ponter;
 }
 
-.movies .poster {
+.movieItems .poster {
   text-align: center;
   position: center;
   max-width: 200px;
@@ -52,13 +52,13 @@
   /* grid-column: 1; */
 }
 
-.movies .poster img {
+.movieItems .poster img {
   display: block;
   width: 100%;
   height: 100%;
 }
 
-.movies .title {
+.movieItems .title {
   padding: 0px;
   margin: 0px;
   text-align: left;

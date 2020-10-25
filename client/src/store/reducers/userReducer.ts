@@ -17,7 +17,7 @@ export default (
 ) => {
   console.log(action);
 
-  let { type, user } = action;
+  const { type, user } = action;
   switch (type) {
     case USER_LOADED:
     case LOGIN_SUCCESS:

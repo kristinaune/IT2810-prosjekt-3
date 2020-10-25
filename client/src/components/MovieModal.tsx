@@ -1,7 +1,7 @@
 import React, { useState, forwardRef } from 'react';
 import { MovieType } from '../types';
 
-function Modal({
+const MovieModal = ({
   movie,
   display,
   closeModal,
@@ -9,7 +9,7 @@ function Modal({
   movie: MovieType;
   display: boolean;
   closeModal: Function;
-}) {
+}) => {
   const {
     title,
     poster,
@@ -49,6 +49,6 @@ function Modal({
       </div>
     </React.Fragment>
   );
-}
+};
 
-export default Modal;
+export default MovieModal;

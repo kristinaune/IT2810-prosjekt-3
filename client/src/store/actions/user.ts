@@ -45,7 +45,7 @@ export const register = (name: string, email: string) => async (
   }
 };
 
-export const login = (email: String) => async (dispatch: Dispatch<Object>) => {
+export const login = (email: string) => async (dispatch: Dispatch<Object>) => {
   const body = JSON.stringify({ email });
 
   try {
@@ -67,7 +67,7 @@ export const logout = () => (dispatch: Dispatch<Object>) => {
   });
 };
 
-export const addmovie = (imdbId: String, email: String) => async (
+export const addmovie = (imdbId: string, email: string) => async (
   dispatch: Dispatch<Object>
 ) => {
   console.log('Adding movie...');
@@ -86,7 +86,7 @@ export const addmovie = (imdbId: String, email: String) => async (
   }
 };
 
-export const getmovielist = (email: String) => async (
+export const getmovielist = (email: string) => async (
   dispatch: Dispatch<Object>
 ) => {
   //const body = JSON.stringify({email});

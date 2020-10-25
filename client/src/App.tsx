@@ -15,7 +15,7 @@ import Footer from './components/layout/Footer';
 import Login from './components/pages/Account/Login';
 import Register from './components/pages/Account/Register';
 import store from './store/store';
-import Modal from './components/Modal';
+import MovieModal from './components/MovieModal';
 import { MovieType } from './types';
 
 const App = ({
@@ -54,7 +54,7 @@ const App = ({
                 <Route path='/register' component={Register} />
               </Switch>
               {displayMovie && (
-                <Modal
+                <MovieModal
                   movie={displayMovie}
                   display={display}
                   closeModal={close_modal}

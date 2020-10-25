@@ -7,8 +7,8 @@ import { useHistory } from 'react-router-dom';
 
 const Register = ({ register }: { register: Function }) => {
   const history = useHistory();
-  let [email, setEmail] = useState('');
-  let [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
   return (
     <React.Fragment>
       <h4 className='center'>Register</h4>
