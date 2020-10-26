@@ -68,22 +68,24 @@ export const search_movies = (
 /**
  * Filters movies by a set of filter criterias.
  * @param genres Genres to filter on
- * @param fromYear Earliest year in filter
- * @param toYear Last year in filter
- * @param ratedFrom Highest rating in filter
- * @param ratedTo Highest rating in filter
+ * @param yearRange Range of years to filter on
+ * @param ratingRange Range of ratings to filter on
  */
 export const filter_movies = (
   genres: string[],
-  fromYear: number,
-  toYear: number,
-  ratedFrom: number,
-  ratedTo: number
+  yearRange: number[],
+  ratingRange: number[]
 ) => async (dispatch: Dispatch<Object>) => {
   try {
     const res = await api.get(
-      '/movies/movies/filter/' +
-        [JSON.stringify(genres), fromYear, toYear, ratedFrom, ratedTo].join('/')
+      '/movies/filter/' +
+        [
+          JSON.stringify(genres),
+          yearRange[0],
+          yearRange[1],
+          ratingRange[0],
+          ratingRange[1],
+        ].join('/')
     );
 
     dispatch({

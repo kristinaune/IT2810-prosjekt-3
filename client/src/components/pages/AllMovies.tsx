@@ -3,6 +3,7 @@ import { get_movies } from '../../store/actions/movies';
 import { connect } from 'react-redux';
 import { MovieType } from '../../types';
 import MovieCard from '../MovieItem';
+import FilterMovies from './FilterMovies';
 import paginator from '../../utilities/paginator';
 import './AllMovies.css';
 
@@ -31,14 +32,16 @@ const AllMovies = ({
 
   return (
     <div className='movies'>
+      <FilterMovies />
+      {/* 
       <div className='filter'>
-        <button className='button1'> Comedy</button>
-        <button className='button1'> War</button>
-        <button className='button1'> Action</button>
-        <button className='button1'> SciFi</button>
-        <button className='button1'> Drama</button>
-        <button className='button1'> Crime</button>
-      </div>
+        <button className='filterButton'> Comedy</button>
+        <button className='filterButton'> War</button>
+        <button className='filterButton'> Action</button>
+        <button className='filterButton'> SciFi</button>
+        <button className='filterButton'> Drama</button>
+        <button className='filterButton'> Crime</button>
+      </div> */}
       {/* <div className='container'>
         <header>
           Filter your search
