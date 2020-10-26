@@ -2,7 +2,7 @@
   position: fixed;
   background: #a3d2ca;
   padding-right: auto;
-  height: 10vh;
+  height: 80px;
   width: 100vw;
   display: flex;
   justify-content: center;
@@ -13,6 +13,7 @@
 }
 
 .navbar-logo1 {
+  width: 40vw;
   color: #fff;
   justify-self: start;
   margin-left: 20px;
@@ -34,7 +35,7 @@
   grid-gap: 10px;
   list-style: none;
   text-align: center;
-  width: 70vw;
+  width: 60vw;
   justify-content: end;
   margin-right: 2rem;
   padding-left: 0;

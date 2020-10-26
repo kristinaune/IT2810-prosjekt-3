@@ -23,9 +23,8 @@ const SortButton = ({
           </span>
         }
       </div>
-      <div>
-        <span>{attribute}</span>
-      </div>
+      <div>{attribute}</div>
+      <div style={{ width: '1em' }}></div>
     </div>
   );
 };

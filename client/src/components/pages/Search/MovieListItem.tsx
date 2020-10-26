@@ -24,7 +24,11 @@ const MovieListItem = ({
         set_display_movie(movie);
       }}
     >
-      <img alt='poster' src={poster} />
+      <div
+        className='poster'
+        aria-label='poster'
+        style={{ backgroundImage: `url(${poster})` }}
+      ></div>
       <div className='textInfo'>
         <h2>{`${title} (${year})`}</h2>
         <div className='infoRow'>
@@ -41,9 +45,9 @@ const MovieListItem = ({
             <span className=''>{runtime} min</span>
           </div>
         </div>
-        <h4>
+        <h5>
           Starring <b>{actors.slice(0, 3).join(', ')}</b>
-        </h4>
+        </h5>
       </div>
     </div>
   );

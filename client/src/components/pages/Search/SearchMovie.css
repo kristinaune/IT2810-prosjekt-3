@@ -15,9 +15,10 @@
 }*/
 
 #searchMovie {
-  width: 600px;
+  width: 800px;
   margin: 0 auto;
   text-align: center;
+  font-size: 16px;
 }
 
 #searchContainer {
@@ -27,12 +28,14 @@
   justify-content: space-around;
   background-color: #056676;
   color: #f2f1f9;
+  font-size: 1em;
 }
 
 #searchContainer input {
   z-index: 1;
-  width: auto;
-  margin: 10px 30px 20px;
+  width: 80%;
+  height: 1.5em;
+  margin: 0.5em;
   font-size: 2em;
   text-align: center;
 }
@@ -41,15 +44,15 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  margin: auto;
-  width: 600px;
+  margin: 1em auto 0 auto;
+  width: 100%;
 }
 
 #searchContainer .sortButton {
   display: inline-flex;
   justify-content: center;
-  height: 30px;
-  font-size: large;
+  height: 2em;
+  font-size: 1.25em;
   border-radius: 10px;
   line-height: 30px;
   color: #f2f1f9;
@@ -64,8 +67,8 @@
 #searchField {
   position: relative;
   border: 1px solid #ddd;
-  border-radius: 10px;
-  width: 30rem;
+  border-radius: 0.25em;
+  width: 80%;
   height: 40px;
   margin-top: 20px;
   background: #f2f1f9;
@@ -79,8 +82,8 @@
 
 #searchButton {
   cursor: pointer;
-  width: 8rem;
-  height: 2rem;
+  width: 6em;
+  height: 1.5em;
   margin-top: 10px;
   font-size: large;
   font-weight: 600;
@@ -88,12 +91,20 @@
 }
 
 .sortButton {
-  width: 100px;
+  height: 1em;
+  width: 6em;
+  line-height: 1em;
+}
+
+.sortButton div {
+  font-size: 1em;
+  line-height: 1em;
 }
 
 .sortButton .sortArrow {
-  padding-top: 5px;
-  font-size: 20px;
+  width: 1em;
+  font-size: 1em;
+  line-height: 1em;
   opacity: 0;
 }
 
@@ -110,10 +121,11 @@
 }
 
 .movieListItem {
-  height: 150px;
+  height: 9em;
   width: 100%;
   display: inline-grid;
-  grid-template-columns: 1fr 6fr;
+  grid-template-columns: 7em auto;
+  padding-bottom: 2px;
   border-bottom: #056676 1px solid;
 }
 
@@ -122,16 +134,20 @@
   background-color: #ccc3b9;
 }
 
-.movieListItem img {
-  width: 100px;
+.movieListItem .poster {
+  height: 9em;
+  background-size: cover;
+  background-position: center;
 }
+
 .movieListItem .textInfo {
   display: grid;
   grid-template-rows: auto;
-  height: 150px;
+  height: 9em;
 }
 
 .movieListItem .textInfo h2 {
+  font-size: 1.25em;
   padding: 0;
   margin-top: 10px;
   row-gap: 20px;
@@ -139,26 +155,51 @@
 
 .movieListItem .textInfo .infoRow {
   width: auto;
-  height: 24px;
-  margin: 0px 60px 0 60px;
+  height: 1.5em;
+  margin: 0px 2em 0 2em;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 }
 
 .infoRow .infoAttr {
-  height: 18px;
-  line-height: 18px;
+  height: 1.25em;
+  line-height: 1.25em;
 }
 .infoRow .infoAttr span {
-  font-size: 18px;
+  font-size: 1.25em;
   vertical-align: middle;
 }
 
 .infoRow .material-icons {
-  font-size: 18px !important;
+  font-size: 1.25em !important;
 }
 
-@media screen and (max-width: 600px) {
-  #searchContainer {
+@media screen and (max-width: 1000px) {
+  #searchMovie {
+    width: 600px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  #searchMovie {
+    width: 500px;
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  #searchMovie {
+    width: 400px;
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  #searchMovie {
+    width: 350px;
+    font-size: 8px;
+  }
+  #searchContainer input {
+    width: 95%;
   }
 }
