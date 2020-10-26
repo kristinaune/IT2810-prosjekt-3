@@ -21,8 +21,6 @@ router.get('/', (req: HttpRequest, res: HttpResponse) => {
  * @access  Public
  */
 router.get('/getMovie/:imdbId', (req: HttpRequest, res: HttpResponse) => {
-  console.log(req.params.imdbId);
-
   Movie.findOne({ imdbId: req.params.imdbId })
     .then((movie: MovieDoc | null) => res.json(movie))
     .catch((error: string) => {
@@ -47,14 +45,15 @@ router.get('/getMovie/:imdbId', (req: HttpRequest, res: HttpResponse) => {
 router.get(
   '/search/:searchString/:attribute/:direction',
   (req: HttpRequest, res: HttpResponse) => {
+    // Extract params from URI
     const { searchString, attribute, direction } = req.params;
     Movie.find({
       // Query for movies with...
       $or: [
         // Title matching search
         { title: { $regex: searchString, $options: 'i' } },
-        // IMDBbvID matching search
-        { imdbId: { $regex: searchString, $options: 'i' } },
+        // IMDBbID _exactly_ matching search (no regex)
+        { imdbId: searchString },
         // Any director in director-array matching search
         {
           director: { $elemMatch: { $regex: searchString, $options: 'i' } },
@@ -79,6 +78,50 @@ router.get(
             '  :  ' +
             error
         );
+        res.status(404).json({ success: false });
+      });
+  }
+);
+
+/**
+ * @route   GET api/movies/filterByGenre/:genreArray/:fromYear/:toYear/:ratedFrom/:ratedTo
+ * @desc    Filters movie by genres, year and rating.
+ * @params  Array of genres
+ * @params  From year
+ * @params  To year
+ * @params  Rated from
+ * @params  Rated to
+ * @access  Public
+ */
+router.get(
+  '/filterByGenre/:genreArray/:fromYear/:toYear/:ratedFrom/:ratedTo',
+  (req: HttpRequest, res: HttpResponse) => {
+    // Extract parameters from URI
+    const { fromYear, toYear, ratedFrom, ratedTo } = req.params;
+    const genreArray: string[] = JSON.parse(req.params.genreArray);
+
+    // If genreArray is empty, do not filter on genres
+    const genreQuery =
+      genreArray.length > 0
+        ? // This query returns movies matching _all_ genres in genreArray
+          { genres: { $all: genreArray } }
+        : // This query returns true for all movies
+          { genres: { $type: 'array' } };
+
+    Movie.find({
+      $and: [
+        // Query based on genreArray
+        genreQuery,
+        // Next two queries filters on year and rating
+        // $gte = "greater than or equal", $lte = "less than or equal"
+        // Using both = "in range"
+        { year: { $gte: fromYear, $lte: toYear } },
+        { rating: { $gte: ratedFrom, $lte: ratedTo } },
+      ],
+    })
+      .then((movies: MovieDoc[] | null) => res.json(movies))
+      .catch((error: string) => {
+        console.log('Error on GET movies/filterByGenre/ : ' + error);
         res.status(404).json({ success: false });
       });
   }

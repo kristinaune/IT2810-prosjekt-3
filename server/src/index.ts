@@ -1,9 +1,9 @@
-import express from 'express'
-import cors from 'cors'
-import mongoose from 'mongoose'
-import CONFIG from './CONFIG'
-import movies from './routes/movies'
-import users from './routes/users'
+import express from 'express';
+import cors from 'cors';
+import mongoose from 'mongoose';
+import CONFIG from './CONFIG';
+import movies from './routes/movies';
+import users from './routes/users';
 
 // Import and assigns config variables
 const PORT = CONFIG.PORT;
@@ -36,7 +36,7 @@ mongoose
   .catch((e) => console.log('Error connecting to MongoDB: ' + e));
 
 /**
- * Use the api/movies route
+ * Use the api routes
  */
 app.use('/api/movies', movies);
 app.use('/api/users', users);
