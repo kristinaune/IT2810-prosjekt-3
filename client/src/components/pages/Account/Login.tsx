@@ -29,7 +29,7 @@ const Login = ({ login }: { login: Function }) => {
           setEmail(e.target.value);
         }}
       />
-      <button className='button' type='submit'>
+      <button className='accountButton' type='submit'>
         {' '}
         Log in
       </button>

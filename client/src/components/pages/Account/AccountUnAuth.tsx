@@ -12,7 +12,7 @@ const AccountUnAuth = () => {
         nesciunt accusamus, placeat quaerat quidem.{' '}
       </p>
       <button
-        className='button'
+        className='accountButton'
         type='submit'
         onClick={() => history.push('/login')}
       >
@@ -20,7 +20,7 @@ const AccountUnAuth = () => {
         Log in
       </button>
       <button
-        className='button'
+        className='accountButton'
         type='submit'
         onClick={() => history.push('/register')}
       >

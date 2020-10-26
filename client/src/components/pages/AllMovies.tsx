@@ -32,12 +32,12 @@ const AllMovies = ({
   return (
     <div className='movies'>
       <div className='filter'>
-        <button className='button1'> Comedy</button>
-        <button className='button1'> War</button>
-        <button className='button1'> Action</button>
-        <button className='button1'> SciFi</button>
-        <button className='button1'> Drama</button>
-        <button className='button1'> Crime</button>
+        <button className='genreButton'> Comedy</button>
+        <button className='genreButton'> War</button>
+        <button className='genreButton'> Action</button>
+        <button className='genreButton'> SciFi</button>
+        <button className='genreButton'> Drama</button>
+        <button className='genreButton'> Crime</button>
       </div>
       {/* <div className='container'>
         <header>

@@ -122,39 +122,37 @@
   background-color: #ccc3b9;
 }
 
-.movieListItem img {
+img {
   width: 100px;
 }
-.movieListItem .textInfo {
+.textInfo {
   display: grid;
   grid-template-rows: auto;
   height: 150px;
 }
 
-.movieListItem .textInfo h2 {
+.textInfo h2 {
   padding: 0;
   margin-top: 10px;
   row-gap: 20px;
 }
-
-.movieListItem .textInfo .infoRow {
+.infoRow {
   width: auto;
   height: 24px;
   margin: 0px 60px 0 60px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 }
-
-.infoRow .infoAttr {
+.infoAttr {
   height: 18px;
   line-height: 18px;
 }
-.infoRow .infoAttr span {
+.infoAttr span {
   font-size: 18px;
   vertical-align: middle;
 }
 
-.infoRow .material-icons {
+.material-icons {
   font-size: 18px !important;
 }
 

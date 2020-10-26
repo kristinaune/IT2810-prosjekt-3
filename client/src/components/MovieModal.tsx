@@ -1,5 +1,6 @@
 import React from 'react';
 import { MovieType } from '../types';
+import './MovieModal.css';
 
 const MovieModal = ({
   movie,

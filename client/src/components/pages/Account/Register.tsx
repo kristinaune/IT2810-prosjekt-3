@@ -40,7 +40,7 @@ const Register = ({ register }: { register: Function }) => {
               setName(e.target.value);
             }}
           />
-          <button className='button' type='submit'>
+          <button className='accountButton' type='submit'>
             Register
           </button>
         </form>
