@@ -1,4 +1,9 @@
-import { LOAD_MOVIES, LOAD_MOVIES_ERROR } from './actionTypes';
+import {
+  LOAD_MOVIES,
+  SEARCH_MOVIES,
+  FILTER_MOVIES,
+  LOAD_MOVIES_ERROR,
+} from './actionTypes';
 import { Sort } from '../../types';
 import api from '../../utilities/api';
 import { Dispatch } from 'react';
@@ -46,7 +51,43 @@ export const search_movies = (
     );
 
     dispatch({
-      type: LOAD_MOVIES,
+      type: SEARCH_MOVIES,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: LOAD_MOVIES_ERROR,
+      payload: {
+        status: err.response,
+        content: false,
+      },
+    });
+  }
+};
+
+/**
+ * Filters movies by a set of filter criterias.
+ * @param genres Genres to filter on
+ * @param fromYear Earliest year in filter
+ * @param toYear Last year in filter
+ * @param ratedFrom Highest rating in filter
+ * @param ratedTo Highest rating in filter
+ */
+export const filter_movies = (
+  genres: string[],
+  fromYear: number,
+  toYear: number,
+  ratedFrom: number,
+  ratedTo: number
+) => async (dispatch: Dispatch<Object>) => {
+  try {
+    const res = await api.get(
+      '/movies/movies/filter/' +
+        [JSON.stringify(genres), fromYear, toYear, ratedFrom, ratedTo].join('/')
+    );
+
+    dispatch({
+      type: FILTER_MOVIES,
       payload: res.data,
     });
   } catch (err) {

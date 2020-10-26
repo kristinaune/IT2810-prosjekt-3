@@ -84,7 +84,7 @@ router.get(
 );
 
 /**
- * @route   GET api/movies/filterByGenre/:genreArray/:fromYear/:toYear/:ratedFrom/:ratedTo
+ * @route   GET api/movies/filter/:genreArray/:fromYear/:toYear/:ratedFrom/:ratedTo
  * @desc    Filters movie by genres, year and rating.
  * @params  Array of genres
  * @params  From year
@@ -94,7 +94,7 @@ router.get(
  * @access  Public
  */
 router.get(
-  '/filterByGenre/:genreArray/:fromYear/:toYear/:ratedFrom/:ratedTo',
+  '/filter/:genreArray/:fromYear/:toYear/:ratedFrom/:ratedTo',
   (req: HttpRequest, res: HttpResponse) => {
     // Extract parameters from URI
     const { fromYear, toYear, ratedFrom, ratedTo } = req.params;
@@ -121,7 +121,7 @@ router.get(
     })
       .then((movies: MovieDoc[] | null) => res.json(movies))
       .catch((error: string) => {
-        console.log('Error on GET movies/filterByGenre/ : ' + error);
+        console.log('Error on GET movies/filter/ : ' + error);
         res.status(404).json({ success: false });
       });
   }

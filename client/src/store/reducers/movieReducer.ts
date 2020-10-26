@@ -1,4 +1,9 @@
-import { LOAD_MOVIES, LOAD_MOVIES_ERROR } from '../actions/actionTypes';
+import {
+  LOAD_MOVIES,
+  SEARCH_MOVIES,
+  FILTER_MOVIES,
+  LOAD_MOVIES_ERROR,
+} from '../actions/actionTypes';
 import { MovieType } from '../../types';
 
 export default (
@@ -9,6 +14,8 @@ export default (
 
   switch (type) {
     case LOAD_MOVIES:
+    case SEARCH_MOVIES:
+    case FILTER_MOVIES:
       return payload;
     case LOAD_MOVIES_ERROR:
       return [false, payload];
