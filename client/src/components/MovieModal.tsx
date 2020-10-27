@@ -45,13 +45,13 @@ const MovieModal = ({
             <h4> Year: {year} </h4>   
             {user && user.authState[0] ? (user.movieList?.includes(movie.imdbId) ?  <button className='movieListButton' onClick={(e) => {
               e.preventDefault();
-              addMovie(movie.imdbId, user.email);
-            }}
-> Add to movielist</button> : <button className='movieListButton' onClick={(e) => {
-              e.preventDefault();
               removeMovie(movie.imdbId, user.email);
             }}
-> Remove from movielist</button>) : null}
+> Remove from movielist</button> : <button className='movieListButton' onClick={(e) => {
+              e.preventDefault();
+              addMovie(movie.imdbId, user.email);
+            }}
+> Add to movielist</button>) : null}
 {}
 
 

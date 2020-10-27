@@ -6,7 +6,7 @@ const AccountUnAuth = () => {
   const history = useHistory();
   return (
     <React.Fragment>
-      <h4 className='center'>Account</h4>
+      <h4>Account</h4>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi
         nesciunt accusamus, placeat quaerat quidem.{' '}
