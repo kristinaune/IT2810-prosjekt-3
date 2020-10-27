@@ -1,9 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { StoreState, UserType } from '../../../types';
 import MyListAuth from './MyListAuth';
 import MyListUnAuth from './MyListUnAuth';
 
-const MyList = ({ isAuthenticated }: { isAuthenticated: boolean }) => {
+const MyList = ({
+  isAuthenticated,
+}: {
+  isAuthenticated: boolean;
+  user: UserType;
+}) => {
   return (
     <div className='container'>
       <h4 className='center'>My list</h4>
@@ -12,8 +18,10 @@ const MyList = ({ isAuthenticated }: { isAuthenticated: boolean }) => {
   );
 };
 
-const mapStateToProps = (state: any) => {
-  return { isAuthenticated: state.user.authState[0] };
+const mapStateToProps = (state: StoreState) => {
+  return {
+    isAuthenticated: state.user.authState.auth,
+  };
 };
 
 export default connect(mapStateToProps, {})(MyList);

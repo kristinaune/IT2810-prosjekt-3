@@ -1,8 +1,8 @@
 import {
-  AUTH_ERROR,
+  REGISTER_ERROR,
+  LOGIN_ERROR,
   REGISTER_SUCCESS,
   LOGIN_SUCCESS,
-  USER_LOADED,
   LOGOUT_SUCCESS,
   ADD_MOVIE_SUCCESS,
   ADD_MOVIE_ERROR,
@@ -12,53 +12,47 @@ import {
 import api from '../../utilities/api';
 import { Dispatch } from 'react';
 
-//load user. Make a request to routers/users
-
-export const load_user = () => async (dispatch: Dispatch<Object>) => {
-  try {
-    const res = await api.get('/user');
-    dispatch({
-      type: USER_LOADED,
-      user: res.data.user,
-    });
-  } catch (err) {
-    dispatch({
-      type: AUTH_ERROR,
-    });
-  }
-};
 export const register = (name: string, email: string) => async (
   dispatch: Dispatch<Object>
 ) => {
   const body = JSON.stringify({ name, email });
 
-  try {
-    const res = await api.post('/users/register', body);
-    dispatch({
-      type: REGISTER_SUCCESS,
-      user: res.data.user,
+  api
+    .post('/users/register', body)
+    .then((res) => {
+      dispatch({
+        type: REGISTER_SUCCESS,
+        user: res.data.user,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response.data.msg);
+      dispatch({
+        type: REGISTER_ERROR,
+        errorMsg: err.response.data.msg,
+      });
     });
-  } catch (err) {
-    dispatch({
-      type: AUTH_ERROR,
-    });
-  }
 };
 
 export const login = (email: string) => async (dispatch: Dispatch<Object>) => {
   const body = JSON.stringify({ email });
 
-  try {
-    const res = await api.post('/users/login', body);
-    dispatch({
-      type: LOGIN_SUCCESS,
-      user: res.data.user,
+  api
+    .post('/users/login', body)
+    .then((res) => {
+      dispatch({
+        type: LOGIN_SUCCESS,
+        user: res.data.user,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response.data.msg);
+
+      dispatch({
+        type: LOGIN_ERROR,
+        errorMsg: err.response.data.msg,
+      });
     });
-  } catch (err) {
-    dispatch({
-      type: AUTH_ERROR,
-    });
-  }
 };
 
 export const logout = () => (dispatch: Dispatch<Object>) => {

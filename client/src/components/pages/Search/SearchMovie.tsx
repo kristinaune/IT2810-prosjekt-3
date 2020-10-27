@@ -2,7 +2,7 @@ import React, { createRef, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { search_movies } from '../../../store/actions/movies';
 import { addmovie } from '../../../store/actions/user';
-import { MovieType, Sort } from '../../../types';
+import { MovieType, Sort, StoreState } from '../../../types';
 import searchSuggestions from './utils/searchSuggestions';
 import SortRow from './SortRow';
 import './SearchMovie.css';
@@ -113,13 +113,13 @@ const SearchMovie = ({
           handleSort={handleSort}
         />
       </div>
-      <ResultList movies={movies} />
+      {movies && <ResultList movies={movies} />}
     </div>
   );
 };
 
-const mapStateToProps = (state: any) => {
-  return { movies: state.movies, user: state.user };
+const mapStateToProps = (state: StoreState) => {
+  return { movies: state.movies.movies, user: state.user };
 };
 
 const mapDispatchToProps = { search_movies, addmovie };

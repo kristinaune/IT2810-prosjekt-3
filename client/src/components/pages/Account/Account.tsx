@@ -3,17 +3,27 @@ import './Account.css';
 import { connect } from 'react-redux';
 import AccountUnAuth from './AccountUnAuth';
 import AccountAuth from './AccountAuth';
+import { StoreState, UserType } from '../../../types';
 
-const Account = ({ isAuthenticated }: { isAuthenticated?: boolean }) => {
+const Account = ({
+  user,
+  isAuthenticated,
+}: {
+  user: UserType;
+  isAuthenticated: boolean;
+}) => {
   return (
     <div className='authContainer'>
-      {isAuthenticated ? <AccountAuth /> : <AccountUnAuth />}
+      {isAuthenticated ? <AccountAuth user={user} /> : <AccountUnAuth />}
     </div>
   );
 };
 
-const mapStateToProps = (state: any) => {
-  return { isAuthenticated: state.user.authState[0] };
+const mapStateToProps = (state: StoreState) => {
+  return {
+    isAuthenticated: state.user.authState.auth,
+    user: state.user,
+  };
 };
 
-export default connect(mapStateToProps, {})(Account);
+export default connect(mapStateToProps)(Account);

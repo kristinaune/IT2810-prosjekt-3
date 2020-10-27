@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { get_movies } from '../../store/actions/movies';
 import { connect } from 'react-redux';
-import { MovieType } from '../../types';
+import { MovieType, StoreState } from '../../types';
 import MovieCard from '../MovieItem';
 import FilterMovies from './FilterMovies';
 import paginator from '../../utilities/paginator';
@@ -16,7 +16,7 @@ const AllMovies = ({
   movies,
   get_movies,
 }: {
-  movies?: Array<MovieType>;
+  movies: Array<MovieType>;
   get_movies: Function;
 }) => {
   // Used to limit number of movies loaded at a time by pagination
@@ -33,33 +33,6 @@ const AllMovies = ({
   return (
     <div className='movies'>
       <FilterMovies />
-      {/* 
-      <div className='filter'>
-        <button className='filterButton'> Comedy</button>
-        <button className='filterButton'> War</button>
-        <button className='filterButton'> Action</button>
-        <button className='filterButton'> SciFi</button>
-        <button className='filterButton'> Drama</button>
-        <button className='filterButton'> Crime</button>
-      </div> */}
-      {/* <div className='container'>
-        <header>
-          Filter your search
-          <button type='button' className='button'>
-            {' '}
-            Sjanger
-          </button>
-          <div className='dropdown'>
-            <ul>
-              <li>Comedy</li>
-              <li>Action</li>
-              <li>Scifi</li>
-              <li>Romantic</li>
-            </ul>
-          </div>
-        </header>
-      </div> */}
-
       {movies &&
         movies[0] &&
         movies
@@ -71,8 +44,8 @@ const AllMovies = ({
   );
 };
 
-const mapStateToProps = (state: any) => {
-  return { movies: state.movies };
+const mapStateToProps = (state: StoreState) => {
+  return { movies: state.movies.movies };
 };
 
 const mapDispatchToProps = {

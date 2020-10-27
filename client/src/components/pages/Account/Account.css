@@ -12,14 +12,40 @@
   font-size: 1.4rem;
   cursor: pointer;
   transition: background-color 250ms;
+  margin-top: 10px;
 }
 
-.userInfo {
-  min-width: 300px;
-  width: fit-content;
-  margin: auto;
-  padding-top: 20px;
+.center {
   padding-bottom: 20px;
-  text-align: left;
-  font-size: 1.5rem;
+}
+.textfield {
+  padding-left: 20%;
+  padding-right: 20%;
+}
+.errorMsg {
+  color: #ab2e46;
+  height: 20px;
+  padding-bottom: 10px;
+}
+
+input[type='email'],
+select {
+  width: 20%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type='text'],
+select {
+  width: 20%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }

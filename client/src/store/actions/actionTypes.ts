@@ -11,6 +11,8 @@ export const CLOSE_MODAL = 'CLOSE_MODAL';
 
 // User actions
 export const AUTH_ERROR = 'AUTH_ERROR';
+export const LOGIN_ERROR = 'LOGIN_ERROR';
+export const REGISTER_ERROR = 'REGISTER_ERROR';
 export const USER_LOADED = 'USER_LOADED';
 
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';

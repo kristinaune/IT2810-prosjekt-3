@@ -4,21 +4,21 @@ import {
   FILTER_MOVIES,
   LOAD_MOVIES_ERROR,
 } from '../actions/actionTypes';
-import { MovieType } from '../../types';
+import { MovieType, MoviesState } from '../../types';
 
 export default (
-  state = [false],
+  state = { movies: [] },
   action: { type: string; payload: MovieType[] }
-) => {
+): MoviesState => {
   const { type, payload } = action;
 
   switch (type) {
     case LOAD_MOVIES:
     case SEARCH_MOVIES:
     case FILTER_MOVIES:
-      return payload;
+      return { movies: payload, type };
     case LOAD_MOVIES_ERROR:
-      return [false, payload];
+      return { movies: state.movies, type };
     default:
       return state;
   }
