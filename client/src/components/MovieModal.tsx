@@ -12,7 +12,7 @@ const MovieModal = ({
   closeModal: Function;
   addMovie: Function;
   removeMovie: Function;
-  user?: User; 
+  user?: User;
 }) => {
   const {
     title,
@@ -38,13 +38,36 @@ const MovieModal = ({
             <img alt='modalposter' src={poster} />
           </div>
           <div className='modalInformation'>
-            <h4>Plot: {plot}</h4>
-            <h4> Rating: {rating}</h4>
-            <h4> Runtime: {runtime} min</h4>
-            <h4> Director: {director}</h4>
-            <h4> Genres: {genres.join(', ')}</h4>
-            <h4> Actors: {actors.join(', ')}</h4>
-            <h4> Year: {year} </h4>
+            <p className='modaltext'>
+              {' '}
+              <b> Plot: </b>
+              {plot}
+            </p>
+            <p className='modaltext'>
+              {' '}
+              <b>Raiting: </b> {rating}
+            </p>
+            <p className='modaltext'>
+              {' '}
+              <b>Runtime: </b> {runtime} min
+            </p>
+            <p className='modaltext'>
+              {' '}
+              <b> Director: </b>
+              {director}
+            </p>
+            <p className='modaltext'>
+              {' '}
+              <b> Genres:</b> {genres}
+            </p>
+            <p className='modaltext'>
+              {' '}
+              <b> Actors: </b> {actors}
+            </p>
+            <p className='modaltext'>
+              {' '}
+              <b> Year: </b> {year}{' '}
+            </p>
             {user && user.authState[0] ? (
               user.movieList?.includes(movie.imdbId) ? (
                 <button
