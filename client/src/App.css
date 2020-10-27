@@ -149,11 +149,16 @@ h3 {
     max-height: 700px;
   }
 }
-
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 740px) {
   .modal {
-    max-width: 350px;
-    max-height: 800px;
+    max-width: 280px;
+    max-height: 400px;
+  }
+  .modalPosters img {
+    display: none;
+  }
+  .content {
+    font-size: xx-small;
   }
 }
 

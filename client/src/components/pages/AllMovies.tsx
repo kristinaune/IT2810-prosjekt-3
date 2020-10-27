@@ -5,6 +5,7 @@ import { MovieType } from '../../types';
 import MovieCard from '../MovieItem';
 import paginator from '../../utilities/paginator';
 import './AllMovies.css';
+import MovieListItem from './Search/MovieListItem';
 
 /**
  * Displays all movies in database, by some filters
@@ -39,31 +40,17 @@ const AllMovies = ({
         <button className='button1'> Drama</button>
         <button className='button1'> Crime</button>
       </div>
-      {/* <div className='container'>
-        <header>
-          Filter your search
-          <button type='button' className='button'>
-            {' '}
-            Sjanger
-          </button>
-          <div className='dropdown'>
-            <ul>
-              <li>Comedy</li>
-              <li>Action</li>
-              <li>Scifi</li>
-              <li>Romantic</li>
-            </ul>
-          </div>
-        </header>
-      </div> */}
-
-      {movies &&
-        movies[0] &&
-        movies
-          .slice(0, Math.min(movieCount, movies.length))
-          .map((movie: MovieType) => {
-            return <MovieCard key={movie.imdbId} movie={movie} />;
-          })}
+      <div id='searchMovie'>
+        <section>
+          {movies
+            ?.slice(0, Math.min(movieCount, movies.length))
+            .map((movie: MovieType) => {
+              return (
+                movie && <MovieListItem key={movie.imdbId} movie={movie} />
+              );
+            })}
+        </section>
+      </div>
     </div>
   );
 };
