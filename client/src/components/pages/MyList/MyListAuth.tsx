@@ -1,20 +1,17 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { MovieType } from '../../../types';
-import { addmovie } from '../../../store/actions/user';
 import MovieCard from '../../MovieItem';
 
 // component thats rendering if user is authenticated
 const MyListAuth = ({
   user,
-  addmovie,
   email,
   name,
   movieList,
   movies,
 }: {
   user?: Object;
-  addmovie: Function;
   email: string;
   name: string;
   movieList: Array<string>;
@@ -43,8 +40,6 @@ const MyListAuth = ({
               <MovieCard
                 key={movie.imdbId}
                 {...movie}
-                {...user}
-                addmovietolist={addmovie}
               />
             );
           })
@@ -65,5 +60,5 @@ const mapStateToProps = (state: any) => {
   };
 };
 
-export default connect(mapStateToProps, { addmovie })(MyListAuth);
+export default connect(mapStateToProps)(MyListAuth);
 //export default connect(mapStateToProps, { searchMovieTitle })(MovieList);

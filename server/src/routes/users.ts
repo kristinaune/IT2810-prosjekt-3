@@ -143,45 +143,55 @@ router.post('/addMovie', (req: HttpRequest, res: HttpResponse) => {
 });
 
 /**
- * @route   POST api/users/deleteMovie
+ * @route   DELETE api/users/deleteMove/:email/:imdbId
  * @desc    Deletes movie from My List
  * @param   req.body.email User email
  * @param   req.body.imdbId IMDb-id of movie to be deleted
  * @access  Public
  */
-router.delete('/deleteMovie', (req: HttpRequest, res: HttpResponse) => {
-  const { email, imdbId } = req.body;
+router.delete(
+  '/deleteMovie/:email/:imdbId',
+  (req: HttpRequest, res: HttpResponse) => {
+    const { email, imdbId } = req.params;
+    console.log(email, imdbId);
 
-  // Validate the inputs
-  if (!(email && imdbId)) {
-    return res.status(400).json({ msg: 'User email or imdbId missing' });
+    // Validate the inputs
+    if (!(email && imdbId)) {
+      return res.status(400).json({ msg: 'User email or imdbId missing' });
+    }
+
+    // Delete movie from list
+    User.findOneAndUpdate(
+      { email: req.params.email },
+      { $pull: { movieList: req.params.imdbId } },
+      { new: true } // Return new object insted of original
+    )
+      .then((user: UserDoc | null) => {
+        // Check if user exists
+        if (!user) return res.status(400).json({ msg: 'Could not find user' });
+        // Return the updated user
+        res.status(200).json({
+          user: {
+            uid: user.uid,
+            name: user.name,
+            email: user.email,
+            movieList: user.movieList,
+          },
+        });
+      })
+      .catch((error: string) => {
+        console.log('Error: ' + error);
+        res.status(400).json({
+          msg: 'Error: ' + error,
+        });
+      });
   }
+);
 
-  // Delete movie from list
-  User.findOneAndUpdate(
-    { email },
-    { $pull: { movieList: imdbId } },
-    { new: true } // Return new object insted of original
-  )
-    .then((user: UserDoc | null) => {
-      // Check if user exists
-      if (!user) return res.status(400).json({ msg: 'Could not find user' });
-      // Return the updated user
-      res.status(200).json({
-        user: {
-          uid: user.uid,
-          name: user.name,
-          email: user.email,
-          movieList: user.movieList,
-        },
-      });
-    })
-    .catch((error: string) => {
-      console.log('Error: ' + error);
-      res.status(400).json({
-        msg: 'Error: ' + error,
-      });
-    });
+router.get('/', (req: HttpRequest, res: HttpResponse) => {
+  User.find()
+    .then((user) => res.json(user))
+    .catch((e) => res.status(404).json({ success: false }));
 });
 
 export default router;

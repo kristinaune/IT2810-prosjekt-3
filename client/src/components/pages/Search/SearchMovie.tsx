@@ -1,7 +1,6 @@
 import React, { createRef, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { search_movies } from '../../../store/actions/movies';
-import { addmovie } from '../../../store/actions/user';
 import { MovieType, Sort } from '../../../types';
 import searchSuggestions from './utils/searchSuggestions';
 import SortRow from './SortRow';
@@ -10,14 +9,10 @@ import ResultList from './ResultList';
 
 const SearchMovie = ({
   movies,
-  user,
   search_movies,
-  addmovie,
 }: {
   movies?: Array<MovieType>;
-  user?: Object;
   search_movies: Function;
-  addmovie: Function;
 }) => {
   // A reference to the search/input-field.
   const searchFieldRef = createRef<HTMLInputElement>();
@@ -122,6 +117,6 @@ const mapStateToProps = (state: any) => {
   return { movies: state.movies, user: state.user };
 };
 
-const mapDispatchToProps = { search_movies, addmovie };
+const mapDispatchToProps = { search_movies };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchMovie);
