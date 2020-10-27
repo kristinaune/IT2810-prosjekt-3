@@ -3,7 +3,7 @@ import './App.css';
 import { connect, Provider } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { get_movies } from './store/actions/movies';
-import { load_user } from './store/actions/user';
+import { add_movie, load_user, remove_movie } from './store/actions/user';
 import { close_modal } from './store/actions/displayMovie';
 import SearchMovie from './components/pages/Search/SearchMovie';
 import Search from './components/pages/Search/Search';
@@ -16,20 +16,28 @@ import Login from './components/pages/Account/Login';
 import Register from './components/pages/Account/Register';
 import store from './store/store';
 import MovieModal from './components/MovieModal';
-import { MovieType } from './types';
+import { MovieType, User } from './types';
 
 const App = ({
   get_movies,
   load_user,
   close_modal,
+  add_movie,
+  remove_movie,
   displayMovie,
   display,
+  user,
+
 }: {
   get_movies: Function;
   load_user: Function;
   close_modal: Function;
+  add_movie: Function;
+  remove_movie: Function;
   displayMovie: MovieType;
   display: boolean;
+  user?: User
+
 }) => {
   // get_movies();
   // Kommentert ut fordi den returnerer en 501-feil
@@ -54,7 +62,7 @@ const App = ({
                 <Route path='/register' component={Register} />
               </Switch>
               {displayMovie.actors && (
-                <MovieModal movie={displayMovie} closeModal={close_modal} />
+                <MovieModal movie={displayMovie} closeModal={close_modal} user = {user} addMovie = {add_movie} removeMovie = {remove_movie}/>
               )}
             </main>
             <Footer />
@@ -68,6 +76,7 @@ const App = ({
 const mapStateToProps = (state: any) => {
   return {
     displayMovie: state.displayMovie,
+    user: state.user
   };
 };
 
@@ -75,4 +84,6 @@ export default connect(mapStateToProps, {
   get_movies,
   load_user,
   close_modal,
+  add_movie, 
+  remove_movie
 })(App);

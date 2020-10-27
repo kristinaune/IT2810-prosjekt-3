@@ -1,0 +1,49 @@
+.description{
+    text-align: center;
+}
+.myListContainer{
+    text-align: center;
+}
+
+.myListMovies{
+    margin-top: 50px;
+    margin-left:150px;
+    margin-right:150px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(20px, auto);
+
+}
+.myListMovies .movieItem {
+    margin-left: 50px;
+    width: 170px; /* Endre på denne med @media */
+    height: auto;
+    cursor: ponter;
+    justify-content: center;
+
+
+  }
+  
+  .myListMovies .poster {
+    text-align: center;
+    position: center;
+    max-width: 200px;
+    max-height: 300px;
+    /* max-width: 200px;
+    max-height: 230px; */
+    /* max-width: 200px;
+    max-height: 230px; */
+    /* grid-column: 1; */
+  }
+  
+  .myListMovies .poster img {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .myListMovies .title {
+    padding: 0px;
+    margin: 0px;
+    text-align: left;
+  }

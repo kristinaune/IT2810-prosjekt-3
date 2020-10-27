@@ -1,24 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { get_movies } from '../../../store/actions/movies';
 import { connect } from 'react-redux';
 import { MovieType } from '../../../types';
-import { addmovie } from '../../../store/actions/user';
 import MovieCard from '../../MovieItem';
 
 // component thats rendering if user is authenticated
 const MyListAuth = ({
   user,
-  addmovie,
   email,
   name,
   movieList,
   movies,
+  get_movies,
 }: {
   user?: Object;
-  addmovie: Function;
   email: string;
   name: string;
   movieList: Array<string>;
   movies: Array<MovieType>;
+  get_movies: Function;
 }) => {
   const [movieCount, setMovieCount] = useState(20);
 
@@ -30,28 +30,30 @@ const MyListAuth = ({
       setMovieCount((m) => m + 10);
     }
   };
+  useEffect(() => {
+    get_movies();
+  }, [get_movies]);
 
   return (
-    <div className='container'>
+    <div>
+    <div className = 'description'>
       Showing {name}'s movies
-      {movieList && movies ? (
-        movies
-          .slice(0, Math.min(movieCount, movies.length))
+    </div>
+      {console.log(movieList, movies)}
+      {(movieList.length > 0) && movies ? (
+        <div className = 'myListMovies'> 
+        {movies
+          ?.slice(0, Math.min(movieCount, movies.length))
           .filter((movie) => movieList.includes(movie.imdbId))
           .map((movie: any) => {
-            return (
-              <MovieCard
-                key={movie.imdbId}
-                {...movie}
-                {...user}
-                addmovietolist={addmovie}
-              />
-            );
-          })
-      ) : (
-        <div> No movies </div>
-      )}
+            return <MovieCard key={movie.imdbId} movie= {movie} />;
+          }) 
+        } </div>)
+       : (
+        <div> <p></p>No movies. Click on any movie in 'Search' or 'All Movies' to add to your list </div>
+    )}
     </div>
+
   );
 };
 
@@ -64,6 +66,10 @@ const mapStateToProps = (state: any) => {
     movies: state.movies,
   };
 };
+const mapDispatchToProps = {
+  get_movies,
+};
 
-export default connect(mapStateToProps, { addmovie })(MyListAuth);
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyListAuth);
 //export default connect(mapStateToProps, { searchMovieTitle })(MovieList);

@@ -8,6 +8,8 @@ import {
   ADD_MOVIE_ERROR,
   GET_MOVIELIST,
   GET_MOVIELIST_ERROR,
+  REMOVE_MOVIE_SUCCESS,
+  REMOVE_MOVIE_ERROR,
 } from './actionTypes';
 import api from '../../utilities/api';
 import { Dispatch } from 'react';
@@ -67,7 +69,7 @@ export const logout = () => (dispatch: Dispatch<Object>) => {
   });
 };
 
-export const addmovie = (imdbId: string, email: string) => async (
+export const add_movie = (imdbId: string, email: string) => async (
   dispatch: Dispatch<Object>
 ) => {
   const body = JSON.stringify({ imdbId, email });
@@ -80,6 +82,22 @@ export const addmovie = (imdbId: string, email: string) => async (
   } catch (err) {
     dispatch({
       type: ADD_MOVIE_ERROR,
+    });
+  }
+};
+
+export const remove_movie = (imdbId: string, email: string) => async (
+  dispatch: Dispatch<Object>
+) => {
+  try {
+    const res = await api.delete('users/deleteMovie/' + email + '/' + imdbId);
+    dispatch({
+      type: REMOVE_MOVIE_SUCCESS,
+      user: res.data.user,
+    });
+  } catch (err) {
+    dispatch({
+      type: REMOVE_MOVIE_ERROR,
     });
   }
 };

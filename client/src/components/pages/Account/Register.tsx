@@ -11,7 +11,7 @@ const Register = ({ register }: { register: Function }) => {
   const [name, setName] = useState('');
   return (
     <React.Fragment>
-      <h4 className='center'>Register</h4>
+      <h4>Register</h4>
       <div className='form'>
         <form
           onSubmit={(e: any) => {
