@@ -69,8 +69,8 @@
   text-align: left;
 }
 
-.button1 {
-  background-color: #5eaaa8 !important;
+.genreButton {
+  background-color: #96c4bd;
   color: white;
   border-radius: 30px;
   border: 1px solid #ddd;
@@ -80,7 +80,11 @@
   margin-top: 30px;
   margin: auto;
 
-  font-size: 13px !important;
+  font-size: 13px;
   cursor: pointer;
-  transition: background-color 250ms !important;
+  transition: background-color 250ms;
+}
+
+.genreButton:hover {
+  background-color: #51a6a3;
 }
