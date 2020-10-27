@@ -110,11 +110,9 @@ small {
 }
 
 .content {
-  /* width: 90%; */
   max-width: calc(100%-60px);
   margin: auto;
-  /* display: flex;
-  flex-direction: row; */
+
   text-align: left;
 
   font-size: small !important;
@@ -135,7 +133,6 @@ small {
 
 .modalInformation {
   padding: auto;
-
   flex: 1 1 auto;
 }
 
@@ -143,22 +140,30 @@ h3 {
   font-size: large;
 }
 
-@media screen and (max-width: 960px) {
-  .modal {
-    max-width: 700px;
-    max-height: 700px;
-  }
+.modaltext {
+  font-size: 15px;
 }
-@media screen and (max-width: 740px) {
+
+@media screen and (max-width: 775px) {
   .modal {
-    max-width: 280px;
-    max-height: 400px;
+    max-width: 300px;
+    max-height: 500px;
   }
   .modalPosters img {
     display: none;
   }
   .content {
     font-size: xx-small;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .modal {
+    max-width: 300px;
+    max-height: 450px;
+  }
+  .modalPosters img {
+    display: none;
   }
 }
 
