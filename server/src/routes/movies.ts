@@ -21,8 +21,6 @@ router.get('/', (req: HttpRequest, res: HttpResponse) => {
  * @access  Public
  */
 router.get('/getMovie/:imdbId', (req: HttpRequest, res: HttpResponse) => {
-  console.log(req.params.imdbId);
-
   Movie.findOne({ imdbId: req.params.imdbId })
     .then((movie: MovieDoc | null) => res.json(movie))
     .catch((error: string) => {

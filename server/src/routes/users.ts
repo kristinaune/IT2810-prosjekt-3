@@ -12,7 +12,6 @@ const router = express.Router();
  */
 router.get('/:email', (req: HttpRequest, res: HttpResponse) => {
   const email = req.params.email;
-  console.log(email)
   if (!email) {
     return res.status(400).json({ msg: 'User email missing' });
   }
