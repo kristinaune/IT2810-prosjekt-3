@@ -12,11 +12,11 @@ import {
 import api from '../../utilities/api';
 import { Dispatch } from 'react';
 
-//load user. Make a request to routers/users
-
+//load user. Make a request to routers/users/:email
 export const load_user = () => async (dispatch: Dispatch<Object>) => {
+  const user = JSON.parse(localStorage.getItem('user')!);
   try {
-    const res = await api.get('/user');
+    const res = await api.get('/users/' + user.email);
     dispatch({
       type: USER_LOADED,
       user: res.data.user,

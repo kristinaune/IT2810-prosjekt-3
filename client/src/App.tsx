@@ -31,9 +31,9 @@ const App = ({
   displayMovie: MovieType;
   display: boolean;
 }) => {
+  load_user();
   // get_movies();
   // Kommentert ut fordi den returnerer en 501-feil
-  //load_user();
 
   return (
     <Provider store={store}>

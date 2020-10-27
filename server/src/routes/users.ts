@@ -5,6 +5,41 @@ import User from '../models/User';
 const router = express.Router();
 
 /**
+ * @route   GET api/users/:email
+ * @desc    Get one user
+ * @param   req.body.email User email
+ * @access  Public
+ */
+router.get('/:email', (req: HttpRequest, res: HttpResponse) => {
+  const email = req.params.email;
+  console.log(email)
+  if (!email) {
+    return res.status(400).json({ msg: 'User email missing' });
+  }
+  User.findOne({ email: email }).then((user: UserDoc | null) => {
+    if (!user) return res.status(400).json({ msg: 'User does not exist' });
+    res.status(200).json({
+      user: {
+        uid: user.uid,
+        name: user.name,
+        email: user.email,
+        movieList: user.movieList,
+      },
+    });
+  });
+});
+/**
+ * @route   GET api/users/
+ * @desc    Get all users
+ * @access  Public
+ */
+router.get('/', (req: HttpRequest, res: HttpResponse) => {
+  User.find()
+    .then((user) => res.json(user))
+    .catch((e) => res.status(404).json({ success: false }));
+});
+
+/**
  * @route   POST api/users/register
  * @desc    Register new user
  * @param   req.body.email User email
@@ -13,7 +48,6 @@ const router = express.Router();
  */
 router.post('/register', (req: HttpRequest, res: HttpResponse) => {
   const { email, name } = req.body;
-  console.log(req.body);
 
   //Validate the inputs
   if (!name || !email) {
@@ -21,11 +55,8 @@ router.post('/register', (req: HttpRequest, res: HttpResponse) => {
   }
   // Check if the name is registred
   User.findOne({ email: email }).then((user: UserDoc | null) => {
-    console.log('1');
-
     // If yes, return error
     if (user) return res.status(400).json({ msg: 'User already exists' });
-    console.log('2');
     // If no, create new user
     const newUser = new User({
       name: name,
@@ -58,10 +89,9 @@ router.post('/login', (req: HttpRequest, res: HttpResponse) => {
   if (!email) {
     return res.status(400).json({ msg: 'Enter email' });
   }
+
   // Check if the name is registred
   User.findOne({ email: email }).then((user: UserDoc | null) => {
-    console.log(user);
-
     if (!user) return res.status(400).json({ msg: 'User does not exist' });
     res.status(200).json({
       user: {

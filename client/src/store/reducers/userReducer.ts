@@ -18,11 +18,17 @@ export default (
   const { type, user } = action;
   switch (type) {
     case USER_LOADED:
+      return {
+        ...user,
+        authState: [1, type],
+      };
     case LOGIN_SUCCESS:
     case REGISTER_SUCCESS:
+      localStorage.setItem('user', JSON.stringify(user));
       return { ...user, authState: [1, type] };
     case LOGOUT_SUCCESS:
     case AUTH_ERROR:
+      localStorage.removeItem('user');
       return { authState: [0, type] };
     default:
       return state;
