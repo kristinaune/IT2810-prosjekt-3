@@ -42,8 +42,8 @@ const MovieModal = ({
             <h4> Rating: {rating}</h4>
             <h4> Runtime: {runtime} min</h4>
             <h4> Director: {director}</h4>
-            <h4> Genres: {genres}</h4>
-            <h4> Actors: {actors}</h4>
+            <h4> Genres: {genres.join(', ')}</h4>
+            <h4> Actors: {actors.join(', ')}</h4>
             <h4> Year: {year} </h4>
             {user && user.authState[0] ? (
               user.movieList?.includes(movie.imdbId) ? (
