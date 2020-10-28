@@ -76,6 +76,7 @@ small {
   height: 100%;
   background: #0000003a;
   transition: opacity 0.2s ease;
+  z-index: 9;
 }
 
 .modal {

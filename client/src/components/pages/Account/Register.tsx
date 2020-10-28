@@ -1,23 +1,43 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // Importer Connect, "connecter" komponenten til redux
 import { connect } from 'react-redux';
-import { load_user, register } from '../../../store/actions/user';
+import { startRegister } from '../../../store/actions/user';
 import { useHistory } from 'react-router-dom';
+import { StoreState } from '../../../types';
 //import './User.css';
 
-const Register = ({ register }: { register: Function }) => {
+const Register = ({
+  isAuthenticated,
+  startRegister,
+  startRegisterError,
+  errorMsg,
+}: {
+  isAuthenticated: boolean;
+  startRegister: (email: string, name: string) => void;
+  startRegisterError?: boolean;
+  errorMsg?: string;
+}) => {
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
+
+  // Redirect to "account" on succesful registration
+  useEffect(() => {
+    isAuthenticated && history.push('/account');
+  }, [isAuthenticated, history]);
+
+  // Empty arrowfunction inside useEffect to listen for error-messages
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  useEffect(() => {}, [errorMsg]);
+
   return (
-    <React.Fragment>
-      <h4>Register</h4>
+    <div className='authContainer'>
+      <h4 className='center'>Register</h4>
       <div className='form'>
         <form
           onSubmit={(e: any) => {
             e.preventDefault();
-            register(name, email);
-            history.push('/account');
+            startRegister(name, email);
           }}
         >
           <label>Email</label>
@@ -40,13 +60,30 @@ const Register = ({ register }: { register: Function }) => {
               setName(e.target.value);
             }}
           />
+          <h5 className='errorMsg'>
+            {
+              // If there is an error-message of registration-type, display it.
+              startRegisterError ? errorMsg : ' '
+            }
+          </h5>
           <button className='button' type='submit'>
             Register
           </button>
         </form>
       </div>
-    </React.Fragment>
+    </div>
   );
 };
 
-export default connect(null, { load_user, register })(Register);
+const mapStateToProps = (state: StoreState) => {
+  console.log(state);
+
+  return {
+    isAuthenticated: state.user.authState.auth,
+    // If there is an error, check if it was startRegistering-related
+    startRegisterError: state.user.authState.type === 'REGISTER_ERROR',
+    errorMsg: state.user.errorMsg,
+  };
+};
+
+export default connect(mapStateToProps, { startRegister })(Register);

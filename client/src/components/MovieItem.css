@@ -69,7 +69,7 @@
   text-align: left;
 }
 
-.button1 {
+.filterButton {
   background-color: #5eaaa8 !important;
   color: white;
   border-radius: 30px;
@@ -82,5 +82,30 @@
 
   font-size: 13px !important;
   cursor: pointer;
-  transition: background-color 250ms !important;
+  transition: background-color 100ms !important;
+  outline: 0;
+}
+
+.filterButton.active {
+  background-color: #257a78 !important;
+}
+
+.sliders {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.filterSlider {
+  text-align: center;
+  height: 100px;
+  width: 40%;
+  min-width: 375px;
+}
+
+.noUi-handle,
+.noUi-touch-area {
+  cursor: pointer;
+  background-color: #257a78 !important;
 }

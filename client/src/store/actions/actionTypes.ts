@@ -1,5 +1,7 @@
 // Movie actions
 export const LOAD_MOVIES = 'LOAD_MOVIES';
+export const SEARCH_MOVIES = 'SEARCH_MOVIES';
+export const FILTER_MOVIES = 'FILTER_MOVIES';
 export const LOAD_MOVIES_ERROR = 'LOAD_MOVIES_ERROR';
 export const SEARCH_AND_SORT = 'SEARCH_AND_SORT';
 
@@ -9,6 +11,8 @@ export const CLOSE_MODAL = 'CLOSE_MODAL';
 
 // User actions
 export const AUTH_ERROR = 'AUTH_ERROR';
+export const LOGIN_ERROR = 'LOGIN_ERROR';
+export const REGISTER_ERROR = 'REGISTER_ERROR';
 export const USER_LOADED = 'USER_LOADED';
 
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';

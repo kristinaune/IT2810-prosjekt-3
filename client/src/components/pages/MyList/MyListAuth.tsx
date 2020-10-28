@@ -1,75 +1,57 @@
 import React, { useEffect, useState } from 'react';
-import { get_movies } from '../../../store/actions/movies';
 import { connect } from 'react-redux';
-import { MovieType } from '../../../types';
+import { MovieType, StoreState, UserType } from '../../../types';
+import { startAddMovie } from '../../../store/actions/user';
 import MovieCard from '../../MovieItem';
+import paginator from '../../../utilities/paginator';
+import { startGetMovies } from '../../../store/actions/movies';
 
 // component thats rendering if user is authenticated
 const MyListAuth = ({
   user,
-  email,
-  name,
-  movieList,
   movies,
-  get_movies,
+  startGetMovies,
 }: {
-  user?: Object;
-  email: string;
-  name: string;
-  movieList: Array<string>;
-  movies: Array<MovieType>;
-  get_movies: Function;
+  user: UserType;
+  movies: MovieType[];
+  startGetMovies: () => void;
 }) => {
+  useEffect(() => {
+    startGetMovies();
+  }, [startGetMovies]);
+
+  // Trigger rerender
+  useEffect(() => {
+    console.log(user.movieList?.length);
+  }, [user.movieList?.length]);
   const [movieCount, setMovieCount] = useState(20);
 
-  window.onscroll = function (e: any) {
-    if (
-      window.innerHeight + window.scrollY >=
-      document.body.scrollHeight - 200
-    ) {
-      setMovieCount((m) => m + 10);
-    }
-  };
-  useEffect(() => {
-    get_movies();
-  }, [get_movies]);
-
+  paginator(setMovieCount, 10);
+  const movieList = user.movieList;
   return (
-    <div>
-    <div className = 'description'>
-      Showing {name}'s movies
+    <div className='container'>
+      Showing {user.name}'s movies
+      {user.movieList && movies ? (
+        movies
+          .slice(0, Math.min(movieCount, movies.length))
+          .filter((movie) => movieList!.includes(movie.imdbId))
+          .map((movie: MovieType) => {
+            return <MovieCard key={movie.imdbId} movie={movie} />;
+          })
+      ) : (
+        <div> No movies </div>
+      )}
     </div>
-      {console.log(movieList, movies)}
-      {(movieList.length > 0) && movies ? (
-        <div className = 'myListMovies'> 
-        {movies
-          ?.slice(0, Math.min(movieCount, movies.length))
-          .filter((movie) => movieList.includes(movie.imdbId))
-          .map((movie: any) => {
-            return <MovieCard key={movie.imdbId} movie= {movie} />;
-          }) 
-        } </div>)
-       : (
-        <div> <p></p>No movies. Click on any movie in 'Search' or 'All Movies' to add to your list </div>
-    )}
-    </div>
-
   );
 };
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: StoreState) => {
   return {
-    movieList: state.user.movieList,
     user: state.user,
-    email: state.user.email,
-    name: state.user.name,
-    movies: state.movies,
+    movies: state.movies.movies,
   };
 };
-const mapDispatchToProps = {
-  get_movies,
-};
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(MyListAuth);
-//export default connect(mapStateToProps, { searchMovieTitle })(MovieList);
+export default connect(mapStateToProps, { startAddMovie, startGetMovies })(
+  MyListAuth
+);

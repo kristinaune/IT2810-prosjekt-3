@@ -1,43 +1,41 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { logout } from '../../../store/actions/user';
+import { startLogout } from '../../../store/actions/user';
+import { UserType } from '../../../types';
 
 const AccountAuth = ({
-  name,
-  email,
-  logout,
+  user,
+  startLogout,
 }: {
-  name: string;
-  email: string;
-  logout: Function;
+  user: UserType;
+  startLogout: () => void;
 }) => {
   return (
-    <React.Fragment>
-      <h1>Account</h1>
-      <section className='userInfo'>
-        <span id='nameInfo'>
-          <b>Name:</b> {name}
-        </span>
-        <br />
-        <span id='emailInfo'>
-          <b>Email:</b> {email}
-        </span>
-      </section>
+    <div className='autContainer'>
+      <h2 className='center'>ACCOUNT</h2>
+      Logged in as {user.name} with email: {user.email}.<p></p>
+      <br></br>
+      <div className='textfield'>
+        This is a website for searching among the 250 best rated movies, go to
+        'Search' in the navbar. You can sort your search by year produced,
+        rating desc/asc and runtime. Go to 'All movies' for an overview of all
+        the movies, and the oppertunity to filter on genre. Add your favorites
+        to 'My movie list', and display them in this tab.
+      </div>
+      <p></p>
       <button
         className='button'
         type='submit'
         onClick={(e) => {
           e.preventDefault();
-          logout();
+          startLogout();
         }}
       >
+        {' '}
         Log out
       </button>
-    </React.Fragment>
+    </div>
   );
 };
-const mapStateToProps = (state: any) => {
-  return { name: state.user.name, email: state.user.email };
-};
 
-export default connect(mapStateToProps, { logout })(AccountAuth);
+export default connect(null, { startLogout })(AccountAuth);

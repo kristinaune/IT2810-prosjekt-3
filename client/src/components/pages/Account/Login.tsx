@@ -1,54 +1,71 @@
-import React, { useState } from 'react';
-// Importer Connect, "connecter" komponenten til redux
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { load_user, login } from '../../../store/actions/user';
+import { startLogin } from '../../../store/actions/user';
 import { useHistory } from 'react-router-dom';
-//import './Login.css';
-// Alt vi vil hente fra redux sin state, tar vi inn her
-// og husker å sende dem med i mapStateToProps
-const Login = ({ login }: { login: Function }) => {
+import { StoreState } from '../../../types';
+
+const Login = ({
+  startLogin,
+  isAuthenticated,
+  startLoginError,
+  errorMsg,
+}: {
+  startLogin: (email: string) => void;
+  isAuthenticated?: boolean;
+  startLoginError?: boolean;
+  errorMsg?: string;
+}) => {
   const [email, setEmail] = useState('');
   const history = useHistory();
+
+  // Redirect to "account" on succesful startLogin
+  useEffect(() => {
+    isAuthenticated && history.push('/account');
+  }, [isAuthenticated, history]);
+
   return (
-    <form
-      className='authContainer'
-      onSubmit={(e: any) => {
-        e.preventDefault();
-        login(email);
-        history.push('/account');
-      }}
-    >
-      <h4>Log in</h4>
-      <label>Email</label>
-      <input
-        type='email'
-        name='email'
-        id='email'
-        placeholder='Write email here...'
-        onChange={(e) => {
-          setEmail(e.target.value);
-        }}
-      />
-      <button className='button' type='submit'>
-        {' '}
-        Log in
-      </button>
-    </form>
+    <div className='authContainer'>
+      <h2 className='center'>LOG IN</h2>
+      <div className='form'>
+        <form
+          onSubmit={(e: any) => {
+            e.preventDefault();
+            startLogin(email);
+          }}
+        >
+          <label>Email: </label>
+          <p></p>
+          <input
+            type='email'
+            name='email'
+            id='email'
+            placeholder='Write email here...'
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+          />
+          <h5 className='errorMsg'>
+            {
+              // If there is an error-message of startLogin-type, display it.
+              startLoginError ? errorMsg : ' '
+            }
+          </h5>
+          <button className='button' type='submit'>
+            Log in
+          </button>
+        </form>
+      </div>
+    </div>
   );
 };
 
-const mapStateToProps = (state: any) => {
-  // returnerer et objekt
+const mapStateToProps = (state: StoreState) => {
   return {
-    // Vi vil bruke disse fra state
-    email: state.user.email,
+    isAuthenticated: state.user.authState.auth,
+    // If there is an error, check if it was startRegistering-related
+    startLoginError: state.user.authState.type === 'LOGIN_ERROR',
+    errorMsg: state.user.errorMsg,
   };
 };
 
-// const mapDispatchToProps = {
-//   getMovies,
-// };
-//                      (verdier fra state, funksjoner som gjør noe med state)
-//
-//                          connect(state, actions)(Komponent)
-export default connect(mapStateToProps, { load_user: load_user, login })(Login);
+export default connect(mapStateToProps, { startLogin })(Login);

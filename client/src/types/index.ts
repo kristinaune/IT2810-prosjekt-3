@@ -14,12 +14,26 @@ export interface MovieType extends Record<string, any> {
   country: [string];
 }
 
-export interface User
-  extends Record<string, string | [string] | undefined | [boolean, string]> {
-  authState: [boolean, string];
+export interface UserType {
   name?: string;
   email?: string;
   movieList?: [string];
+}
+
+export interface UserState extends UserType {
+  errorMsg?: string;
+  authState: { auth: boolean; type: string };
+}
+
+export interface MoviesState {
+  movies: MovieType[];
+  type?: string;
+}
+
+export interface StoreState {
+  movies: MoviesState;
+  user: UserState;
+  displayMovie: MovieType | null;
 }
 
 export enum Sort {

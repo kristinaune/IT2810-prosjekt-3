@@ -7,7 +7,7 @@ import paginator from '../../../utilities/paginator';
  * Shows all movies from a seach as a list
  * @param movies List of movies from search
  */
-const ResultList = ({ movies }: { movies: MovieType[] | undefined }) => {
+const ResultList = ({ movies }: { movies: MovieType[] }) => {
   // Number of movies to be displayed. Used in pagination.
   const [movieCount, setMovieCount] = useState(20);
 
