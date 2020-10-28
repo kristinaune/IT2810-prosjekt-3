@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
 // Importer Connect, "connecter" komponenten til redux
 import { connect } from 'react-redux';
-import { register } from '../../../store/actions/user';
+import { startRegister } from '../../../store/actions/user';
 import { useHistory } from 'react-router-dom';
 import { StoreState } from '../../../types';
 //import './User.css';
 
 const Register = ({
   isAuthenticated,
-  register,
-  registerError,
+  startRegister,
+  startRegisterError,
   errorMsg,
 }: {
   isAuthenticated: boolean;
-  register: Function;
-  registerError?: boolean;
+  startRegister: Function;
+  startRegisterError?: boolean;
   errorMsg?: string;
 }) => {
   const history = useHistory();
@@ -37,7 +37,7 @@ const Register = ({
         <form
           onSubmit={(e: any) => {
             e.preventDefault();
-            register(name, email);
+            startRegister(name, email);
           }}
         >
           <label>Email</label>
@@ -63,7 +63,7 @@ const Register = ({
           <h5 className='errorMsg'>
             {
               // If there is an error-message of registration-type, display it.
-              registerError ? errorMsg : ' '
+              startRegisterError ? errorMsg : ' '
             }
           </h5>
           <button className='button' type='submit'>
@@ -80,10 +80,10 @@ const mapStateToProps = (state: StoreState) => {
 
   return {
     isAuthenticated: state.user.authState.auth,
-    // If there is an error, check if it was registering-related
-    registerError: state.user.authState.type === 'REGISTER_ERROR',
+    // If there is an error, check if it was startRegistering-related
+    startRegisterError: state.user.authState.type === 'REGISTER_ERROR',
     errorMsg: state.user.errorMsg,
   };
 };
 
-export default connect(mapStateToProps, { register })(Register);
+export default connect(mapStateToProps, { startRegister })(Register);

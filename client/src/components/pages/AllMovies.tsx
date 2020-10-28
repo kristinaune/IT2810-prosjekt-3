@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { get_movies } from '../../store/actions/movies';
+import { startGetMovies } from '../../store/actions/movies';
 import { connect } from 'react-redux';
 import { MovieType, StoreState } from '../../types';
 import MovieCard from '../MovieItem';
@@ -10,22 +10,22 @@ import './AllMovies.css';
 /**
  * Displays all movies in database, by some filters
  * @param movies Array of movies to be displayed, from Redux
- * @param get_movies Action dispatcher getting movies from database
+ * @param startGetMovies Action dispatcher getting movies from database
  */
 const AllMovies = ({
   movies,
-  get_movies,
+  startGetMovies,
 }: {
   movies: Array<MovieType>;
-  get_movies: Function;
+  startGetMovies: Function;
 }) => {
   // Used to limit number of movies loaded at a time by pagination
   const [movieCount, setMovieCount] = useState(20);
 
-  // Fetches movies with get_movies() on component mount
+  // Fetches movies with startGetMovies() on component mount
   useEffect(() => {
-    get_movies();
-  }, [get_movies]);
+    startGetMovies();
+  }, [startGetMovies]);
 
   // Pagination listener/function.
   paginator(setMovieCount, 10);
@@ -49,7 +49,7 @@ const mapStateToProps = (state: StoreState) => {
 };
 
 const mapDispatchToProps = {
-  get_movies,
+  startGetMovies,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllMovies);

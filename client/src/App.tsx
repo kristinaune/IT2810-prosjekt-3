@@ -2,8 +2,8 @@ import React from 'react';
 import './App.css';
 import { connect, Provider } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { get_movies } from './store/actions/movies';
-import { close_modal } from './store/actions/displayMovie';
+import { startGetMovies } from './store/actions/movies';
+import { startCloseModal } from './store/actions/displayMovie';
 import SearchMovie from './components/pages/Search/SearchMovie';
 import Search from './components/pages/Search/Search';
 import AllMovies from './components/pages/AllMovies';
@@ -18,13 +18,13 @@ import MovieModal from './components/MovieModal';
 import { MovieType, StoreState } from './types';
 
 const App = ({
-  close_modal,
+  startCloseModal,
   displayMovie,
 }: {
-  close_modal: Function;
+  startCloseModal: Function;
   displayMovie: MovieType | null;
 }) => {
-  // get_movies();
+  // startGetMovies();
   // Kommentert ut fordi den returnerer en 501-feil
   //load_user();
 
@@ -43,11 +43,11 @@ const App = ({
                 <Route path='/allmovies' component={AllMovies}></Route>
                 <Route path='/mylist' component={MyList} />
                 <Route path='/account' component={Account} />
-                <Route path='/login' component={Login} />
-                <Route path='/register' component={Register} />
+                <Route path='/startLogin' component={Login} />
+                <Route path='/startRegister' component={Register} />
               </Switch>
               {displayMovie && (
-                <MovieModal movie={displayMovie} closeModal={close_modal} />
+                <MovieModal movie={displayMovie} closeModal={startCloseModal} />
               )}
             </main>
             <Footer />
@@ -65,6 +65,6 @@ const mapStateToProps = (state: StoreState) => {
 };
 
 export default connect(mapStateToProps, {
-  get_movies,
-  close_modal,
+  startGetMovies,
+  startCloseModal,
 })(App);

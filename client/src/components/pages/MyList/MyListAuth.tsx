@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { MovieType, StoreState, UserType } from '../../../types';
-import { addmovie } from '../../../store/actions/user';
+import { startAddMovie } from '../../../store/actions/user';
 import MovieCard from '../../MovieItem';
 import paginator from '../../../utilities/paginator';
-import { get_movies } from '../../../store/actions/movies';
+import { startGetMovies } from '../../../store/actions/movies';
 
 // component thats rendering if user is authenticated
 const MyListAuth = ({
   user,
   movies,
-  get_movies,
+  startGetMovies,
 }: {
   user: UserType;
   movies: MovieType[];
-  get_movies: Function;
+  startGetMovies: Function;
 }) => {
-  get_movies();
+  startGetMovies();
 
   const [movieCount, setMovieCount] = useState(20);
 
@@ -46,4 +46,6 @@ const mapStateToProps = (state: StoreState) => {
   };
 };
 
-export default connect(mapStateToProps, { addmovie, get_movies })(MyListAuth);
+export default connect(mapStateToProps, { startAddMovie, startGetMovies })(
+  MyListAuth
+);

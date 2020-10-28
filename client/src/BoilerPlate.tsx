@@ -1,7 +1,7 @@
 import React from 'react';
 // Importer Connect, "connecter" komponenten til redux
 import { connect } from 'react-redux';
-import { get_movies } from './store/actions/movies';
+import { startGetMovies } from './store/actions/movies';
 import { MovieType } from './types';
 
 // Alt vi vil hente fra redux sin state, tar vi inn her
@@ -29,7 +29,7 @@ const mapStateToProps = (state: any) => {
 };
 
 const mapDispatchToProps = {
-  getMovies: get_movies,
+  getMovies: startGetMovies,
 };
 //                      (verdier fra state, funksjoner som gjør noe med state)
 //

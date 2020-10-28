@@ -1,7 +1,7 @@
 import React, { createRef, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { search_movies } from '../../../store/actions/movies';
-import { addmovie } from '../../../store/actions/user';
+import { startSearchMovies } from '../../../store/actions/movies';
+import { startAddMovie } from '../../../store/actions/user';
 import { MovieType, Sort, StoreState } from '../../../types';
 import searchSuggestions from './utils/searchSuggestions';
 import SortRow from './SortRow';
@@ -11,13 +11,13 @@ import ResultList from './ResultList';
 const SearchMovie = ({
   movies,
   user,
-  search_movies,
-  addmovie,
+  startSearchMovies,
+  startAddMovie,
 }: {
   movies?: Array<MovieType>;
   user?: Object;
-  search_movies: Function;
-  addmovie: Function;
+  startSearchMovies: Function;
+  startAddMovie: Function;
 }) => {
   // A reference to the search/input-field.
   const searchFieldRef = createRef<HTMLInputElement>();
@@ -55,7 +55,7 @@ const SearchMovie = ({
     sortAttr: Sort.YEAR | Sort.RATING | Sort.RUNTIME,
     sortDir: Sort.ASC | Sort.DESC
   ) => {
-    search_movies(searchString, sortAttr, sortDir);
+    startSearchMovies(searchString, sortAttr, sortDir);
   };
 
   useEffect(() => {
@@ -77,8 +77,8 @@ const SearchMovie = ({
     }, 2000);
   }, [searchFieldRef]);
 
-  /*   const addmovietolist = (email: string, imdbId: string) => {
-    addmovie!(email, imdbId);
+  /*   const startAddMovietolist = (email: string, imdbId: string) => {
+    startAddMovie!(email, imdbId);
   }; */
 
   return (
@@ -122,6 +122,6 @@ const mapStateToProps = (state: StoreState) => {
   return { movies: state.movies.movies, user: state.user };
 };
 
-const mapDispatchToProps = { search_movies, addmovie };
+const mapDispatchToProps = { startSearchMovies, startAddMovie };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchMovie);

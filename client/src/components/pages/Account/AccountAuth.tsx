@@ -1,14 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { logout } from '../../../store/actions/user';
+import { startLogout } from '../../../store/actions/user';
 import { UserType } from '../../../types';
 
 const AccountAuth = ({
   user,
-  logout,
+  startLogout,
 }: {
   user: UserType;
-  logout: Function;
+  startLogout: Function;
 }) => {
   return (
     <div className='autContainer'>
@@ -28,7 +28,7 @@ const AccountAuth = ({
         type='submit'
         onClick={(e) => {
           e.preventDefault();
-          logout();
+          startLogout();
         }}
       >
         {' '}
@@ -38,4 +38,4 @@ const AccountAuth = ({
   );
 };
 
-export default connect(null, { logout })(AccountAuth);
+export default connect(null, { startLogout })(AccountAuth);

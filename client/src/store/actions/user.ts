@@ -6,90 +6,117 @@ import {
   LOGOUT_SUCCESS,
   ADD_MOVIE_SUCCESS,
   ADD_MOVIE_ERROR,
-  GET_MOVIELIST,
-  GET_MOVIELIST_ERROR,
 } from './actionTypes';
 import api from '../../utilities/api';
 import { Dispatch } from 'react';
+import { AnyAction } from 'redux';
+import { UserType } from '../../types';
 
-export const register = (name: string, email: string) => async (
-  dispatch: Dispatch<Object>
-) => {
+// ______ACTION CREATORS______
+
+// REGISTER SUCCESS
+export const register = (user: UserType): AnyAction => ({
+  type: REGISTER_SUCCESS,
+  user,
+});
+
+// REGISTER ERROR
+export const registerError = (errorMsg: string): AnyAction => ({
+  type: REGISTER_ERROR,
+  errorMsg,
+});
+
+// LOG IN
+export const login = (user: UserType): AnyAction => ({
+  type: LOGIN_SUCCESS,
+  user,
+});
+
+// LOG IN ERROR
+export const loginError = (errorMsg: string): AnyAction => ({
+  type: LOGIN_ERROR,
+  errorMsg,
+});
+
+// LOG OUT
+export const LLogout = (): AnyAction => ({
+  type: LOGOUT_SUCCESS,
+});
+
+// ADD MOVIE
+export const addMovie = (user: UserType): AnyAction => ({
+  type: ADD_MOVIE_SUCCESS,
+  user,
+});
+
+// ADD MOVIE ERROR
+export const addMovieError = (): AnyAction => ({
+  type: ADD_MOVIE_ERROR,
+});
+
+// _________ACTION DISPATCHERS_________
+
+/**
+ * Registers a new user in the database
+ * @param name Name of the new user
+ * @param email New user's email
+ */
+export const startRegister = (name: string, email: string) => async (
+  dispatch: Dispatch<AnyAction>
+): Promise<void> => {
   const body = JSON.stringify({ name, email });
 
   api
-    .post('/users/register', body)
+    .post('/users/startRegister', body)
     .then((res) => {
-      dispatch({
-        type: REGISTER_SUCCESS,
-        user: res.data.user,
-      });
+      dispatch(register(res.data.user));
     })
     .catch((err) => {
-      console.log(err.response.data.msg);
-      dispatch({
-        type: REGISTER_ERROR,
-        errorMsg: err.response.data.msg,
-      });
+      dispatch(registerError(err.response.data.msg));
     });
 };
 
-export const login = (email: string) => async (dispatch: Dispatch<Object>) => {
+/**
+ * Logs a user in.
+ * @param email Email of user logging in.
+ */
+export const startLogin = (email: string) => async (
+  dispatch: Dispatch<AnyAction>
+): Promise<void> => {
   const body = JSON.stringify({ email });
 
   api
-    .post('/users/login', body)
+    .post('/users/startLogin', body)
     .then((res) => {
-      dispatch({
-        type: LOGIN_SUCCESS,
-        user: res.data.user,
-      });
+      dispatch(login(res.data.user));
     })
     .catch((err) => {
-      console.log(err.response.data.msg);
-
-      dispatch({
-        type: LOGIN_ERROR,
-        errorMsg: err.response.data.msg,
-      });
+      dispatch(loginError(err.response.data.msg));
     });
 };
 
-export const logout = () => (dispatch: Dispatch<Object>) => {
-  dispatch({
-    type: LOGOUT_SUCCESS,
-  });
+/**
+ * Starts startLogout process.
+ */
+export const startLogout = () => (dispatch: Dispatch<AnyAction>): void => {
+  dispatch(LLogout());
 };
 
-export const addmovie = (imdbId: string, email: string) => async (
-  dispatch: Dispatch<Object>
-) => {
+/**
+ * Adds a movie to a user's "My List"
+ * @param imdbId imdbId of movie to be added
+ * @param email Email address of user adding movie to list
+ */
+export const startAddMovie = (imdbId: string, email: string) => async (
+  dispatch: Dispatch<AnyAction>
+): Promise<void> => {
   const body = JSON.stringify({ imdbId, email });
-  try {
-    const res = await api.post('/users/addmovie', body);
-    dispatch({
-      type: ADD_MOVIE_SUCCESS,
-      user: res.data.user,
+  api
+    .post('/users/startAddMovie', body)
+    .then((res) => {
+      dispatch(addMovie(res.data.user));
+    })
+    .catch(() => {
+      dispatch(addMovieError());
     });
-  } catch (err) {
-    dispatch({
-      type: ADD_MOVIE_ERROR,
-    });
-  }
-};
-
-export const getmovielist = (email: string) => async (
-  dispatch: Dispatch<Object>
-) => {
-  try {
-    const res = await api.get('/users/movielist/' + email);
-    dispatch({
-      type: GET_MOVIELIST,
-      user: res.data.user,
-    });
-  } catch (err) {
-    dispatch({
-      type: GET_MOVIELIST_ERROR,
-    });
-  }
 };

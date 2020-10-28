@@ -1,19 +1,19 @@
 import React from 'react';
 import { MovieType } from '../../../types';
-import { set_display_movie } from '../../../store/actions/displayMovie';
+import { startSetDisplayMovie } from '../../../store/actions/displayMovie';
 import { connect } from 'react-redux';
 
 /**
  * Displays a movie inside a result-list.
  * @param movie Movie to be displayed
- * @param set_display_movie Action dispatcher displaying given movie in a modal.
+ * @param startSetDisplayMovie Action dispatcher displaying given movie in a modal.
  */
 const MovieListItem = ({
   movie,
-  set_display_movie,
+  startSetDisplayMovie,
 }: {
   movie: MovieType;
-  set_display_movie: Function;
+  startSetDisplayMovie: Function;
 }) => {
   // Extracting movie attributes
   const { title, year, poster, rating, runtime, released, actors } = movie;
@@ -21,7 +21,7 @@ const MovieListItem = ({
     <div
       className='movieListItem'
       onClick={() => {
-        set_display_movie(movie);
+        startSetDisplayMovie(movie);
       }}
     >
       <img alt='poster' src={poster} />
@@ -49,4 +49,4 @@ const MovieListItem = ({
   );
 };
 
-export default connect(null, { set_display_movie })(MovieListItem);
+export default connect(null, { startSetDisplayMovie })(MovieListItem);

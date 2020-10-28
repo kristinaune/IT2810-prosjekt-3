@@ -1,26 +1,26 @@
 import React from 'react';
 import { MovieType } from '../types';
 import { connect } from 'react-redux';
-import { set_display_movie } from '../store/actions/displayMovie';
+import { startSetDisplayMovie } from '../store/actions/displayMovie';
 import './MovieItem.css';
 import '../App.css';
 
 /**
  * A card-display of a specific movie.
  * @param movie Movie being displayed
- * @param set_display_movie Action dispatcher displaying movie in a modal
+ * @param startSetDisplayMovie Action dispatcher displaying movie in a modal
  */
 const MovieCard = ({
   movie,
-  set_display_movie,
+  startSetDisplayMovie,
 }: {
   movie: MovieType;
-  set_display_movie: Function;
+  startSetDisplayMovie: Function;
 }) => {
   const { poster, year, title } = movie;
 
   return (
-    <div className='movieItem' onClick={() => set_display_movie(movie)}>
+    <div className='movieItem' onClick={() => startSetDisplayMovie(movie)}>
       <div className='poster'>
         <img alt='poster' src={poster} />
       </div>
@@ -33,4 +33,4 @@ const MovieCard = ({
   );
 };
 
-export default connect(null, { set_display_movie })(MovieCard);
+export default connect(null, { startSetDisplayMovie })(MovieCard);

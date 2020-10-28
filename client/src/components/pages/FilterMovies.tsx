@@ -8,8 +8,16 @@ import './noUiSlider.css';
 const FilterMovies = ({ filter_movies }: { filter_movies: Function }) => {
   //
   const [genres, setGenres] = useState<string[]>([]);
+
+  // Using different states for displayed year/rating range
+  // and actual filtering range, so we can display different ranges
+  // to the user without sending a request to the backend for every change.
+  // A filter_movies-action will be dispatched whenever the user _stops_
+  // dragging the handle.
   const [yearRange, setYearRange] = useState<number[]>([1900, 2020]);
+  const [displYearRange, setDisplYearRange] = useState<number[]>([1900, 2020]);
   const [ratingRange, setRatingRange] = useState<number[]>([0, 10]);
+  const [displRatingRange, setDisplRatingRange] = useState<number[]>([0, 10]);
 
   /**
    * Adds or removes a genre from "genres"
@@ -54,7 +62,7 @@ const FilterMovies = ({ filter_movies }: { filter_movies: Function }) => {
       <div className='sliders'>
         <div className='filterSlider'>
           <h3>
-            Released between {yearRange[0]} and {yearRange[1]}
+            Released between {displYearRange[0]} and {displYearRange[1]}
           </h3>
           <Nouislider
             range={{ min: 1900, max: 2020 }}
@@ -62,15 +70,21 @@ const FilterMovies = ({ filter_movies }: { filter_movies: Function }) => {
             step={1}
             connect={true}
             behaviour='drag'
+            // Fires whenever user drags handle
             onUpdate={(e) => {
-              let [from, to] = e;
+              const [from, to] = e;
+              setDisplYearRange([Number(from), Number(to)]);
+            }}
+            // Fires whenever user lets go of handle
+            onChange={(e) => {
+              const [from, to] = e;
               setYearRange([Number(from), Number(to)]);
             }}
           />
         </div>
         <div className='filterSlider'>
           <h3>
-            IMDb-rating from {ratingRange[0]} to {ratingRange[1]}
+            IMDb-rating from {displRatingRange[0]} to {displRatingRange[1]}
           </h3>
           <Nouislider
             range={{ min: 0, max: 10 }}
@@ -78,8 +92,14 @@ const FilterMovies = ({ filter_movies }: { filter_movies: Function }) => {
             step={0.1}
             connect={true}
             behaviour='drag'
+            // Fires whenever user drags handle
             onUpdate={(e) => {
-              let [from, to] = e;
+              const [from, to] = e;
+              setDisplRatingRange([Number(from), Number(to)]);
+            }}
+            // Fires whenever user lets go of handle
+            onChange={(e) => {
+              const [from, to] = e;
               setRatingRange([Number(from), Number(to)]);
             }}
           />
