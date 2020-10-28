@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
  * @param movie Movie to be displayed
  * @param startSetDisplayMovie Action dispatcher displaying given movie in a modal.
  */
-const MovieListItem = ({
+const SearchListMovieItem = ({
   movie,
   startSetDisplayMovie,
 }: {
@@ -49,4 +49,4 @@ const MovieListItem = ({
   );
 };
 
-export default connect(null, { startSetDisplayMovie })(MovieListItem);
+export default connect(null, { startSetDisplayMovie })(SearchListMovieItem);

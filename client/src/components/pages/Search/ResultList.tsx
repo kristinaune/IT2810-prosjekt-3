@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { MovieType } from '../../../types';
-import MovieListItem from './MovieListItem';
+import SearchListMovieItem from './SearchListMovieItem';
 import paginator from '../../../utilities/paginator';
 
 /**
@@ -19,7 +19,9 @@ const ResultList = ({ movies }: { movies: MovieType[] }) => {
       {movies
         ?.slice(0, Math.min(movieCount, movies.length))
         .map((movie: MovieType) => {
-          return movie && <MovieListItem key={movie.imdbId} movie={movie} />;
+          return (
+            movie && <SearchListMovieItem key={movie.imdbId} movie={movie} />
+          );
         })}
     </section>
   );
