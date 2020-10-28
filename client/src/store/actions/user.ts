@@ -69,7 +69,7 @@ export const startRegister = (name: string, email: string) => async (
   const body = JSON.stringify({ name, email });
 
   api
-    .post('/users/startRegister', body)
+    .post('/users/register', body)
     .then((res) => {
       dispatch(register(res.data.user));
     })
@@ -88,7 +88,7 @@ export const startLogin = (email: string) => async (
   const body = JSON.stringify({ email });
 
   api
-    .post('/users/startLogin', body)
+    .post('/users/login', body)
     .then((res) => {
       dispatch(login(res.data.user));
     })
@@ -113,8 +113,10 @@ export const startAddMovie = (imdbId: string, email: string) => async (
   dispatch: Dispatch<AnyAction>
 ): Promise<void> => {
   const body = JSON.stringify({ imdbId, email });
+  console.log('noe');
+
   api
-    .post('/users/startAddMovie', body)
+    .post('/users/addMovie', body)
     .then((res) => {
       dispatch(addMovie(res.data.user));
     })

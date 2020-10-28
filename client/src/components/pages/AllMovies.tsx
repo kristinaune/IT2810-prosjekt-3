@@ -6,7 +6,6 @@ import MovieCard from '../MovieItem';
 import FilterMovies from './FilterMovies';
 import paginator from '../../utilities/paginator';
 import './AllMovies.css';
-import MovieListItem from './Search/MovieListItem';
 
 /**
  * Displays all movies in database, by some filters

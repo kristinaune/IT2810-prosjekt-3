@@ -16,7 +16,7 @@ const MovieListItem = ({
   startSetDisplayMovie: (movie: MovieType) => void;
 }) => {
   // Extracting movie attributes
-  const { title, year, poster, rating, runtime, released, actors } = movie;
+  const { title, year, poster, rating, runtime, released } = movie;
   return (
     <div
       className='movieListItem'

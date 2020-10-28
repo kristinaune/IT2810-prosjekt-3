@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { get_movies } from '../../../store/actions/movies';
 import { connect } from 'react-redux';
 import { MovieType, StoreState, UserType } from '../../../types';
 import { startAddMovie } from '../../../store/actions/user';
@@ -17,21 +16,23 @@ const MyListAuth = ({
   movies: MovieType[];
   startGetMovies: () => void;
 }) => {
-  startGetMovies();
+  useEffect(() => {
+    startGetMovies();
+  }, [startGetMovies]);
 
   const [movieCount, setMovieCount] = useState(20);
 
   paginator(setMovieCount, 10);
-  const movieList = user.movieList!;
+  const movieList = user.movieList;
   return (
     <div className='container'>
       Showing {user.name}'s movies
       {user.movieList && movies ? (
         movies
           .slice(0, Math.min(movieCount, movies.length))
-          .filter((movie) => movieList.includes(movie.imdbId))
-          .map((movie: any) => {
-            return <MovieCard key={movie.imdbId} {...movie} {...user} />;
+          .filter((movie) => movieList!.includes(movie.imdbId))
+          .map((movie: MovieType) => {
+            return <MovieCard key={movie.imdbId} movie={movie} />;
           })
       ) : (
         <div> No movies </div>

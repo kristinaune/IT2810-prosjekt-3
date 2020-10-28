@@ -5,6 +5,7 @@ import {
   REGISTER_SUCCESS,
   LOGIN_ERROR,
   REGISTER_ERROR,
+  ADD_MOVIE_SUCCESS,
 } from '../actions/actionTypes';
 import { UserType, UserState } from '../../types/index';
 
@@ -23,6 +24,8 @@ export default (
     case LOGIN_SUCCESS:
     case REGISTER_SUCCESS:
       return { ...user, authState: { auth: true, type } };
+    case ADD_MOVIE_SUCCESS:
+      return { ...state, ...user };
     case LOGOUT_SUCCESS:
     case LOGIN_ERROR:
     case REGISTER_ERROR:

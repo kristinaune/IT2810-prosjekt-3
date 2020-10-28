@@ -21,13 +21,11 @@ import { MovieType, StoreState, UserType } from './types';
 const App = ({
   startCloseModal,
   displayMovie,
-  startRemoveMovie,
-  user,
 }: {
   startCloseModal: VoidFunction;
   displayMovie: MovieType | null;
   startAddMovie: (imdbId: string, email: string) => void;
-  startRemoveMovie: () => void;
+  startRemoveMovie: (imdbId: string, email: string) => void;
   user?: UserType;
 }) => {
   return (
@@ -52,9 +50,6 @@ const App = ({
                 <MovieModal
                   movie={displayMovie}
                   startCloseModal={startCloseModal}
-                  user={user}
-                  addMovie={startAddMovie}
-                  removeMovie={startRemoveMovie}
                 />
               )}
             </main>
