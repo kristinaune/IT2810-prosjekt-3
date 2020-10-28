@@ -4,6 +4,7 @@ import { connect, Provider } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { startGetMovies } from './store/actions/movies';
 import { startCloseModal } from './store/actions/displayMovie';
+import { startAddMovie, startRemoveMovie } from './store/actions/user';
 import SearchMovie from './components/pages/Search/SearchMovie';
 import Search from './components/pages/Search/Search';
 import AllMovies from './components/pages/AllMovies';
@@ -15,14 +16,19 @@ import Login from './components/pages/Account/Login';
 import Register from './components/pages/Account/Register';
 import store from './store/store';
 import MovieModal from './components/MovieModal';
-import { MovieType, StoreState } from './types';
+import { MovieType, StoreState, UserType } from './types';
 
 const App = ({
   startCloseModal,
   displayMovie,
+  startRemoveMovie,
+  user,
 }: {
   startCloseModal: VoidFunction;
   displayMovie: MovieType | null;
+  startAddMovie: (imdbId: string, email: string) => void;
+  startRemoveMovie: () => void;
+  user?: UserType;
 }) => {
   return (
     <Provider store={store}>
@@ -46,6 +52,9 @@ const App = ({
                 <MovieModal
                   movie={displayMovie}
                   startCloseModal={startCloseModal}
+                  user={user}
+                  addMovie={startAddMovie}
+                  removeMovie={startRemoveMovie}
                 />
               )}
             </main>
@@ -60,10 +69,13 @@ const App = ({
 const mapStateToProps = (state: StoreState) => {
   return {
     displayMovie: state.displayMovie,
+    user: state.user,
   };
 };
 
 export default connect(mapStateToProps, {
   startGetMovies,
   startCloseModal,
+  startAddMovie,
+  startRemoveMovie,
 })(App);

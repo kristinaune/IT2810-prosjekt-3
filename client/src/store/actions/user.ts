@@ -6,6 +6,8 @@ import {
   LOGOUT_SUCCESS,
   ADD_MOVIE_SUCCESS,
   ADD_MOVIE_ERROR,
+  REMOVE_MOVIE_SUCCESS,
+  REMOVE_MOVIE_ERROR,
 } from './actionTypes';
 import api from '../../utilities/api';
 import { Dispatch } from 'react';
@@ -118,5 +120,34 @@ export const startAddMovie = (imdbId: string, email: string) => async (
     })
     .catch(() => {
       dispatch(addMovieError());
+    });
+};
+
+// REMOVE MOVIE
+export const removeMovie = (user: UserType): AnyAction => ({
+  type: REMOVE_MOVIE_SUCCESS,
+  user,
+});
+
+// REMOVE MOVIE ERROR
+export const removeMovieError = (): AnyAction => ({
+  type: REMOVE_MOVIE_ERROR,
+});
+
+/**
+ * Removes a movie from users "My List"
+ * @param imdbId imdbId of movie to be removed
+ * @param email Email address of user removing movie from list
+ */
+export const startRemoveMovie = (imdbId: string, email: string) => async (
+  dispatch: Dispatch<AnyAction>
+): Promise<void> => {
+  api
+    .delete('users/deleteMovie/' + email + '/' + imdbId)
+    .then((res) => {
+      dispatch(removeMovie(res.data.user));
+    })
+    .catch((err) => {
+      dispatch(removeMovieError());
     });
 };

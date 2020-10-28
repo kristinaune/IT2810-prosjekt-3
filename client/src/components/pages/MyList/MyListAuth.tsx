@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { get_movies } from '../../../store/actions/movies';
 import { connect } from 'react-redux';
 import { MovieType, StoreState, UserType } from '../../../types';
 import { startAddMovie } from '../../../store/actions/user';

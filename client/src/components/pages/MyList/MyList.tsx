@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { StoreState, UserType } from '../../../types';
 import MyListAuth from './MyListAuth';
 import MyListUnAuth from './MyListUnAuth';
+import './MyList.css';
 
 const MyList = ({
   isAuthenticated,
@@ -11,8 +12,8 @@ const MyList = ({
   user: UserType;
 }) => {
   return (
-    <div className='container'>
-      <h4 className='center'>My list</h4>
+    <div className='myListContainer'>
+      <h4>My list</h4>
       {isAuthenticated ? <MyListAuth /> : <MyListUnAuth />}
     </div>
   );

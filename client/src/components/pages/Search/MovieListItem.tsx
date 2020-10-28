@@ -41,9 +41,9 @@ const MovieListItem = ({
             <span className=''>{runtime} min</span>
           </div>
         </div>
-        <h4>
+        {/* <h4>
           Starring <b>{actors.slice(0, 3).join(', ')}</b>
-        </h4>
+        </h4> */}
       </div>
     </div>
   );

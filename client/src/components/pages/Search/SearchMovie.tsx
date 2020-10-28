@@ -1,8 +1,13 @@
 import React, { createRef, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+<<<<<<< HEAD
 import { startSearchMovies } from '../../../store/actions/movies';
 import { startAddMovie } from '../../../store/actions/user';
 import { MovieType, Sort, StoreState, UserType } from '../../../types';
+=======
+import { search_movies } from '../../../store/actions/movies';
+import { MovieType, Sort } from '../../../types';
+>>>>>>> 33-split-action-creators-from-action-dispatchers
 import searchSuggestions from './utils/searchSuggestions';
 import SortRow from './SortRow';
 import './SearchMovie.css';
@@ -10,6 +15,7 @@ import ResultList from './ResultList';
 
 const SearchMovie = ({
   movies,
+<<<<<<< HEAD
   startSearchMovies,
 }: {
   movies?: Array<MovieType>;
@@ -19,6 +25,12 @@ const SearchMovie = ({
     attribute: Sort.YEAR | Sort.RATING | Sort.RUNTIME,
     direction: Sort.ASC | Sort.DESC
   ) => void;
+=======
+  search_movies,
+}: {
+  movies?: Array<MovieType>;
+  search_movies: Function;
+>>>>>>> 33-split-action-creators-from-action-dispatchers
 }) => {
   // A reference to the search/input-field.
   const searchFieldRef = createRef<HTMLInputElement>();
