@@ -47,3 +47,38 @@
     margin: 0px;
     text-align: left;
   }
+  @media screen and (max-width: 960px) {
+    .myListMovies {
+      margin-left: 10%;
+      margin-right:20px;
+    }
+    .myListMovies .movieItem {
+      margin-left: 10px;
+      width: 150px; 
+    }
+  }
+  @media screen and (max-width: 600px) {
+    .myListMovies {
+      margin-left: 10%;
+      margin-right:20px;
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .myListMovies .movieItem {
+      margin-left: 10px;
+      width: 150px; 
+    }
+  
+  }
+  
+  @media screen and (max-width: 400px) {
+    .myListMovies {
+      margin-left: 5%;
+    }
+    .myListMovies .movieItem {
+      margin-left: 10px;
+      width: 90%; 
+    }
+    .myListMovies .title {
+      font-size: 1rem;
+    }
+  }
