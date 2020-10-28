@@ -13,7 +13,7 @@ const MovieListItem = ({
   startSetDisplayMovie,
 }: {
   movie: MovieType;
-  startSetDisplayMovie: Function;
+  startSetDisplayMovie: (movie: MovieType) => void;
 }) => {
   // Extracting movie attributes
   const { title, year, poster, rating, runtime, released, actors } = movie;

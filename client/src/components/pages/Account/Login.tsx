@@ -10,7 +10,7 @@ const Login = ({
   startLoginError,
   errorMsg,
 }: {
-  startLogin: Function;
+  startLogin: (email: string) => void;
   isAuthenticated?: boolean;
   startLoginError?: boolean;
   errorMsg?: string;

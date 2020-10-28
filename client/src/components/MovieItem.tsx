@@ -15,7 +15,7 @@ const MovieCard = ({
   startSetDisplayMovie,
 }: {
   movie: MovieType;
-  startSetDisplayMovie: Function;
+  startSetDisplayMovie: (movie: MovieType) => void;
 }) => {
   const { poster, year, title } = movie;
 

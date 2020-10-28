@@ -14,7 +14,7 @@ const MyListAuth = ({
 }: {
   user: UserType;
   movies: MovieType[];
-  startGetMovies: Function;
+  startGetMovies: () => void;
 }) => {
   startGetMovies();
 

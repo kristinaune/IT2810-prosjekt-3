@@ -9,7 +9,7 @@ const SortRow = ({
 }: {
   activeSort: Sort.YEAR | Sort.RATING | Sort.RUNTIME;
   sortDirection: Sort.ASC | Sort.DESC;
-  handleSort: Function;
+  handleSort: (attribute: Sort.YEAR | Sort.RATING | Sort.RUNTIME) => void;
 }) => {
   return (
     <div id='buttonContainer'>

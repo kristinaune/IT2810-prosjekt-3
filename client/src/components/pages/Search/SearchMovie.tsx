@@ -2,7 +2,7 @@ import React, { createRef, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { startSearchMovies } from '../../../store/actions/movies';
 import { startAddMovie } from '../../../store/actions/user';
-import { MovieType, Sort, StoreState } from '../../../types';
+import { MovieType, Sort, StoreState, UserType } from '../../../types';
 import searchSuggestions from './utils/searchSuggestions';
 import SortRow from './SortRow';
 import './SearchMovie.css';
@@ -10,14 +10,15 @@ import ResultList from './ResultList';
 
 const SearchMovie = ({
   movies,
-  user,
   startSearchMovies,
-  startAddMovie,
 }: {
   movies?: Array<MovieType>;
-  user?: Object;
-  startSearchMovies: Function;
-  startAddMovie: Function;
+  user?: UserType;
+  startSearchMovies: (
+    search: string,
+    attribute: Sort.YEAR | Sort.RATING | Sort.RUNTIME,
+    direction: Sort.ASC | Sort.DESC
+  ) => void;
 }) => {
   // A reference to the search/input-field.
   const searchFieldRef = createRef<HTMLInputElement>();
@@ -28,21 +29,6 @@ const SearchMovie = ({
   >(Sort.RATING);
   const [sortDirection, setSortDirection] = useState<Sort.DESC | Sort.ASC>(-1);
   const [searchWord, setSearchWord] = useState<string>('');
-
-  /**
-   * Updates sorting criterias and dispatches new search and sort
-   * @param attribute Attribute we want to sort on
-   * @param direction Direction we want to sort in, -1 for descending and 1 for ascending
-   */
-  const handleSort = (attribute: Sort.YEAR | Sort.RATING | Sort.RUNTIME) => {
-    // Assign new direction to a constant.
-    // This is because useState updates the state too slow for us
-    // to reference the state in dispatchSearch.
-    const newDir = activeSort === attribute ? sortDirection * -1 : -1;
-    setSortDirection(newDir);
-    setActiveSort(attribute);
-    dispatchSearchAndSort(searchWord, attribute, newDir);
-  };
 
   /**
    * Calls the search_movie action with parameters for searching and sorting.
@@ -56,6 +42,20 @@ const SearchMovie = ({
     sortDir: Sort.ASC | Sort.DESC
   ) => {
     startSearchMovies(searchString, sortAttr, sortDir);
+  };
+
+  /**
+   * Updates sorting criterias and dispatches new search and sort
+   * @param attribute Attribute we want to sort on
+   */
+  const handleSort = (attribute: Sort.YEAR | Sort.RATING | Sort.RUNTIME) => {
+    // Assign new direction to a constant.
+    // This is because useState updates the state too slow for us
+    // to reference the state in dispatchSearch.
+    const newDir = activeSort === attribute ? sortDirection * -1 : -1;
+    setSortDirection(newDir);
+    setActiveSort(attribute);
+    dispatchSearchAndSort(searchWord, attribute, newDir);
   };
 
   useEffect(() => {

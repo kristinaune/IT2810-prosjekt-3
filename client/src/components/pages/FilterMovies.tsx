@@ -1,29 +1,43 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import FilterButton from './FilterButton';
-import { filter_movies } from '../../store/actions/movies';
+import { startFilterMovies } from '../../store/actions/movies';
 import Nouislider from 'nouislider-react';
 import './noUiSlider.css';
 
-const FilterMovies = ({ filter_movies }: { filter_movies: Function }) => {
+const FilterMovies = ({
+  startFilterMovies,
+}: {
+  startFilterMovies: (
+    genres: string[],
+    yearRange: [number, number],
+    raingRange: [number, number]
+  ) => void;
+}) => {
   //
   const [genres, setGenres] = useState<string[]>([]);
 
   // Using different states for displayed year/rating range
   // and actual filtering range, so we can display different ranges
   // to the user without sending a request to the backend for every change.
-  // A filter_movies-action will be dispatched whenever the user _stops_
+  // A startFilterMovies-action will be dispatched whenever the user _stops_
   // dragging the handle.
-  const [yearRange, setYearRange] = useState<number[]>([1900, 2020]);
-  const [displYearRange, setDisplYearRange] = useState<number[]>([1900, 2020]);
-  const [ratingRange, setRatingRange] = useState<number[]>([0, 10]);
-  const [displRatingRange, setDisplRatingRange] = useState<number[]>([0, 10]);
+  const [yearRange, setYearRange] = useState<[number, number]>([1900, 2020]);
+  const [displYearRange, setDisplYearRange] = useState<[number, number]>([
+    1900,
+    2020,
+  ]);
+  const [ratingRange, setRatingRange] = useState<[number, number]>([0, 10]);
+  const [displRatingRange, setDisplRatingRange] = useState<[number, number]>([
+    0,
+    10,
+  ]);
 
   /**
    * Adds or removes a genre from "genres"
    * @param genre The genre were adding or removing from "genres"
    */
-  const updateGenres = (genre: string) => {
+  const updateGenres = (genre: string): void => {
     // IF "genre" in "genres"...
     genres.includes(genre)
       ? // ...remove genre from filter,
@@ -32,10 +46,10 @@ const FilterMovies = ({ filter_movies }: { filter_movies: Function }) => {
         setGenres([...genres, genre]);
   };
 
-  // useEffect fires filter_movies() every time the filters change
+  // useEffect fires startFilterMovies() every time the filters change
   useEffect(() => {
-    filter_movies(genres, yearRange, ratingRange);
-  }, [genres, yearRange, ratingRange, filter_movies]);
+    startFilterMovies(genres, yearRange, ratingRange);
+  }, [genres, yearRange, ratingRange, startFilterMovies]);
 
   return (
     <div>
@@ -110,7 +124,7 @@ const FilterMovies = ({ filter_movies }: { filter_movies: Function }) => {
 };
 
 const mapDispatchToProps = {
-  filter_movies,
+  startFilterMovies,
 };
 
 export default connect(null, mapDispatchToProps)(FilterMovies);

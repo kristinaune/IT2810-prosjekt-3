@@ -82,10 +82,10 @@ export const startSearchMovies = (
  * @param yearRange Range of years to filter on
  * @param ratingRange Range of ratings to filter on
  */
-export const filter_movies = (
+export const startFilterMovies = (
   genres: string[],
-  yearRange: number[],
-  ratingRange: number[]
+  yearRange: [number, number],
+  ratingRange: [number, number]
 ) => async (dispatch: Dispatch<AnyAction>): Promise<void> => {
   api
     .get(

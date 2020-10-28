@@ -17,7 +17,7 @@ const AllMovies = ({
   startGetMovies,
 }: {
   movies: Array<MovieType>;
-  startGetMovies: Function;
+  startGetMovies: VoidFunction;
 }) => {
   // Used to limit number of movies loaded at a time by pagination
   const [movieCount, setMovieCount] = useState(20);

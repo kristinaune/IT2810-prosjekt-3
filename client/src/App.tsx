@@ -21,13 +21,9 @@ const App = ({
   startCloseModal,
   displayMovie,
 }: {
-  startCloseModal: Function;
+  startCloseModal: VoidFunction;
   displayMovie: MovieType | null;
 }) => {
-  // startGetMovies();
-  // Kommentert ut fordi den returnerer en 501-feil
-  //load_user();
-
   return (
     <Provider store={store}>
       <React.Fragment>
@@ -47,7 +43,10 @@ const App = ({
                 <Route path='/startRegister' component={Register} />
               </Switch>
               {displayMovie && (
-                <MovieModal movie={displayMovie} closeModal={startCloseModal} />
+                <MovieModal
+                  movie={displayMovie}
+                  startCloseModal={startCloseModal}
+                />
               )}
             </main>
             <Footer />

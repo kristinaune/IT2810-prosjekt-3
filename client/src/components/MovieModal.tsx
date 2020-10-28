@@ -3,10 +3,10 @@ import { MovieType } from '../types';
 
 const MovieModal = ({
   movie,
-  closeModal,
+  startCloseModal,
 }: {
   movie: MovieType;
-  closeModal: Function;
+  startCloseModal: () => void;
 }) => {
   const {
     title,
@@ -22,9 +22,9 @@ const MovieModal = ({
 
   return (
     <React.Fragment>
-      <div className='overlay' onClick={() => closeModal()} />
+      <div className='overlay' onClick={() => startCloseModal()} />
       <div className='modal'>
-        <button onClick={() => closeModal()}>X</button>
+        <button onClick={() => startCloseModal()}>X</button>
         <div className='content'>
           <h3>{title}</h3>
           <div className='modalPosters'>

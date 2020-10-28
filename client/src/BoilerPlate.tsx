@@ -13,7 +13,7 @@ const BoilerPlate = ({
 }: {
   user: Object | null;
   banan: Array<MovieType>;
-  getMovies: Function;
+  getMovies: VoidFunction;
 }) => {
   return <h1>hei</h1>;
 };

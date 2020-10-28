@@ -13,7 +13,7 @@ const Register = ({
   errorMsg,
 }: {
   isAuthenticated: boolean;
-  startRegister: Function;
+  startRegister: (email: string, name: string) => void;
   startRegisterError?: boolean;
   errorMsg?: string;
 }) => {

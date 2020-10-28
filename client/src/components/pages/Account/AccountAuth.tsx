@@ -8,7 +8,7 @@ const AccountAuth = ({
   startLogout,
 }: {
   user: UserType;
-  startLogout: Function;
+  startLogout: () => void;
 }) => {
   return (
     <div className='autContainer'>

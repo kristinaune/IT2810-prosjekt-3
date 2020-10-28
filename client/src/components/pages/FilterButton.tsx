@@ -7,7 +7,7 @@ const FilterButton = ({
 }: {
   genre: string;
   genres: string[];
-  updateGenres: Function;
+  updateGenres: (genre: string) => void;
 }) => {
   return (
     <button
