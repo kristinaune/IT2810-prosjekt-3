@@ -4,7 +4,11 @@ import { connect, Provider } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { startGetMovies } from './store/actions/movies';
 import { startCloseModal } from './store/actions/displayMovie';
-import { startLogin, startAddMovie, startRemoveMovie } from './store/actions/user';
+import {
+  startLogin,
+  startAddMovie,
+  startRemoveMovie,
+} from './store/actions/user';
 import SearchMovie from './components/pages/Search/SearchMovie';
 import Search from './components/pages/Search/Search';
 import AllMovies from './components/pages/AllMovies';
@@ -30,10 +34,10 @@ const App = ({
   startLogin: (email: string) => void;
   user?: UserType;
 }) => {
-  useEffect(()=> {
+  useEffect(() => {
     localStorage.getItem('user') &&
-    startLogin(JSON.parse(localStorage.getItem('user')!));
-  }, [startLogin]) 
+      startLogin(JSON.parse(localStorage.getItem('user')!));
+  }, [startLogin]);
 
   return (
     <Provider store={store}>
@@ -50,8 +54,8 @@ const App = ({
                 <Route path='/allmovies' component={AllMovies}></Route>
                 <Route path='/mylist' component={MyList} />
                 <Route path='/account' component={Account} />
-                <Route path='/startLogin' component={Login} />
-                <Route path='/startRegister' component={Register} />
+                <Route path='/login' component={Login} />
+                <Route path='/register' component={Register} />
               </Switch>
               {displayMovie && (
                 <MovieModal
@@ -80,5 +84,5 @@ export default connect(mapStateToProps, {
   startCloseModal,
   startAddMovie,
   startRemoveMovie,
-  startLogin
+  startLogin,
 })(App);
