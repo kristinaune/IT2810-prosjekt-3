@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { MovieType, StoreState, UserType } from '../../../types';
 import { startAddMovie } from '../../../store/actions/user';
-import MovieCard from '../../MovieItem';
+import MovieItem from '../../MovieItem';
 import paginator from '../../../utilities/paginator';
 import { startGetMovies } from '../../../store/actions/movies';
 
@@ -36,7 +36,7 @@ const MyListAuth = ({
           .slice(0, Math.min(movieCount, movies.length))
           .filter((movie) => movieList!.includes(movie.imdbId))
           .map((movie: MovieType) => {
-            return <MovieCard key={movie.imdbId} movie={movie} />;
+            return <MovieItem key={movie.imdbId} movie={movie} />;
           })
       ) : (
         <div> No movies </div>

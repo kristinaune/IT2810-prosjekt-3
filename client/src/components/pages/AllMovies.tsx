@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { startGetMovies } from '../../store/actions/movies';
 import { connect } from 'react-redux';
 import { MovieType, StoreState } from '../../types';
-import MovieCard from '../MovieItem';
+import MovieItem from '../MovieItem';
 import FilterMovies from './FilterMovies';
 import paginator from '../../utilities/paginator';
 import './AllMovies.css';
+import MovieList from './MovieList';
 
 /**
  * Displays all movies in database, by some filters
@@ -22,24 +23,19 @@ const AllMovies = ({
   // Used to limit number of movies loaded at a time by pagination
   const [movieCount, setMovieCount] = useState(20);
 
+  // Pagination listener/function.
+  paginator(setMovieCount, 20);
+
   // Fetches movies with startGetMovies() on component mount
   useEffect(() => {
     startGetMovies();
   }, [startGetMovies]);
 
-  // Pagination listener/function.
-  paginator(setMovieCount, 10);
-
+  const listMovies = movies.slice(0, Math.min(movieCount, movies.length));
   return (
     <div className='movies'>
       <FilterMovies />
-      {movies &&
-        movies[0] &&
-        movies
-          .slice(0, Math.min(movieCount, movies.length))
-          .map((movie: MovieType) => {
-            return <MovieCard key={movie.imdbId} movie={movie} />;
-          })}
+      {listMovies && <MovieList movies={listMovies} />}
     </div>
   );
 };
