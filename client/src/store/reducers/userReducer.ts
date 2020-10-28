@@ -6,6 +6,7 @@ import {
   LOGIN_ERROR,
   REGISTER_ERROR,
   ADD_MOVIE_SUCCESS,
+  REMOVE_MOVIE_SUCCESS,
 } from '../actions/actionTypes';
 import { UserType, UserState } from '../../types/index';
 
@@ -23,6 +24,7 @@ export default (
     case USER_LOADED:
     case LOGIN_SUCCESS:
     case REGISTER_SUCCESS:
+    case REMOVE_MOVIE_SUCCESS:
       localStorage.setItem('user', JSON.stringify(user?.email));
       return { ...user, authState: { auth: true, type } };
     case ADD_MOVIE_SUCCESS:

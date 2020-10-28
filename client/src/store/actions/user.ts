@@ -41,7 +41,7 @@ export const loginError = (errorMsg: string): AnyAction => ({
 });
 
 // LOG OUT
-export const LLogout = (): AnyAction => ({
+export const logout = (): AnyAction => ({
   type: LOGOUT_SUCCESS,
 });
 
@@ -54,6 +54,17 @@ export const addMovie = (user: UserType): AnyAction => ({
 // ADD MOVIE ERROR
 export const addMovieError = (): AnyAction => ({
   type: ADD_MOVIE_ERROR,
+});
+
+// REMOVE MOVIE
+export const removeMovie = (user: UserType): AnyAction => ({
+  type: REMOVE_MOVIE_SUCCESS,
+  user,
+});
+
+// REMOVE MOVIE ERROR
+export const removeMovieError = (): AnyAction => ({
+  type: REMOVE_MOVIE_ERROR,
 });
 
 // _________ACTION DISPATCHERS_________
@@ -101,7 +112,7 @@ export const startLogin = (email: string) => async (
  * Starts startLogout process.
  */
 export const startLogout = () => (dispatch: Dispatch<AnyAction>): void => {
-  dispatch(LLogout());
+  dispatch(logout());
 };
 
 /**
@@ -124,17 +135,6 @@ export const startAddMovie = (imdbId: string, email: string) => async (
       dispatch(addMovieError());
     });
 };
-
-// REMOVE MOVIE
-export const removeMovie = (user: UserType): AnyAction => ({
-  type: REMOVE_MOVIE_SUCCESS,
-  user,
-});
-
-// REMOVE MOVIE ERROR
-export const removeMovieError = (): AnyAction => ({
-  type: REMOVE_MOVIE_ERROR,
-});
 
 /**
  * Removes a movie from users "My List"
