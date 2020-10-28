@@ -12,13 +12,16 @@ import MovieList from './MovieList';
  * Displays all movies in database, by some filters
  * @param movies Array of movies to be displayed, from Redux
  * @param startGetMovies Action dispatcher getting movies from database
+ * @param moviesFiltered Indicates if a filter to the movie list has been applied.
  */
 const AllMovies = ({
   movies,
   startGetMovies,
+  moviesFiltered,
 }: {
   movies: Array<MovieType>;
   startGetMovies: VoidFunction;
+  moviesFiltered: boolean;
 }) => {
   // Used to limit number of movies loaded at a time by pagination
   const [movieCount, setMovieCount] = useState(20);
@@ -35,13 +38,20 @@ const AllMovies = ({
   return (
     <div className='movies'>
       <FilterMovies />
-      {listMovies && <MovieList movies={listMovies} />}
+      {listMovies.length > 0 ? (
+        <MovieList movies={listMovies} />
+      ) : (
+        moviesFiltered && <h3> No movies matching filters.</h3>
+      )}
     </div>
   );
 };
 
 const mapStateToProps = (state: StoreState) => {
-  return { movies: state.movies.movies };
+  return {
+    movies: state.movies.movies,
+    moviesFiltered: state.movies.type === 'FILTER_MOVIES',
+  };
 };
 
 const mapDispatchToProps = {

@@ -5,6 +5,7 @@ import { startAddMovie } from '../../../store/actions/user';
 import MovieItem from '../../MovieItem';
 import paginator from '../../../utilities/paginator';
 import { startGetMovies } from '../../../store/actions/movies';
+import MovieList from '../MovieList';
 
 // component thats rendering if user is authenticated
 const MyListAuth = ({
@@ -27,20 +28,15 @@ const MyListAuth = ({
   const [movieCount, setMovieCount] = useState(20);
 
   paginator(setMovieCount, 10);
-  const movieList = user.movieList;
+
+  const listMovies = movies
+    .slice(0, Math.min(movieCount, movies.length))
+    .filter((movie) => user.movieList?.includes(movie.imdbId));
+
   return (
     <div className='container'>
       Showing {user.name}'s movies
-      {user.movieList && movies ? (
-        movies
-          .slice(0, Math.min(movieCount, movies.length))
-          .filter((movie) => movieList!.includes(movie.imdbId))
-          .map((movie: MovieType) => {
-            return <MovieItem key={movie.imdbId} movie={movie} />;
-          })
-      ) : (
-        <div> No movies </div>
-      )}
+      {listMovies ? <MovieList movies={listMovies} /> : <div> No movies </div>}
     </div>
   );
 };
