@@ -20,6 +20,10 @@ const MyListAuth = ({
     startGetMovies();
   }, [startGetMovies]);
 
+  // Trigger rerender
+  useEffect(() => {
+    console.log(user.movieList?.length);
+  }, [user.movieList?.length]);
   const [movieCount, setMovieCount] = useState(20);
 
   paginator(setMovieCount, 10);

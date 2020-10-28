@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import { connect, Provider } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { startGetMovies } from './store/actions/movies';
 import { startCloseModal } from './store/actions/displayMovie';
-import { startAddMovie, startRemoveMovie } from './store/actions/user';
+import { startLogin, startAddMovie, startRemoveMovie } from './store/actions/user';
 import SearchMovie from './components/pages/Search/SearchMovie';
 import Search from './components/pages/Search/Search';
 import AllMovies from './components/pages/AllMovies';
@@ -21,13 +21,20 @@ import { MovieType, StoreState, UserType } from './types';
 const App = ({
   startCloseModal,
   displayMovie,
+  startLogin,
 }: {
   startCloseModal: VoidFunction;
   displayMovie: MovieType | null;
   startAddMovie: (imdbId: string, email: string) => void;
   startRemoveMovie: (imdbId: string, email: string) => void;
+  startLogin: (email: string) => void;
   user?: UserType;
 }) => {
+  useEffect(()=> {
+    localStorage.getItem('user') &&
+    startLogin(JSON.parse(localStorage.getItem('user')!));
+  }, [startLogin]) 
+
   return (
     <Provider store={store}>
       <React.Fragment>
@@ -73,4 +80,5 @@ export default connect(mapStateToProps, {
   startCloseModal,
   startAddMovie,
   startRemoveMovie,
+  startLogin
 })(App);
