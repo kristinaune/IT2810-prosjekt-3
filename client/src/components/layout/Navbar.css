@@ -23,11 +23,6 @@
   display: none;
 }
 
-/* .fa-film {
-  margin-left: 1.5rem;
-  font-size: 1.6rem;
-} */
-
 .nav-menu {
   display: grid;
   grid-template-columns: repeat(5, auto);
@@ -55,29 +50,7 @@
 .menu-icon {
   display: none;
 }
-/*
-.navBar ul {
-  padding: 0;
-  margin: 0;
-  display: flex;
-  list-style: none;
-  width: 100%;
-  background-color: #333;
-  border: 5px solid #333333;
-}
-.navBar ul a {
-  text-decoration: none;
-  color: #999;
-  display: block;
-  padding: 15px 0;
-  margin: 0 5px;
-}
-.navBar ul .active,
-.navBar ul a:hover {
-  background: #fff;
-  color: #222;
-}
-*/
+
 @media screen and (max-width: 960px) {
   .NavbarItem {
     width: 100%;

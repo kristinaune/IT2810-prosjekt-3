@@ -24,7 +24,7 @@ const AccountAuth = ({
       </div>
       <p></p>
       <button
-        className='button'
+        className='accountButton'
         type='submit'
         onClick={(e) => {
           e.preventDefault();

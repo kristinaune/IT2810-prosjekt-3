@@ -1,6 +1,4 @@
-.description{
-    text-align: center;
-}
+
 .myListContainer{
     text-align: center;
 }
@@ -47,6 +45,8 @@
     margin: 0px;
     text-align: left;
   }
+
+
   @media screen and (max-width: 960px) {
     .myListMovies {
       margin-left: 10%;
