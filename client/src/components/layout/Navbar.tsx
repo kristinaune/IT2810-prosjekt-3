@@ -8,12 +8,18 @@ class Navbar extends Component {
   handleClick = () => {
     this.setState({ clicked: !this.state.clicked });
   };
+
   render() {
     return (
       <nav className='NavbarItem'>
-        {/* Endre tittel  */}
-        <h1 className='navbar-logo1'> Gløshaugen Movie DB</h1>
-        <h1 className='navbar-logo2'> GMDb</h1>
+        <NavLink to='/' className='navbar-logo1'>
+          Gløshaugen Movie DB
+        </NavLink>
+        <NavLink to='/' className='navbar-logo2'>
+          GMDb
+        </NavLink>
+        {/* <h1 className='navbar-logo1'> Gløshaugen Movie DB</h1>
+        <h1 className='navbar-logo2'> GMDb</h1> */}
         <div className='menu-icon' onClick={this.handleClick}>
           <i
             className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}
