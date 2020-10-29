@@ -24,7 +24,7 @@ const Login = ({
   }, [isAuthenticated, history]);
 
   return (
-    <div className='authContainer'>
+    <main className='authContainer'>
       <h2 className='center'>LOG IN</h2>
       <div className='form'>
         <form
@@ -34,12 +34,11 @@ const Login = ({
           }}
         >
           <label>Email: </label>
-          <p></p>
           <input
             type='email'
             name='email'
             id='email'
-            placeholder='Write email here...'
+            placeholder='example@email.com'
             onChange={(e) => {
               setEmail(e.target.value);
             }}
@@ -50,12 +49,20 @@ const Login = ({
               startLoginError ? errorMsg : ' '
             }
           </h5>
+          <button
+            className='accountButton'
+            type='button'
+            onClick={() => history.push('/account')}
+          >
+            <span className='material-icons'>west</span>
+            Back
+          </button>
           <button className='accountButton' type='submit'>
             Log in
           </button>
         </form>
       </div>
-    </div>
+    </main>
   );
 };
 

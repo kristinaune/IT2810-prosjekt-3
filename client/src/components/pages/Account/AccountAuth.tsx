@@ -11,7 +11,7 @@ const AccountAuth = ({
   startLogout: () => void;
 }) => {
   return (
-    <div className='autContainer'>
+    <main className='autContainer'>
       <h2 className='center'>ACCOUNT</h2>
       Logged in as {user.name} with email: {user.email}.<p></p>
       <br></br>
@@ -34,7 +34,7 @@ const AccountAuth = ({
         {' '}
         Log out
       </button>
-    </div>
+    </main>
   );
 };
 
