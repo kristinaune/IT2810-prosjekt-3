@@ -12,7 +12,7 @@
   margin-bottom: 50px;
 }
 
-.navbar-logo1 {
+.navbar-logo-wide {
   color: #fff;
   width: 45vw;
   justify-self: start;
@@ -22,7 +22,7 @@
   text-decoration: none;
 }
 
-.navbar-logo2 {
+.navbar-logo-narrow {
   display: none;
   color: #fff;
   width: 55vw;
@@ -67,11 +67,11 @@
     display: grid;
     grid-template-columns: 1fr 8fr 1fr;
   }
-  .navbar-logo1 {
+  .navbar-logo-wide {
     display: none;
   }
 
-  .navbar-logo2 {
+  .navbar-logo-narrow {
     width: 100%;
     margin-left: 0;
     text-align: center;
