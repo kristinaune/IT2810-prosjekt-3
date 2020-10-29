@@ -32,11 +32,17 @@ const MyListAuth = ({
   const listMovies = movies
     .slice(0, Math.min(movieCount, movies.length))
     .filter((movie) => user.movieList?.includes(movie.imdbId));
-
+    console.log(listMovies);
   return (
     <div className='container'>
       Showing {user.name}'s movies
-      {listMovies ? <MovieList movies={listMovies} /> : <div> No movies </div>}
+      {listMovies.length > 0 ? (
+        <MovieList movies={listMovies} />
+      ) : (
+        <div>
+          <h3> No movies. Add a movie to your list in Search or All movies</h3>
+        </div>
+      )}
     </div>
   );
 };
