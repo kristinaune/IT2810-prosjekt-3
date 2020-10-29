@@ -45,25 +45,23 @@ const App = ({
         <BrowserRouter>
           <div className='App'>
             <Navbar />
-            <main>
-              <Switch>
-                <Route exact path='/' component={Search}>
-                  <SearchMovie />
-                </Route>
-                <Route exact path='/search' component={Search}></Route>
-                <Route path='/allmovies' component={AllMovies}></Route>
-                <Route path='/mylist' component={MyList} />
-                <Route path='/account' component={Account} />
-                <Route path='/login' component={Login} />
-                <Route path='/register' component={Register} />
-              </Switch>
-              {displayMovie && (
-                <MovieModal
-                  movie={displayMovie}
-                  startCloseModal={startCloseModal}
-                />
-              )}
-            </main>
+            <Switch>
+              <Route exact path='/' component={Search}>
+                <SearchMovie />
+              </Route>
+              <Route exact path='/search' component={Search}></Route>
+              <Route path='/allmovies' component={AllMovies}></Route>
+              <Route path='/mylist' component={MyList} />
+              <Route path='/account' component={Account} />
+              <Route path='/login' component={Login} />
+              <Route path='/register' component={Register} />
+            </Switch>
+            {displayMovie && (
+              <MovieModal
+                movie={displayMovie}
+                startCloseModal={startCloseModal}
+              />
+            )}
             <Footer />
           </div>
         </BrowserRouter>

@@ -4,11 +4,11 @@ import MovieItem from '../MovieItem';
 
 const MovieList = ({ movies }: { movies: MovieType[] }) => {
   return (
-    <div className='movieList'>
+    <section className='movieList'>
       {movies.map((movie: MovieType) => {
         return <MovieItem key={movie.imdbId} movie={movie} />;
       })}
-    </div>
+    </section>
   );
 };
 

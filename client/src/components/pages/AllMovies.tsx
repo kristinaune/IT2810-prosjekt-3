@@ -36,14 +36,14 @@ const AllMovies = ({
 
   const listMovies = movies.slice(0, Math.min(movieCount, movies.length));
   return (
-    <div className='movies'>
+    <main className='movies'>
       <FilterMovies />
       {listMovies.length > 0 ? (
         <MovieList movies={listMovies} />
       ) : (
         moviesFiltered && <h3> No movies matching filters.</h3>
       )}
-    </div>
+    </main>
   );
 };
 

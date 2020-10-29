@@ -12,10 +12,10 @@ const MyList = ({
   user: UserType;
 }) => {
   return (
-    <div className='myListContainer'>
+    <main className='myListContainer'>
       <h4>My list</h4>
       {isAuthenticated ? <MyListAuth /> : <MyListUnAuth />}
-    </div>
+    </main>
   );
 };
 

@@ -52,7 +52,7 @@ const FilterMovies = ({
   }, [genres, yearRange, ratingRange, startFilterMovies]);
 
   return (
-    <div>
+    <section>
       <div className='filter'>
         {[
           'Comedy',
@@ -119,7 +119,7 @@ const FilterMovies = ({
           />
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
