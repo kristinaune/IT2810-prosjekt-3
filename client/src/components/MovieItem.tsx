@@ -10,7 +10,7 @@ import '../App.css';
  * @param movie Movie being displayed
  * @param startSetDisplayMovie Action dispatcher displaying movie in a modal
  */
-const MovieCard = ({
+const MovieItem = ({
   movie,
   startSetDisplayMovie,
 }: {
@@ -21,16 +21,14 @@ const MovieCard = ({
 
   return (
     <div className='movieItem' onClick={() => startSetDisplayMovie(movie)}>
-      <div className='poster'>
-        <img alt='poster' src={poster} />
-      </div>
-      <div className='title'>
-        <h5>
+      <div className='movieItemTitle'>
+        <span>
           {title} ({year})
-        </h5>
+        </span>
       </div>
+      <img alt='poster' src={poster} />
     </div>
   );
 };
 
-export default connect(null, { startSetDisplayMovie })(MovieCard);
+export default connect(null, { startSetDisplayMovie })(MovieItem);

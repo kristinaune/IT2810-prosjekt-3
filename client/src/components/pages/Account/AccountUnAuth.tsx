@@ -18,14 +18,14 @@ const AccountUnAuth = () => {
       <button
         className='button'
         type='submit'
-        onClick={() => history.push('/startLogin')}
+        onClick={() => history.push('/login')}
       >
         Log in
       </button>
       <button
         className='button'
         type='submit'
-        onClick={() => history.push('/startRegister')}
+        onClick={() => history.push('/register')}
       >
         Register
       </button>
