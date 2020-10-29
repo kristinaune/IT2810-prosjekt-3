@@ -19,7 +19,7 @@ const SearchListMovieItem = ({
   const { title, year, poster, rating, runtime, released } = movie;
   return (
     <div
-      className='movieListItem'
+      className='searchListMovieItem'
       onClick={() => {
         startSetDisplayMovie(movie);
       }}

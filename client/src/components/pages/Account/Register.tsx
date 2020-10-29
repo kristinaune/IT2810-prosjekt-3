@@ -66,7 +66,7 @@ const Register = ({
               startRegisterError ? errorMsg : ' '
             }
           </h5>
-          <button className='button' type='submit'>
+          <button className='accountButton' type='submit'>
             Register
           </button>
         </form>

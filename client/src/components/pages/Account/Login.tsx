@@ -50,7 +50,7 @@ const Login = ({
               startLoginError ? errorMsg : ' '
             }
           </h5>
-          <button className='button' type='submit'>
+          <button className='accountButton' type='submit'>
             Log in
           </button>
         </form>

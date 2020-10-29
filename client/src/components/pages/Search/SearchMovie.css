@@ -1,18 +1,3 @@
-/*.button {
-  background-color: #5eaaa8 !important;
-  color: white;
-  border-radius: 30px;
-  border: 1px solid #ddd;
-  padding: 1rem 1rem;
-  width: 600px;
-  font-size: 1.4rem;
-  cursor: pointer;
-  transition: background-color 250ms;
-}*/
-/*
-.button:hover {
-  background-color: #056676 !important;
-}*/
 
 #searchMovie {
   width: 600px;
@@ -45,21 +30,7 @@
   width: 600px;
 }
 
-#searchContainer .sortButton {
-  display: inline-flex;
-  justify-content: center;
-  height: 30px;
-  font-size: large;
-  border-radius: 10px;
-  line-height: 30px;
-  color: #f2f1f9;
-  font-weight: 600;
-}
 
-#searchContainer .sortButton:hover {
-  cursor: pointer;
-  text-decoration: underline;
-}
 
 #searchField {
   position: relative;
@@ -88,6 +59,16 @@
 }
 
 .sortButton {
+  display: inline-flex;
+  justify-content: center;
+  height: 30px;
+  font-size: large;
+  border-radius: 10px;
+  line-height: 30px;
+  color: #f2f1f9;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
   width: 100px;
 }
 
@@ -109,7 +90,7 @@
   background-color: none;
 }
 
-.movieListItem {
+.searchListMovieItem {
   height: 150px;
   width: 100%;
   display: inline-grid;
@@ -117,27 +98,27 @@
   border-bottom: #056676 1px solid;
 }
 
-.movieListItem:hover {
+.searchListMovieItem:hover {
   cursor: pointer;
   background-color: #ccc3b9;
 }
 
-.movieListItem img {
+.searchListMovieItem img {
   width: 100px;
 }
-.movieListItem .textInfo {
+.searchListMovieItem .textInfo {
   display: grid;
   grid-template-rows: auto;
   height: 150px;
 }
 
-.movieListItem .textInfo h2 {
+.searchListMovieItem .textInfo h2 {
   padding: 0;
   margin-top: 10px;
   row-gap: 20px;
 }
 
-.movieListItem .textInfo .infoRow {
+.searchListMovieItem .textInfo .infoRow {
   width: auto;
   height: 24px;
   margin: 0px 60px 0 60px;

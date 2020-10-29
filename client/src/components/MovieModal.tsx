@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { MovieType, StoreState, UserType } from '../types';
 import { startAddMovie, startRemoveMovie } from '../store/actions/user';
+import './MovieModal.css';
 
 const MovieModal = ({
   movie,
