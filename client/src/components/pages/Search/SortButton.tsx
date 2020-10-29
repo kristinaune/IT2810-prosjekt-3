@@ -46,6 +46,7 @@ const SortButton = ({
       <div>
         <span>{attribute}</span>
       </div>
+      <div></div>
     </div>
   );
 };

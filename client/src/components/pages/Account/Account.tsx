@@ -13,9 +13,9 @@ const Account = ({
   isAuthenticated: boolean;
 }) => {
   return (
-    <div className='authContainer'>
+    <main className='authContainer'>
       {isAuthenticated ? <AccountAuth user={user} /> : <AccountUnAuth />}
-    </div>
+    </main>
   );
 };
 

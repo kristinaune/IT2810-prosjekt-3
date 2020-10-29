@@ -1,8 +1,8 @@
-.NavbarItem {
+.navbar {
   position: fixed;
   background: #a3d2ca;
   padding-right: auto;
-  height: 10vh;
+  height: 80px;
   width: 100vw;
   display: flex;
   justify-content: center;
@@ -12,8 +12,9 @@
   margin-bottom: 50px;
 }
 
-.navbar-logo1 {
+.navbar-logo-wide {
   color: #fff;
+  width: 45vw;
   justify-self: start;
   margin-left: 20px;
   cursor: pointer;
@@ -21,9 +22,10 @@
   text-decoration: none;
 }
 
-.navbar-logo2 {
+.navbar-logo-narrow {
   display: none;
   color: #fff;
+  width: 55vw;
   justify-self: start;
   margin-left: 20px;
   cursor: pointer;
@@ -60,19 +62,24 @@
 }
 
 @media screen and (max-width: 960px) {
-  .NavbarItem {
+  .navbar {
     width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 8fr 1fr;
   }
-  .navbar-logo1 {
+  .navbar-logo-wide {
     display: none;
   }
 
-  .navbar-logo2 {
+  .navbar-logo-narrow {
+    width: 100%;
+    margin-left: 0;
+    text-align: center;
+    display: unset;
     color: #fff;
     justify-self: start;
-    margin-left: 20px;
     cursor: pointer;
-    display: block;
+    grid-column: 2;
   }
 
   .nav-menu {
@@ -98,8 +105,8 @@
 
   .nav-links {
     text-align: center;
-    padding: 2rem;
-    width: 100%;
+    padding: 1em 0 1em 0;
+    width: 100vw;
     display: table;
   }
 
@@ -109,6 +116,7 @@
   }
 
   .menu-icon {
+    grid-column: 3;
     display: block;
     position: absolute;
     top: 0;

@@ -5,7 +5,7 @@ import { startAddMovie } from '../../../store/actions/user';
 import { MovieType, Sort, StoreState, UserType } from '../../../types';
 import searchSuggestions from './utils/searchSuggestions';
 import SortRow from './SortRow';
-import './SearchMovie.css';
+import './Search.css';
 import ResultList from './ResultList';
 
 const SearchMovie = ({
@@ -82,8 +82,8 @@ const SearchMovie = ({
   }; */
 
   return (
-    <div id='searchMovie'>
-      <div id='searchContainer'>
+    <main id='searchMovie'>
+      <section id='searchContainer'>
         <h2> Search for a movie, genre or actor: </h2>
         <form
           onSubmit={(e) => {
@@ -112,9 +112,9 @@ const SearchMovie = ({
           sortDirection={sortDirection}
           handleSort={handleSort}
         />
-      </div>
+      </section>
       {movies && <ResultList movies={movies} />}
-    </div>
+    </main>
   );
 };
 

@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { startGetMovies } from '../../store/actions/movies';
+import { startGetMovies } from '../../../store/actions/movies';
 import { connect } from 'react-redux';
-import { MovieType, StoreState } from '../../types';
-import MovieItem from '../MovieItem';
+import { MovieType, StoreState } from '../../../types';
 import FilterMovies from './FilterMovies';
-import paginator from '../../utilities/paginator';
+import paginator from '../../../utilities/paginator';
 import './AllMovies.css';
-import MovieList from './MovieList';
+import MovieList from '../../movies/MovieList';
 
 /**
  * Displays all movies in database, by some filters
@@ -36,14 +35,14 @@ const AllMovies = ({
 
   const listMovies = movies.slice(0, Math.min(movieCount, movies.length));
   return (
-    <div className='movies'>
+    <main className='movies'>
       <FilterMovies />
       {listMovies.length > 0 ? (
         <MovieList movies={listMovies} />
       ) : (
         moviesFiltered && <h3> No movies matching filters.</h3>
       )}
-    </div>
+    </main>
   );
 };
 

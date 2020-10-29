@@ -31,8 +31,8 @@ const Register = ({
   useEffect(() => {}, [errorMsg]);
 
   return (
-    <div className='authContainer'>
-      <h4 className='center'>Register</h4>
+    <main className='authContainer'>
+      <h2 className='center'>REGISTER</h2>
       <div className='form'>
         <form
           onSubmit={(e: any) => {
@@ -40,24 +40,25 @@ const Register = ({
             startRegister(name, email);
           }}
         >
-          <label>Email</label>
-          <input
-            type='email'
-            name='email'
-            id='email'
-            placeholder='Write email here...'
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-          />
-          <label>Name</label>
+          <label htmlFor='name'>Name: </label>
           <input
             type='text'
             name='name'
             id='name'
-            placeholder='Write name here...'
+            placeholder='John Doe'
             onChange={(e) => {
               setName(e.target.value);
+            }}
+          />
+          <br />
+          <label htmlFor='email'>Email: </label>
+          <input
+            type='email'
+            name='email'
+            id='email'
+            placeholder='example@email.com'
+            onChange={(e) => {
+              setEmail(e.target.value);
             }}
           />
           <h5 className='errorMsg'>
@@ -66,12 +67,21 @@ const Register = ({
               startRegisterError ? errorMsg : ' '
             }
           </h5>
+
+          <button
+            className='accountButton'
+            type='button'
+            onClick={() => history.push('/account')}
+          >
+            <span className='material-icons'>west</span>
+            Back
+          </button>
           <button className='accountButton' type='submit'>
             Register
           </button>
         </form>
       </div>
-    </div>
+    </main>
   );
 };
 

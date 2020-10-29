@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 const AccountUnAuth = () => {
   const history = useHistory();
   return (
-    <div className='authContainer'>
+    <main className='authContainer'>
       <h2 className='center'> ACCOUNT </h2>
       <div className='textfield'>
         This is a website for searching among the 250 best rated movies, go to
@@ -27,9 +27,9 @@ const AccountUnAuth = () => {
         type='submit'
         onClick={() => history.push('/register')}
       >
-        Register
+        Sign Up
       </button>
-    </div>
+    </main>
   );
 };
 

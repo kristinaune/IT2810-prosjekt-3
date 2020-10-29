@@ -7,9 +7,9 @@
   color: white;
   border-radius: 30px;
   border: 1px solid #ddd;
-  padding: 1rem 1rem;
+  padding: 0.5rem 1rem;
+  margin: 0 0.5rem;
   width: 100px;
-
   font-size: 15px !important;
   cursor: pointer;
   transition: background-color 250ms !important;
@@ -17,6 +17,12 @@
 
 .accountButton:hover {
   background-color: #056676 !important;
+}
+
+.accountButton span {
+  font-size: 15px;
+  position: relative;
+  top: 2.5px;
 }
 
 .center {

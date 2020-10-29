@@ -1,0 +1,118 @@
+.movies {
+  font-size: 10px;
+}
+
+@media (max-width: 600px) {
+  .movies {
+    font-size: 8px;
+  }
+}
+
+.movies h3 {
+  text-align: center;
+}
+
+.filterMovies {
+  max-width: 80em;
+  margin: auto;
+}
+
+.filterButtons button {
+  background-color: #5eaaa8 !important;
+  color: white;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  width: 90px;
+  height: 30px;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: background-color 100ms !important;
+  outline: 0;
+}
+
+.filterButtons button.active {
+  background-color: #257a78 !important;
+}
+
+.filterButtons {
+  width: 100%;
+  justify-items: center;
+  font-size: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 850px) {
+  .filterButtons {
+    margin: auto;
+    width: calc(150px * 4);
+  }
+
+  .filterButtons button {
+    margin: 5px 30px;
+  }
+}
+
+@media (max-width: 620px) {
+  .filterButtons {
+    width: calc(120px * 4);
+  }
+  .filterButtons button {
+    margin: 5px 15px;
+  }
+}
+
+@media (max-width: 500px) {
+  .filterButtons {
+    width: calc(110px * 4);
+  }
+  .filterButtons button {
+    margin: 5px 10px;
+  }
+}
+
+@media (max-width: 460px) {
+  .filterButtons {
+    width: calc(120px * 2);
+  }
+  .filterButtons button {
+    margin: 5px 15px;
+  }
+}
+
+.sliders {
+  width: auto;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.filterSlider {
+  text-align: center;
+  height: 100px;
+  width: calc((100% - 120px) / 2);
+  margin: 0 30px;
+}
+
+.filterSlider h3 {
+  margin-top: 0;
+  font-size: 2em;
+}
+
+@media (max-width: 900px) {
+  .sliders {
+    flex-direction: column;
+  }
+  .filterSlider {
+    width: calc(100% - 60px);
+  }
+}
+
+.noUi-handle,
+.noUi-touch-area {
+  cursor: pointer;
+  background-color: #257a78 !important;
+}
