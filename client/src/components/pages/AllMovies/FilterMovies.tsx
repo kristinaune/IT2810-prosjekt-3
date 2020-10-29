@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import FilterButton from './FilterButton';
-import { startFilterMovies } from '../../store/actions/movies';
+import { startFilterMovies } from '../../../store/actions/movies';
 import Nouislider from 'nouislider-react';
 import './noUiSlider.css';
 
@@ -13,7 +13,7 @@ const FilterMovies = ({
     yearRange: [number, number],
     raingRange: [number, number]
   ) => void;
-}) => {
+}): ReactElement => {
   //
   const [genres, setGenres] = useState<string[]>([]);
 

@@ -11,7 +11,7 @@ import {
 } from './store/actions/user';
 import SearchMovie from './components/pages/Search/SearchMovie';
 import Search from './components/pages/Search/Search';
-import AllMovies from './components/pages/AllMovies';
+import AllMovies from './components/pages/AllMovies/AllMovies';
 import MyList from './components/pages/MyList/MyList';
 import Navbar from './components/layout/Navbar';
 import Account from './components/pages/Account/Account';
@@ -19,7 +19,7 @@ import Footer from './components/layout/Footer';
 import Login from './components/pages/Account/Login';
 import Register from './components/pages/Account/Register';
 import store from './store/store';
-import MovieModal from './components/MovieModal';
+import MovieModal from './components/movies/MovieModal';
 import { MovieType, StoreState, UserType } from './types';
 
 const App = ({

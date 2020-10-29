@@ -1,9 +1,8 @@
 import React from 'react';
-import { MovieType } from '../types';
+import { MovieType } from '../../types';
 import { connect } from 'react-redux';
-import { startSetDisplayMovie } from '../store/actions/displayMovie';
+import { startSetDisplayMovie } from '../../store/actions/displayMovie';
 import './MovieItem.css';
-import '../App.css';
 
 /**
  * A card-display of a specific movie.

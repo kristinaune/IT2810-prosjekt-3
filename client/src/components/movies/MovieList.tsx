@@ -1,6 +1,6 @@
 import React from 'react';
 import { MovieType } from '../../types';
-import MovieItem from '../MovieItem';
+import MovieItem from './MovieItem';
 
 const MovieList = ({ movies }: { movies: MovieType[] }) => {
   return (

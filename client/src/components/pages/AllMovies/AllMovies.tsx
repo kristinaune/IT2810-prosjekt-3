@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { startGetMovies } from '../../store/actions/movies';
+import { startGetMovies } from '../../../store/actions/movies';
 import { connect } from 'react-redux';
-import { MovieType, StoreState } from '../../types';
-import MovieItem from '../MovieItem';
+import { MovieType, StoreState } from '../../../types';
 import FilterMovies from './FilterMovies';
-import paginator from '../../utilities/paginator';
+import paginator from '../../../utilities/paginator';
 import './AllMovies.css';
-import MovieList from './MovieList';
+import MovieList from '../../movies/MovieList';
 
 /**
  * Displays all movies in database, by some filters

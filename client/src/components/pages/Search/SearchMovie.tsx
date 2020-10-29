@@ -5,7 +5,7 @@ import { startAddMovie } from '../../../store/actions/user';
 import { MovieType, Sort, StoreState, UserType } from '../../../types';
 import searchSuggestions from './utils/searchSuggestions';
 import SortRow from './SortRow';
-import './SearchMovie.css';
+import './Search.css';
 import ResultList from './ResultList';
 
 const SearchMovie = ({
