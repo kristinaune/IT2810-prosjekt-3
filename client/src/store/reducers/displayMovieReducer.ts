@@ -6,6 +6,7 @@ export default (
   action: { type: string; movie: MovieType | null }
 ): MovieType | null => {
   const { type, movie } = action;
+
   switch (type) {
     case SET_DISPLAY_MOVIE:
       return movie;
