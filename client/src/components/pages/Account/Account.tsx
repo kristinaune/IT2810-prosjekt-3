@@ -12,11 +12,7 @@ const Account = ({
   user: UserType;
   isAuthenticated: boolean;
 }) => {
-  return (
-    <main className='authContainer'>
-      {isAuthenticated ? <AccountAuth user={user} /> : <AccountUnAuth />}
-    </main>
-  );
+  return isAuthenticated ? <AccountAuth user={user} /> : <AccountUnAuth />;
 };
 
 const mapStateToProps = (state: StoreState) => {
