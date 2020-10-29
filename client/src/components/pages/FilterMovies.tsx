@@ -52,16 +52,17 @@ const FilterMovies = ({
   }, [genres, yearRange, ratingRange, startFilterMovies]);
 
   return (
-    <section>
-      <div className='filter'>
+    <section className='filterMovies'>
+      <div className='filterButtons'>
         {[
           'Comedy',
-          'War',
           'Action',
           'Sci-Fi',
           'Drama',
           'Crime',
           'Thriller',
+          'War',
+          'Adventure',
         ].map((genre) => {
           return (
             <FilterButton
