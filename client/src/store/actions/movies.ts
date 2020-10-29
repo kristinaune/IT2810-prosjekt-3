@@ -63,7 +63,7 @@ export const startSearchMovies = (
   search: string,
   attribute: Sort.YEAR | Sort.RATING | Sort.RUNTIME,
   direction: Sort.ASC | Sort.DESC
-) => async (dispatch: Dispatch<AnyAction>): Promise<void> => {
+) => async (dispatch: Dispatch<AnyAction>) => {
   // Ensure that search is never empty
   search = search ? search : ' ';
   api

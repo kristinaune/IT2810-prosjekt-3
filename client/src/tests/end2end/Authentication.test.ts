@@ -1,9 +1,9 @@
 import puppeteer from 'puppeteer';
-import api from '../utilities/api';
+import api from '../../utilities/api';
 
 describe('Register new user, log in and log out', () => {
   test('Register user', async () => {
-    const browser = await puppeteer.launch({ headless: false });
+    const browser = await puppeteer.launch();
     const page = await browser.newPage();
 
     await page.goto('http://localhost:3000/');
@@ -45,7 +45,7 @@ describe('Register new user, log in and log out', () => {
   });
 
   test('Login user', async () => {
-    const browser = await puppeteer.launch({ headless: false });
+    const browser = await puppeteer.launch();
     const page = await browser.newPage();
     await page.goto('http://localhost:3000/');
 

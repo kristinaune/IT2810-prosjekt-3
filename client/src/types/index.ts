@@ -7,11 +7,11 @@ export interface MovieType extends Record<string, any> {
   poster: string;
   released: string;
   plot: string;
-  genres: [string];
-  director: [string];
-  actors: [string];
-  language: [string];
-  country: [string];
+  genres: string[];
+  director: string[];
+  actors: string[];
+  language: string[];
+  country: string[];
 }
 
 export interface UserType {
