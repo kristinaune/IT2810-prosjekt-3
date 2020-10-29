@@ -23,3 +23,12 @@ export default (
       return state;
   }
 };
+
+db.createUser({
+  user: 'userAdmin',
+  pwd: 'password',
+  roles: [
+    { role: 'userAdminAnyDatabase', db: 'admin' },
+    'readWriteAnyDatabase',
+  ],
+});
