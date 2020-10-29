@@ -8,7 +8,7 @@ const Navbar = (): ReactElement => {
   const [displayMenu, setDisplayMenu] = useState<boolean>(false);
 
   return (
-    <nav className='NavbarItem'>
+    <nav className='navbar'>
       <NavLink to='/' className='navbar-logo-wide'>
         Gløshaugen Movie DB
       </NavLink>

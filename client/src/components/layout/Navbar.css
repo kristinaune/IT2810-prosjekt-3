@@ -1,4 +1,4 @@
-.NavbarItem {
+.navbar {
   position: fixed;
   background: #a3d2ca;
   padding-right: auto;
@@ -62,7 +62,7 @@
 }
 
 @media screen and (max-width: 960px) {
-  .NavbarItem {
+  .navbar {
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 8fr 1fr;
