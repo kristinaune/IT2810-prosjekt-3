@@ -150,6 +150,7 @@ export const startRemoveMovie = (imdbId: string, email: string) => async (
       dispatch(removeMovie(res.data.user));
     })
     .catch((err) => {
+      console.log(err);
       dispatch(removeMovieError());
     });
 };

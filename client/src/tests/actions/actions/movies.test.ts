@@ -19,7 +19,7 @@ describe('Load movies', () => {
     const store = createMockStore({});
 
     const movies: IMovie[] = await Axios.get(
-      'http://localhost:4000/api/movies/search/godfather/rating/1'
+      'http://it2810-62.idi.ntnu.no:3000/api/movies/search/godfather/rating/1'
     ).then((res) => res.data);
     store.dispatch(getMovies(movies));
     console.log(store.getActions());

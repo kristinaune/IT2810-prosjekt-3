@@ -7,6 +7,7 @@ const paginator = (
   setMovieCount: React.Dispatch<React.SetStateAction<number>>,
   step: number
 ): void => {
+  /* eslint-disable-next-line */
   window.onscroll = (e: Event) => {
     if (
       window.innerHeight + window.scrollY >=
