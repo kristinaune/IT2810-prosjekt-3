@@ -119,6 +119,7 @@ router.get(
         { rating: { $gte: ratedFrom, $lte: ratedTo } },
       ],
     })
+      .sort({ rating: -1 })
       .then((movies: MovieDoc[] | null) => res.json(movies))
       .catch((error: string) => {
         console.log('Error on GET movies/filter/ : ' + error);

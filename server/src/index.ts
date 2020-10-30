@@ -6,12 +6,7 @@ import movies from './routes/movies';
 import users from './routes/users';
 
 // Import and assigns config variables
-const PORT = CONFIG.PORT;
-const SERVER_ADDRESS = CONFIG.SERVER_ADDRESS;
-
-// Movie route
-//const movies = require('./routes/movies');
-//const users = require('./routes/users');
+const { PORT, SERVER_ADDRESS } = CONFIG;
 
 /**
  * Initialize express server as 'app' with express' body-parser as middleware.
@@ -24,7 +19,9 @@ app.use(express.json(), cors());
  * Connects mongoose to the MongoDB database.
  */
 mongoose
-  .connect('mongodb://' + SERVER_ADDRESS + '/movies', {
+  .connect('mongodb://' + SERVER_ADDRESS + '/gmdb', {
+    user: 'mongooseApi',
+    pass: 'password',
     useNewUrlParser: true,
     useCreateIndex: true, //get rid of error
     useUnifiedTopology: true,
