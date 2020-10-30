@@ -1,4 +1,4 @@
-import { MovieType } from '../../types';
+import { IMovie } from '../../types';
 
 /**
  * Checks if a string matches a search.
@@ -15,7 +15,7 @@ const match = (search: string, string: string | Array<string>) => {
  * @param search What we're searching for
  * @param movie Movie we're searching in
  */
-const matchAny = (search: string, movie: MovieType) => {
+const matchAny = (search: string, movie: IMovie) => {
   return (
     match(search, movie.title) ||
     match(search, movie.actors) ||
@@ -25,8 +25,8 @@ const matchAny = (search: string, movie: MovieType) => {
   );
 };
 
-const movieSearch = (search: string, movies: Array<MovieType>) => {
-  return movies.filter((movie: MovieType) => matchAny(search, movie));
+const movieSearch = (search: string, movies: Array<IMovie>) => {
+  return movies.filter((movie: IMovie) => matchAny(search, movie));
 };
 
 export default movieSearch;

@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { Sort } from '../../../types';
 import SortButton from './SortButton';
 
+/**
+ * Row of sorting-buttons
+ */
 const SortRow = ({
   activeSort,
   sortDirection,
@@ -10,7 +13,7 @@ const SortRow = ({
   activeSort: Sort.YEAR | Sort.RATING | Sort.RUNTIME;
   sortDirection: Sort.ASC | Sort.DESC;
   handleSort: (attribute: Sort.YEAR | Sort.RATING | Sort.RUNTIME) => void;
-}) => {
+}): ReactElement => {
   return (
     <div id='buttonContainer'>
       <SortButton

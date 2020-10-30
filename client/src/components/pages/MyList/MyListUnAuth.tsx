@@ -1,12 +1,11 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { connect } from 'react-redux';
 
-const MyListUnAuth = () => {
+/**
+ * Displays messsage if user is not logged in.
+ */
+const MyListUnAuth = (): ReactElement => {
   return <div className='container'>Not Authenticated</div>;
 };
-/*
-const mapStateToProps = (state: any) => {
-  return { isAuthenticated: state.user.isAuthenticated };
-};*/
 
 export default connect(null, {})(MyListUnAuth);

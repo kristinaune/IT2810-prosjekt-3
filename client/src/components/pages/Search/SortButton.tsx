@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { Sort } from '../../../types';
 
 /**
@@ -30,7 +30,7 @@ const SortButton = ({
   active: boolean;
   direction: number;
   handleSort: (attribute: Sort.YEAR | Sort.RATING | Sort.RUNTIME) => void;
-}) => {
+}): ReactElement => {
   return (
     <div
       className={active ? 'sortButton active' : 'sortButton'}

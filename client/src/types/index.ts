@@ -1,4 +1,5 @@
-export interface MovieType extends Record<string, any> {
+// Interface for Movie
+export interface IMovie {
   title: string;
   imdbId: string;
   rating: number;
@@ -7,33 +8,37 @@ export interface MovieType extends Record<string, any> {
   poster: string;
   released: string;
   plot: string;
-  genres: [string];
-  director: [string];
-  actors: [string];
-  language: [string];
-  country: [string];
+  genres: string[];
+  director: string[];
+  actors: string[];
+  language: string[];
+  country: string[];
 }
 
-export interface UserType {
+// Interface for User
+export interface IUser {
   name?: string;
   email?: string;
   movieList?: [string];
 }
 
-export interface UserState extends UserType {
+// Movies-store interface
+export interface UserState extends IUser {
   errorMsg?: string;
   authState: { auth: boolean; type: string };
 }
 
+// Movies-store interface
 export interface MoviesState {
-  movies: MovieType[];
+  movies: IMovie[];
   type?: string;
 }
 
+// Redux store interface
 export interface StoreState {
   movies: MoviesState;
   user: UserState;
-  displayMovie: MovieType | null;
+  displayMovie: IMovie | null;
 }
 
 export enum Sort {

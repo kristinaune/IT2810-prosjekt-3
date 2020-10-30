@@ -4,11 +4,11 @@ import {
   FILTER_MOVIES,
   LOAD_MOVIES_ERROR,
 } from '../actions/actionTypes';
-import { MovieType, MoviesState } from '../../types';
+import { IMovie, MoviesState } from '../../types';
 
 export default (
   state = { movies: [] },
-  action: { type: string; payload: MovieType[] }
+  action: { type: string; payload: IMovie[] }
 ): MoviesState => {
   const { type, payload } = action;
 

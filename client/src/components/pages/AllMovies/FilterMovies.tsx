@@ -5,6 +5,9 @@ import { startFilterMovies } from '../../../store/actions/movies';
 import Nouislider from 'nouislider-react';
 import './noUiSlider.css';
 
+/**
+ * A component filtering movies in AllMovies-component.
+ */
 const FilterMovies = ({
   startFilterMovies,
 }: {

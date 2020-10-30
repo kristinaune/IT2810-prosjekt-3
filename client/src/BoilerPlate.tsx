@@ -2,7 +2,7 @@ import React from 'react';
 // Importer Connect, "connecter" komponenten til redux
 import { connect } from 'react-redux';
 import { startGetMovies } from './store/actions/movies';
-import { MovieType } from './types';
+import { IMovie } from './types';
 
 // Alt vi vil hente fra redux sin state, tar vi inn her
 // og husker å sende dem med i mapStateToProps
@@ -12,7 +12,7 @@ const BoilerPlate = ({
   getMovies,
 }: {
   user: Object | null;
-  banan: Array<MovieType>;
+  banan: Array<IMovie>;
   getMovies: VoidFunction;
 }) => {
   return <h1>hei</h1>;

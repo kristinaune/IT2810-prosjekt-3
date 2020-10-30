@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { FormEvent, ReactElement, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { startLogin } from '../../../store/actions/user';
 import { useHistory } from 'react-router-dom';
 import { StoreState } from '../../../types';
 
+/**
+ * Login page.
+ */
 const Login = ({
   startLogin,
   isAuthenticated,
@@ -14,7 +17,7 @@ const Login = ({
   isAuthenticated?: boolean;
   startLoginError?: boolean;
   errorMsg?: string;
-}) => {
+}): ReactElement => {
   const [email, setEmail] = useState('');
   const history = useHistory();
 
@@ -28,7 +31,7 @@ const Login = ({
       <h2 className='center'>LOG IN</h2>
       <div className='form'>
         <form
-          onSubmit={(e: any) => {
+          onSubmit={(e: FormEvent<HTMLFormElement>) => {
             e.preventDefault();
             startLogin(email);
           }}

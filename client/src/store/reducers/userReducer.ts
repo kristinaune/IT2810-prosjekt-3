@@ -8,14 +8,14 @@ import {
   ADD_MOVIE_SUCCESS,
   REMOVE_MOVIE_SUCCESS,
 } from '../actions/actionTypes';
-import { UserType, UserState } from '../../types/index';
+import { IUser, UserState } from '../../types/index';
 
 const initialState = { authState: { auth: false, type: LOGOUT_SUCCESS } };
 export default (
   state = initialState,
   action: {
     type: string;
-    user?: UserType;
+    user?: IUser;
     errorMsg?: string;
   }
 ): UserState => {

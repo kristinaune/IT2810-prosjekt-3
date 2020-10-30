@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 
+/**
+ * A button toggling a genre in movie-filter.
+ * @param genre The genre the button toggles in filter.
+ */
 const FilterButton = ({
   genre,
   genres,
@@ -8,7 +12,7 @@ const FilterButton = ({
   genre: string;
   genres: string[];
   updateGenres: (genre: string) => void;
-}) => {
+}): ReactElement => {
   return (
     <button
       className={

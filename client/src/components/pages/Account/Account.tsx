@@ -1,22 +1,21 @@
-import React from 'react';
-import './Account.css';
+import React, { ReactElement } from 'react';
 import { connect } from 'react-redux';
 import AccountUnAuth from './AccountUnAuth';
 import AccountAuth from './AccountAuth';
-import { StoreState, UserType } from '../../../types';
+import { StoreState, IUser } from '../../../types';
+import './Account.css';
 
+/**
+ * Renders AccountAuth if user is logged in, AccountUnAuth if not.
+ */
 const Account = ({
   user,
   isAuthenticated,
 }: {
-  user: UserType;
+  user: IUser;
   isAuthenticated: boolean;
-}) => {
-  return (
-    <main className='authContainer'>
-      {isAuthenticated ? <AccountAuth user={user} /> : <AccountUnAuth />}
-    </main>
-  );
+}): ReactElement => {
+  return isAuthenticated ? <AccountAuth user={user} /> : <AccountUnAuth />;
 };
 
 const mapStateToProps = (state: StoreState) => {
