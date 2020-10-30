@@ -101,4 +101,3 @@ By using Jest and puppeteer we have created tests that mimic user behavior, such
 
 We have written unit-tests in Jest for actions and reducers.
 
-#### Snapshots
