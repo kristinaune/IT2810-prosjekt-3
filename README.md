@@ -89,15 +89,21 @@ Other components and libraries:
 - Puppeteer for end2end-testing
 - Redux-Mock-Store for mocking Redux store in testing.
 
-## Testing
 
-The tests can be run by typing npm test inside the /client-directory.
+## Testing
+We have tested the website regularly in different browsers with different scaling. Among other things, it has been tested on Goocle Chrome (version 85.0.4183.102) and Safari (version 14.0) on MacOS Caralina, and Safari (14.0) on Apple iPhone 11 with iOS 14.0. 
+The focus on these tests have been to scale the website to see how the components are placed differently, and to see if all the functionality is preserved. Nevertheless, our main focus has been to implement a good solution for larger screens than phones. 
+
+We have also written tests with libraries mentioned above. The tests can be run by typing npm test inside the /client-directory.
 
 #### End-2-end
 
-By using Jest and puppeteer we have created tests that mimic user behavior, such as registering a user, logging in, adding a movie to “my list” and so on.
+By using Jest and puppeteer we have created end-2-end tests. The tests are separated in different tasks, and is performed step by step. This will test if the website has the expected functionality after a sequence of interactions. 
+The tests mimic user behavior, such as registering a user, logging in and adding a movie to “my list”. 
+We have also created tests for searching for one specific movie, and for filtering, by testing filter no. 8 "adventure" in "All movies". 
 
 #### Unit-tests
 
-We have written unit-tests in Jest for actions and reducers.
+We have written unit-tests in Jest for actions and reducers. To test the action creators we have made som testdata. This are among other used to to see if the getMovies returns the correct type and the same array of movies, and register of an exampleUser returns success and the same user. 
+For the reducers it will test whether the initialstate is as expected, and test some of the functionality. We test the LOAD\_MOVIE and LOGIN_SUCCES reducer. The functionality for the components will be tested by the end-2-end tests. 
 
