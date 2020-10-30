@@ -1,4 +1,5 @@
-export interface IMovie extends Record<string, any> {
+// Interface for Movie
+export interface IMovie {
   title: string;
   imdbId: string;
   rating: number;
@@ -14,22 +15,26 @@ export interface IMovie extends Record<string, any> {
   country: string[];
 }
 
+// Interface for User
 export interface IUser {
   name?: string;
   email?: string;
   movieList?: [string];
 }
 
+// Movies-store interface
 export interface UserState extends IUser {
   errorMsg?: string;
   authState: { auth: boolean; type: string };
 }
 
+// Movies-store interface
 export interface MoviesState {
   movies: IMovie[];
   type?: string;
 }
 
+// Redux store interface
 export interface StoreState {
   movies: MoviesState;
   user: UserState;
