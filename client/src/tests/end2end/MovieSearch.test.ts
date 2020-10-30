@@ -1,5 +1,6 @@
 import puppeteer from 'puppeteer';
 
+jest.setTimeout(10000);
 describe('Search for a movie and filter ', () => {
   test('Search for one specific movie', async () => {
     const browser = await puppeteer.launch();
@@ -40,6 +41,7 @@ describe('Search for a movie and filter ', () => {
 
     await browser.close();
   });
+
   test('Filter movies', async () => {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
@@ -61,6 +63,7 @@ describe('Search for a movie and filter ', () => {
     await page.click(
       '.App > .movies > .filterMovies > .filterButtons > .filterButton:nth-child(8)'
     );
+    setTimeout(() => {}, 2000);
     await page.waitForSelector(
       '.App > .movies > .movieList > .movieItem:nth-child(1)'
     );
@@ -69,7 +72,6 @@ describe('Search for a movie and filter ', () => {
     await page.waitForSelector('#root #title');
     await page.click('#root #title');
 
-    console.log(await page.$eval('#title', (e) => e.innerHTML));
     expect(await page.$eval('#title', (e) => e.innerHTML)).toBe(
       'The Lord of the Rings: The Return of the King'
     );

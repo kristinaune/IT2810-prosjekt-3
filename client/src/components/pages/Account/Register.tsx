@@ -87,8 +87,6 @@ const Register = ({
 };
 
 const mapStateToProps = (state: StoreState) => {
-  console.log(state);
-
   return {
     isAuthenticated: state.user.authState.auth,
     // If there is an error, check if it was startRegistering-related
