@@ -12,12 +12,12 @@ import {
 import api from '../../utilities/api';
 import { Dispatch } from 'react';
 import { AnyAction } from 'redux';
-import { UserType } from '../../types';
+import { IUser } from '../../types';
 
 // ______ACTION CREATORS______
 
 // REGISTER SUCCESS
-export const register = (user: UserType): AnyAction => ({
+export const register = (user: IUser): AnyAction => ({
   type: REGISTER_SUCCESS,
   user,
 });
@@ -29,7 +29,7 @@ export const registerError = (errorMsg: string): AnyAction => ({
 });
 
 // LOG IN
-export const login = (user: UserType): AnyAction => ({
+export const login = (user: IUser): AnyAction => ({
   type: LOGIN_SUCCESS,
   user,
 });
@@ -46,7 +46,7 @@ export const logout = (): AnyAction => ({
 });
 
 // ADD MOVIE
-export const addMovie = (user: UserType): AnyAction => ({
+export const addMovie = (user: IUser): AnyAction => ({
   type: ADD_MOVIE_SUCCESS,
   user,
 });
@@ -57,7 +57,7 @@ export const addMovieError = (): AnyAction => ({
 });
 
 // REMOVE MOVIE
-export const removeMovie = (user: UserType): AnyAction => ({
+export const removeMovie = (user: IUser): AnyAction => ({
   type: REMOVE_MOVIE_SUCCESS,
   user,
 });

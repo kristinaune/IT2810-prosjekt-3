@@ -1,12 +1,12 @@
 import { SET_DISPLAY_MOVIE, CLOSE_MODAL } from './actionTypes';
 import { Dispatch } from 'react';
-import { MovieType } from '../../types';
+import { IMovie } from '../../types';
 import { AnyAction } from 'redux';
 
 // ______ACTION CREATORS______
 
 // SET DISPLAY MOVIE
-export const setDisplayMovie = (movie: MovieType): AnyAction => ({
+export const setDisplayMovie = (movie: IMovie): AnyAction => ({
   type: SET_DISPLAY_MOVIE,
   movie,
 });
@@ -22,7 +22,7 @@ export const closeModal = (): AnyAction => ({
  * Displays a movie in a modal
  * @param movie Movie to be displayed in modal
  */
-export const startSetDisplayMovie = (movie: MovieType) => (
+export const startSetDisplayMovie = (movie: IMovie) => (
   dispatch: Dispatch<AnyAction>
 ): void => {
   dispatch(setDisplayMovie(movie));

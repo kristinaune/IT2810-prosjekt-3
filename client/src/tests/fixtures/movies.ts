@@ -1,6 +1,6 @@
-import { MovieType } from '../../types';
+import { IMovie } from '../../types';
 
-const exampleMovies: MovieType[] = [
+const exampleMovies: IMovie[] = [
   {
     genres: ['Crime', 'Drama'],
     director: ['Francis Ford Coppola'],

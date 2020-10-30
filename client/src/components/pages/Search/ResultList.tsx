@@ -1,5 +1,5 @@
 import React, { ReactElement, useState } from 'react';
-import { MovieType } from '../../../types';
+import { IMovie } from '../../../types';
 import SearchListMovieItem from './SearchListMovieItem';
 import paginator from '../../../utilities/paginator';
 
@@ -7,7 +7,7 @@ import paginator from '../../../utilities/paginator';
  * Shows all movies from a search in a list
  * @param movies List of movies from search
  */
-const ResultList = ({ movies }: { movies: MovieType[] }): ReactElement => {
+const ResultList = ({ movies }: { movies: IMovie[] }): ReactElement => {
   // Number of movies to be displayed. Used in pagination.
   const [movieCount, setMovieCount] = useState(20);
 
@@ -18,7 +18,7 @@ const ResultList = ({ movies }: { movies: MovieType[] }): ReactElement => {
     <section>
       {movies
         ?.slice(0, Math.min(movieCount, movies.length))
-        .map((movie: MovieType) => {
+        .map((movie: IMovie) => {
           return (
             movie && <SearchListMovieItem key={movie.imdbId} movie={movie} />
           );

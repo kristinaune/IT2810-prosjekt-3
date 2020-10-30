@@ -1,4 +1,4 @@
-export interface MovieType extends Record<string, any> {
+export interface IMovie extends Record<string, any> {
   title: string;
   imdbId: string;
   rating: number;
@@ -14,26 +14,26 @@ export interface MovieType extends Record<string, any> {
   country: string[];
 }
 
-export interface UserType {
+export interface IUser {
   name?: string;
   email?: string;
   movieList?: [string];
 }
 
-export interface UserState extends UserType {
+export interface UserState extends IUser {
   errorMsg?: string;
   authState: { auth: boolean; type: string };
 }
 
 export interface MoviesState {
-  movies: MovieType[];
+  movies: IMovie[];
   type?: string;
 }
 
 export interface StoreState {
   movies: MoviesState;
   user: UserState;
-  displayMovie: MovieType | null;
+  displayMovie: IMovie | null;
 }
 
 export enum Sort {

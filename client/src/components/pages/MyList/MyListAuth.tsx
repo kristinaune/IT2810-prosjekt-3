@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { MovieType, StoreState, UserType } from '../../../types';
+import { IMovie, StoreState, IUser } from '../../../types';
 import { startAddMovie } from '../../../store/actions/user';
 import paginator from '../../../utilities/paginator';
 import { startGetMovies } from '../../../store/actions/movies';
@@ -14,8 +14,8 @@ const MyListAuth = ({
   movies,
   startGetMovies,
 }: {
-  user: UserType;
-  movies: MovieType[];
+  user: IUser;
+  movies: IMovie[];
   startGetMovies: () => void;
 }): ReactElement => {
   // On first mount, get all movies from database

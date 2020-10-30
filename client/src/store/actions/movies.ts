@@ -4,7 +4,7 @@ import {
   FILTER_MOVIES,
   LOAD_MOVIES_ERROR,
 } from './actionTypes';
-import { MovieType, Sort } from '../../types';
+import { IMovie, Sort } from '../../types';
 import api from '../../utilities/api';
 import { Dispatch } from 'react';
 import { AnyAction } from 'redux';
@@ -18,19 +18,19 @@ export const loadMoviesError = (): AnyAction => ({
 });
 
 // GET_MOVIES
-export const getMovies = (movies: MovieType[]): AnyAction => ({
+export const getMovies = (movies: IMovie[]): AnyAction => ({
   type: LOAD_MOVIES,
   payload: movies,
 });
 
 // SEARCH_MOVIES
-export const searchMovies = (movies: MovieType[]): AnyAction => ({
+export const searchMovies = (movies: IMovie[]): AnyAction => ({
   type: SEARCH_MOVIES,
   payload: movies,
 });
 
 // FILTER_MOVIES
-export const filterMovies = (movies: MovieType[]): AnyAction => ({
+export const filterMovies = (movies: IMovie[]): AnyAction => ({
   type: FILTER_MOVIES,
   payload: movies,
 });

@@ -20,7 +20,7 @@ import Login from './components/pages/Account/Login';
 import Register from './components/pages/Account/Register';
 import store from './store/store';
 import MovieModal from './components/movies/MovieModal';
-import { MovieType, StoreState, UserType } from './types';
+import { IMovie, StoreState, IUser } from './types';
 
 const App = ({
   startCloseModal,
@@ -28,11 +28,11 @@ const App = ({
   startLogin,
 }: {
   startCloseModal: VoidFunction;
-  displayMovie: MovieType | null;
+  displayMovie: IMovie | null;
   startAddMovie: (imdbId: string, email: string) => void;
   startRemoveMovie: (imdbId: string, email: string) => void;
   startLogin: (email: string) => void;
-  user?: UserType;
+  user?: IUser;
 }) => {
   useEffect(() => {
     localStorage.getItem('user') &&

@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import { startGetMovies } from '../../../store/actions/movies';
 import { connect } from 'react-redux';
-import { MovieType, StoreState } from '../../../types';
+import { IMovie, StoreState } from '../../../types';
 import FilterMovies from './FilterMovies';
 import paginator from '../../../utilities/paginator';
 import './AllMovies.css';
@@ -18,7 +18,7 @@ const AllMovies = ({
   startGetMovies,
   moviesFiltered,
 }: {
-  movies: Array<MovieType>;
+  movies: Array<IMovie>;
   startGetMovies: VoidFunction;
   moviesFiltered: boolean;
 }): ReactElement => {

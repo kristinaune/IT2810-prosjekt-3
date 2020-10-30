@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { connect } from 'react-redux';
-import { StoreState, UserType } from '../../../types';
+import { StoreState, IUser } from '../../../types';
 import MyListAuth from './MyListAuth';
 import MyListUnAuth from './MyListUnAuth';
 import './MyList.css';
@@ -12,7 +12,7 @@ const MyList = ({
   isAuthenticated,
 }: {
   isAuthenticated: boolean;
-  user: UserType;
+  user: IUser;
 }): ReactElement => {
   return (
     <main className='myListContainer'>

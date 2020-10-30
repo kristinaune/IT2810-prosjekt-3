@@ -2,7 +2,7 @@ import React, { createRef, ReactElement, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { startSearchMovies } from '../../../store/actions/movies';
 import { startAddMovie } from '../../../store/actions/user';
-import { MovieType, Sort, StoreState, UserType } from '../../../types';
+import { IMovie, Sort, StoreState, IUser } from '../../../types';
 import searchSuggestions from './utils/searchSuggestions';
 import SortRow from './SortRow';
 import ResultList from './ResultList';
@@ -12,8 +12,8 @@ const SearchMovie = ({
   movies,
   startSearchMovies,
 }: {
-  movies?: Array<MovieType>;
-  user?: UserType;
+  movies?: Array<IMovie>;
+  user?: IUser;
   startSearchMovies: (
     search: string,
     attribute: Sort.YEAR | Sort.RATING | Sort.RUNTIME,

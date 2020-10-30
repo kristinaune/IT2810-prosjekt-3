@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { MovieType } from '../../../types';
+import { IMovie } from '../../../types';
 import { startSetDisplayMovie } from '../../../store/actions/displayMovie';
 import { connect } from 'react-redux';
 
@@ -12,8 +12,8 @@ const SearchListMovieItem = ({
   movie,
   startSetDisplayMovie,
 }: {
-  movie: MovieType;
-  startSetDisplayMovie: (movie: MovieType) => void;
+  movie: IMovie;
+  startSetDisplayMovie: (movie: IMovie) => void;
 }): ReactElement => {
   // Extracting movie attributes
   const { title, year, poster, rating, runtime, released } = movie;

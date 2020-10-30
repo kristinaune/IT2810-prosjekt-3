@@ -2,7 +2,7 @@ import Axios from 'axios';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { getMovies } from '../../../store/actions/movies';
-import { MovieType } from '../../../types';
+import { IMovie } from '../../../types';
 import exampleMovies from '../../fixtures/movies';
 
 const createMockStore = configureMockStore([thunk]);
@@ -18,7 +18,7 @@ describe('Load movies', () => {
 
     const store = createMockStore({});
 
-    const movies: MovieType[] = await Axios.get(
+    const movies: IMovie[] = await Axios.get(
       'http://localhost:4000/api/movies/search/godfather/rating/1'
     ).then((res) => res.data);
     store.dispatch(getMovies(movies));

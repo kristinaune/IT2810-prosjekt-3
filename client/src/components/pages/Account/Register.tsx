@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { FormEvent, ReactElement, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { startRegister } from '../../../store/actions/user';
 import { useHistory } from 'react-router-dom';
@@ -36,7 +36,7 @@ const Register = ({
       <h2 className='center'>REGISTER</h2>
       <div className='form'>
         <form
-          onSubmit={(e: any) => {
+          onSubmit={(e: FormEvent<HTMLFormElement>) => {
             e.preventDefault();
             startRegister(name, email);
           }}

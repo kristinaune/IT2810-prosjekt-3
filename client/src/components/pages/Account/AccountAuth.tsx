@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { connect } from 'react-redux';
 import { startLogout } from '../../../store/actions/user';
-import { UserType } from '../../../types';
+import { IUser } from '../../../types';
 
 /**
  * Displays Account page of a logged in user.
@@ -11,7 +11,7 @@ const AccountAuth = ({
   user,
   startLogout,
 }: {
-  user: UserType;
+  user: IUser;
   startLogout: () => void;
 }): ReactElement => {
   return (

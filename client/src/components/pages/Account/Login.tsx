@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { FormEvent, ReactElement, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { startLogin } from '../../../store/actions/user';
 import { useHistory } from 'react-router-dom';
@@ -31,7 +31,7 @@ const Login = ({
       <h2 className='center'>LOG IN</h2>
       <div className='form'>
         <form
-          onSubmit={(e: any) => {
+          onSubmit={(e: FormEvent<HTMLFormElement>) => {
             e.preventDefault();
             startLogin(email);
           }}

@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 import { connect } from 'react-redux';
 import AccountUnAuth from './AccountUnAuth';
 import AccountAuth from './AccountAuth';
-import { StoreState, UserType } from '../../../types';
+import { StoreState, IUser } from '../../../types';
 import './Account.css';
 
 /**
@@ -12,7 +12,7 @@ const Account = ({
   user,
   isAuthenticated,
 }: {
-  user: UserType;
+  user: IUser;
   isAuthenticated: boolean;
 }): ReactElement => {
   return isAuthenticated ? <AccountAuth user={user} /> : <AccountUnAuth />;

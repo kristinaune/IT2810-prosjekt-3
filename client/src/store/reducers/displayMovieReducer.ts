@@ -1,10 +1,10 @@
 import { SET_DISPLAY_MOVIE, CLOSE_MODAL } from '../actions/actionTypes';
-import { MovieType } from '../../types';
+import { IMovie } from '../../types';
 
 export default (
   state = null,
-  action: { type: string; movie: MovieType | null }
-): MovieType | null => {
+  action: { type: string; movie: IMovie | null }
+): IMovie | null => {
   const { type, movie } = action;
   switch (type) {
     case SET_DISPLAY_MOVIE:
