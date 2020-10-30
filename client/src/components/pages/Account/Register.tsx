@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
-// Importer Connect, "connecter" komponenten til redux
+import React, { ReactElement, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { startRegister } from '../../../store/actions/user';
 import { useHistory } from 'react-router-dom';
 import { StoreState } from '../../../types';
-//import './User.css';
 
+/**
+ * Registration page.
+ */
 const Register = ({
   isAuthenticated,
   startRegister,
@@ -16,7 +17,7 @@ const Register = ({
   startRegister: (email: string, name: string) => void;
   startRegisterError?: boolean;
   errorMsg?: string;
-}) => {
+}): ReactElement => {
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');

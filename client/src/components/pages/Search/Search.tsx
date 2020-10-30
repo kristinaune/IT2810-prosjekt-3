@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import SearchMovie from './SearchMovie';
 
-const Search = () => {
+const Search = (): ReactElement => {
   return <SearchMovie />;
 };
 

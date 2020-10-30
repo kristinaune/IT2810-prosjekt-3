@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { MovieType } from '../../../types';
 import { startSetDisplayMovie } from '../../../store/actions/displayMovie';
 import { connect } from 'react-redux';
@@ -14,7 +14,7 @@ const SearchListMovieItem = ({
 }: {
   movie: MovieType;
   startSetDisplayMovie: (movie: MovieType) => void;
-}) => {
+}): ReactElement => {
   // Extracting movie attributes
   const { title, year, poster, rating, runtime, released } = movie;
   return (

@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { startLogin } from '../../../store/actions/user';
 import { useHistory } from 'react-router-dom';
 import { StoreState } from '../../../types';
 
+/**
+ * Login page.
+ */
 const Login = ({
   startLogin,
   isAuthenticated,
@@ -14,7 +17,7 @@ const Login = ({
   isAuthenticated?: boolean;
   startLoginError?: boolean;
   errorMsg?: string;
-}) => {
+}): ReactElement => {
   const [email, setEmail] = useState('');
   const history = useHistory();
 

@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import './Account.css';
 import { useHistory } from 'react-router-dom';
 
-const AccountUnAuth = () => {
+/**
+ * Displays log in -and register options for an un-authorized user.
+ */
+const AccountUnAuth = (): ReactElement => {
   const history = useHistory();
   return (
     <main className='authContainer'>

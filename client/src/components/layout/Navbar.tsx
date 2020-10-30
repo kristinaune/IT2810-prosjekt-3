@@ -1,8 +1,10 @@
 import React, { ReactElement, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-
 import './Navbar.css';
 
+/**
+ * Navbar at top of the page.
+ */
 const Navbar = (): ReactElement => {
   // Display menu on smaller screens
   const [displayMenu, setDisplayMenu] = useState<boolean>(false);

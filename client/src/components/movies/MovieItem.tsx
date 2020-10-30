@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { MovieType } from '../../types';
 import { connect } from 'react-redux';
 import { startSetDisplayMovie } from '../../store/actions/displayMovie';
@@ -15,7 +15,7 @@ const MovieItem = ({
 }: {
   movie: MovieType;
   startSetDisplayMovie: (movie: MovieType) => void;
-}) => {
+}): ReactElement => {
   const { poster, year, title } = movie;
 
   return (

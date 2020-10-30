@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { connect } from 'react-redux';
 import { startLogout } from '../../../store/actions/user';
 import { UserType } from '../../../types';
 
+/**
+ * Displays Account page of a logged in user.
+ * @param user The logged in user.
+ */
 const AccountAuth = ({
   user,
   startLogout,
 }: {
   user: UserType;
   startLogout: () => void;
-}) => {
+}): ReactElement => {
   return (
     <main className='authContainer'>
       <h2 className='center'>ACCOUNT</h2>

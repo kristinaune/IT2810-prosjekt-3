@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 
-function Footer() {
+/**
+ * App footer.
+ */
+const Footer = (): ReactElement => {
   return <footer></footer>;
-}
+};
 
 export default Footer;

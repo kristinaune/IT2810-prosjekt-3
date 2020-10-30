@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { connect } from 'react-redux';
 import { MovieType, StoreState, UserType } from '../../types';
 import { startAddMovie, startRemoveMovie } from '../../store/actions/user';
 import './MovieModal.css';
 
+/**
+ * A component displaying a movie-object in a modal.
+ */
 const MovieModal = ({
   movie,
   startCloseModal,
@@ -16,7 +19,8 @@ const MovieModal = ({
   startAddMovie: (imdbId: string, email: string) => void;
   startRemoveMovie: (imdbId: string, email: string) => void;
   user?: UserType;
-}) => {
+}): ReactElement => {
+  // Destructuring movie-prop
   const {
     title,
     poster,

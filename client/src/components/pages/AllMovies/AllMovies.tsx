@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { startGetMovies } from '../../../store/actions/movies';
 import { connect } from 'react-redux';
 import { MovieType, StoreState } from '../../../types';
@@ -21,7 +21,7 @@ const AllMovies = ({
   movies: Array<MovieType>;
   startGetMovies: VoidFunction;
   moviesFiltered: boolean;
-}) => {
+}): ReactElement => {
   // Used to limit number of movies loaded at a time by pagination
   const [movieCount, setMovieCount] = useState(20);
 
