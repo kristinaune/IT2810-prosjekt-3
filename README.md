@@ -2,10 +2,10 @@
 
 ### Getting started
 
-Go to /client, run “npm i”, then “npm start”.
-The client should connect to the API-server on the VM. If not, you have to run the development server. To do this, go to /server and run “npm run dev”. In /client/src/utilities/CONFIG.ts, change API_ADDRESS to “localhost:4000” and save.
+Go to /client, run `npm i`, then `npm start`.
+The client should connect to the API-server on the VM. If not, you have to run the development server. To do this, go to /server and run `npm run dev`. In /client/src/utilities/CONFIG.ts, change API_ADDRESS to `localhost:4000` and save.
 
-Once the application is running, it can be tested with “npm test”.
+Once the application is running, it can be tested with `npm test`.
 
 ### Overall functionality
 
