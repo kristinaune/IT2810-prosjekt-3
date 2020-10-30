@@ -47,7 +47,7 @@ A user’s list of movies is represented by an array of IMDb-IDs. When a user ad
 
 The application’s backend consists of a MongoDB-database running in a Docker-container on a NTNU-hosted VM, and a NodeJS/Express.js-server, also running on the VM.
 
-However, the Node.js server is not installed as a service, and may crash. If you can’t connect to the API from the frontend, go to “/server” and start the development server by typing npm run dev. Then go to client/src/utilities/CONFIG.ts and change API_ADDRESS to “localhost:4000”.
+However, the Node.js server is not installed as a service, and may crash. If you can’t connect to the API from the frontend, go to “/server” and start the development server by typing `npm run dev`. Then go to client/src/utilities/CONFIG.ts and change `API_ADDRESS` to `localhost:4000`.
 
 ### Technologies
 
@@ -91,10 +91,10 @@ Other components and libraries:
 
 
 ## Testing
-We have tested the website regularly in different browsers with different scaling. Among other things, it has been tested on Goocle Chrome (version 85.0.4183.102) and Safari (version 14.0) on MacOS Caralina, and Safari (14.0) on Apple iPhone 11 with iOS 14.0. 
-The focus on these tests have been to scale the website to see how the components are placed differently, and to see if all the functionality is preserved. Nevertheless, our main focus has been to implement a good solution for larger screens than phones. 
+We have tested the website regularly in different browsers with different scaling. Among other things, it has been tested on Google Chrome (version 85.0.4183.102) and Safari (version 14.0) on MacOS Caralina, and Safari (14.0) on Apple iPhone 11 with iOS 14.0. 
+The focus on these tests have been to scale the website to see how the components are placed differently, and to see if all the functionality is preserved. Nevertheless, our main focus in this project has been to implement a good solution for larger screens than phones. 
 
-We have also written tests with libraries mentioned above. The tests can be run by typing npm test inside the /client-directory.
+We have also written tests with libraries mentioned above. You can run these tests by typing `npm test` inside the /client-directory.
 
 #### End-2-end
 
