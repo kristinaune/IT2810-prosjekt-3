@@ -105,5 +105,5 @@ We have also created tests for searching for one specific movie, and for filteri
 #### Unit-tests
 
 We have written unit-tests in Jest for actions and reducers. To test the action creators we have made som testdata. This are among other used to to see if the getMovies returns the correct type and the same array of movies, and register of an exampleUser returns success and the same user. 
-For the reducers it will test whether the initialstate is as expected, and test some of the functionality. We test the LOAD\_MOVIE and LOGIN_SUCCES reducer. The functionality for the components will be tested by the end-2-end tests. 
+For the reducers it will test whether the initialstate is as expected, and test some of the functionality. We test the LOAD\_MOVIE and LOGIN_SUCCES actions. The functionality for the components will be tested by the end-2-end tests. 
 
