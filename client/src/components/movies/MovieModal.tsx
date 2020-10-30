@@ -40,7 +40,7 @@ const MovieModal = ({
           X
         </button>
         <div className='content'>
-          <h3>{title}</h3>
+          <h3 id='title'>{title}</h3>
           <div className='modalPosters'>
             <img alt='modalposter' src={poster} />
           </div>

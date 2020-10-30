@@ -124,7 +124,6 @@ export const startAddMovie = (imdbId: string, email: string) => async (
   dispatch: Dispatch<AnyAction>
 ): Promise<void> => {
   const body = JSON.stringify({ imdbId, email });
-  console.log('noe');
 
   api
     .post('/users/addMovie', body)
